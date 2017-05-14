@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi - اختاپوس خسته</title>
+  <meta name="author" content="سروش">
+
+  
+  <meta name="description" content="حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
+و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
+Plain Text
+(یعنی محیط‌های &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://soroush.github.io/blog/unicode-bidi">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="اختاپوس خسته" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44259177-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">اختاپوس خسته</a></h1>
+  
+    <h2>یادداشت‌هایی پیرامون کد، زندگی و دوستان</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/soroush" rel="subscribe-github" title="@soroush در گیت‌هاب">گیت‌هاب</a></li>
+</ul>
+  
+  
+  
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:soroush.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="جستجو"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">بلاگ</a></li>
+  <li><a href="/blog/archives">بایگانی</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-18T00:00:00+04:30" pubdate data-updated="true">۲۷ 
+      شهریور 
+      ۱۳۹۳</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
+و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
+<a href="http://en.wikipedia.org/wiki/Plain_text">Plain Text</a>
+(یعنی محیط‌های متنی‌ای که شما کنترلی روی استایل و پاراگراف ندارید. مثل
+<a href="http://en.wikipedia.org/wiki/Gedit">gedit</a>
+یا
+<a href="http://en.wikipedia.org/wiki/Kate_%28text_editor%29">kate</a>
+یا مثلاً
+<a href="http://en.wikipedia.org/wiki/Notepad_%28software%29">notepad</a>).
+خیلی زود متوجه خواهید شد که روش ساده‌ای برای نوشتن کاراکترهایی که نه راست‌به‌چپ
+هستن و نه چپ‌به‌راست هستن، وجود نداره (در ادامه میگم که جهت یک کاراکتر یعنی
+چی). توی این پست می‌خوام روش استاندارد نوشتن متون دوطرفه رو معرفی کنم، و تأکید
+کنم که <strong>حتماً</strong> ازش استفاده کنید و هیچوقت به‌جای این‌کار از هک‌های متداول (مثل
+برعکس نوشتن ترتیب نویسه‌ها) استفاده نکنید چون این کار خیلی غلطه.</p>
+
+<!--more-->
+
+
+<p>نویسه‌های یونیکد از لحاظ جهت‌گیری به چهار دستهٔ خنثی، راست‌به‌چپ، چپ‌به‌راست و
+ضعیف تقسیم‌بندی میشن. نویسه‌های چپ‌به‌راست نویسه‌هایی هستند که همیشه باید
+چپ‌به‌راست نمایش داده بشن. مثل حروف الفبای لاتین. نویسه‌های راست‌به‌چپ هم
+دقیقاً برعکس این‌ها هستند. مثل حروف الفبای عربی. یک دسته از نویسه‌ها هم هستند
+که جهت براشون معنی نداره. مثلاً نویسهٔ نوسطر یا نویسه‌هایی که دیده نمیشن (مثل
+نویسه‌های کنترلی) این‌ها نویسه‌های خنثی هستند. خوب تا این‌جا همه‌چیز خوب بود
+اما وقتی مشکل بزرگ به‌وجود میاد که به نویسه‌های ضعیف برخورد می‌کنیم. نویسهٔ
+ضعیف نویسه‌ای‌یه که براساس جاگیری‌ش بین نویسه‌های دیگه می‌تونه راست‌به‌چپ یا
+چپ‌به‌راست باشه. مثل نویسهٔ + یا مثلاً ™.</p>
+
+<p>خوب این نویسه‌های ضعیف متن رو خراب می‌کنن. چینش‌هایی از متن دوطرف وجود داره که
+از لحاظ منطقی الگوریتمی برای تعیین جهت یک سری نویسهٔ ضعیف توشون وجود نداره.
+مثلاً چطور؟ فرض کنید وسط یک متن فارسی بنویسم C++. همون‌طور که می‌بینید دو تا +
+رفتن به سمت چپ نویسهٔ C در حالی که منظور من اومدن اون‌ها به سمت راست بوده. در
+واقع من اول کلید C رو زدم، بعد دو بار کلید + رو فشار دادم. اما اگر جهت متن رو
+عوض کنم، یعنی توی این کد HTML یه تگ dir=ltr بنویسم، اونوقت نوشته‌های فارسی‌م در
+جهت‌های معکوس نشون داده میشن. برای این که مشکل رو ببینید می‌تونید این ویدئو رو
+ببینید (اگر به هر دلیلی اینترنت آزاد ندارید، می‌تونید از
+<a href="http://www.aparat.com/v/QrLS7">این‌جا</a>
+ببینید):</p>
+
+<iframe width="800" height="600"
+src="http://www.youtube.com/embed/fBCKBA2P3vU">
+</iframe>
+
+
+<p>همون‌طور که گفتم الگوریتمی برای اصلاح خودکار جهت‌ها نمی‌تونه وجود داشته باشه.
+چون کاربر ممکنه هرکدوم از حالت‌ها مدنظرش باشه. برای اصلاح جهت‌ها یک سری
+نویسه‌های کنترلی وجود داره. (نویسه‌هایی که شما اون‌ها رو نمی‌بینید ولی مثل یک
+کاراکتر معمولی هستند). با استفاده از این نویسه‌ها میشه خیلی راحت متن رو تنظیم
+کرد. طوری که متون راست‌به‌چپ وسط متون چپ‌به‌راست قاطی نشن و برعکس.</p>
+
+<p>برای استفاده از این نویسه‌ها کافیه که متن خودتون رو بین یک جفت نویسهٔ کنترلی
+قرار بدید. برای این کار روش‌های مختلفی وجود داره. راحت‌ترین روش استفاده از
+صفحه‌کلید استاندارد فارسی هست که آخر از همه میگم چطوریه (: اول باید توضیح بدم
+که چطور کار می‌کنه.</p>
+
+<h2>طرز کار</h2>
+
+<p>۱. اگر می‌خواهید وسط یک متن راست‌به‌چپ، یک متن چپ‌به‌راست بنویسید، یک نویسهٔ
+Left-to-Right Embedding
+(کد <code>U+202A</code>) قبل از متن چپ‌به‌راست و یک نویسهٔ
+Pop Directional Format
+(کد <code>U+202C</code>) بعد از متن چپ‌به‌راست قرار بدید.</p>
+
+<p>۲. اگر می‌خواهید وسط یک متن راست‌به‌چپ، یک متن چپ‌به‌راست بنویسید، یک نویسهٔ
+Right-to-Left Embedding
+(کد <code>U+202B</code>) قبل از متن چپ‌به‌راست و یک نویسهٔ
+Pop Directional Format
+(کد <code>U+202C</code>) بعد از متن چپ‌به‌راست قرار بدید.</p>
+
+<p>مثلاً عبارت <strong>من ‪C++‬ هستم</strong> به این صورت توی حافظه ذخیره میشه:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="mh">0xd985</span> <span class="c1">// ARABIC LETTER MEEM</span>
+</span><span class='line'><span class="mh">0xd986</span> <span class="c1">// ARABIC LETTER NOON</span>
+</span><span class='line'><span class="mh">0x0020</span> <span class="c1">// SPACE</span>
+</span><span class='line'><span class="mh">0x8207</span> <span class="c1">// LETF-TO-RIGHT EMBEDDING</span>
+</span><span class='line'><span class="mh">0x0067</span> <span class="c1">// C</span>
+</span><span class='line'><span class="mh">0x0043</span> <span class="c1">// +</span>
+</span><span class='line'><span class="mh">0x0043</span> <span class="c1">// +</span>
+</span><span class='line'><span class="mh">0x8236</span> <span class="c1">// POP-DIRECTIONAL FORMAT</span>
+</span><span class='line'><span class="mh">0x0020</span> <span class="c1">// SPACE</span>
+</span><span class='line'><span class="mh">0xd987</span> <span class="c1">// ARABIC LETTER HEH</span>
+</span><span class='line'><span class="mh">0xd8b3</span> <span class="c1">//ARABIC LETTER SEEN</span>
+</span><span class='line'><span class="mh">0xd8aa</span> <span class="c1">//ARABIC LETTER TEH</span>
+</span><span class='line'><span class="mh">0xd985</span> <span class="c1">// ARABIC LETTER MEEM</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>تایپ کردن</h2>
+
+<p>اگر صفحه‌کلید استاندارد فارسی استفاده می‌کنید کارتون خیلی راحته. (اگر کاربر یکی
+از توزیع‌های گنو/لینوکس باشید، صفحه‌کلید پیش‌فرض‌تون همین چینش صفحه‌کلید
+استاندارد خواهد بود.)</p>
+
+<ul>
+<li>برای درج نویسهٔ RLE از کلید <code>Alt</code> سمت راست به‌همراه ‪<code>]</code>‬ (<code>چ</code> فارسی)
+استفاده کنید.</li>
+<li>برای درج نویسهٔ LRE از کلید <code>Alt</code> سمت راست به‌همراه ‪<code>[</code>‬ (<code>ج</code> فارسی) استفاده
+کنید</li>
+<li>برای درج نویسهٔ PDF از کلید <code>Alt</code> سمت راست به‌همراه ‪<code>P</code>‬ (<code>ح</code> فارسی) استفاده
+کنید</li>
+</ul>
+
+
+<p>به همین راحتی! به یاد داشتن جای این کلیدها هم خیلی آسونه:</p>
+
+<p><img class="center" src="/images/posts/unicode-bidi/kb-right-shift.jpg" title="چینش استاندارد فارسی" ></p>
+
+<p>می‌تونید ویدئوی مربوط به تایپ کردن صحیح رو هم این‌جا ببنید:
+(بازم اگر به هر دلیلی اینترنت آزاد ندارید، می‌تونید از
+<a href="http://www.aparat.com/v/n4vbK">این‌جا</a>
+ببینید)</p>
+
+<iframe width="800" height="600"
+src="http://www.youtube.com/embed/yegh4mQZG5E">
+</iframe>
+
+
+<p>اگر کاربر ویندوز هستید بهتره ویندوز رو پاک کنید و یه سیستم‌عامل آزاد نصب کنید.
+اگر رئیس‌تون این اجازه رو نمیده، می‌تونید
+<a href="http://wiki.persian-computing.org/wiki/Main_Page">چینش استاندارد فارسی برای ویندوز</a>
+رو نصب کنید و البته فراموش نکنید که چینش احمقانهٔ من‌درآورُدیِ مایکروسافت رو هم غیرفعال کنید.</p>
+
+<h2>کدهای HTML</h2>
+
+<p>معمولاً توسعه‌دهنده‌های وب گرامی وقتی می‌خوان یک متنی با جهت مخالف رو بین یک
+متن دیگه قرار بدن، دو تا کار انجام میدن. یا کلاً بی‌خیال قضیه میشن و همه‌چیز به
+شکلی زشت و آزاردهنده دیده میشه، یا اینکه هک خودشون رو اختراع می‌کنن. در این
+مورد استفاده از تگ‌های <code>&lt;span&gt;</code> و بازنویسی جهت استفاده میشه. این خیلی بده. وقتی
+توی یک صفحهٔ HTML قرار باشه از متون دوجهته استفاده بشه، <strong>باید</strong> از همین روش
+بالا استفاده کنید. کدهای HTML برای نویسه‌های کنترلی این‌طوری هستند:</p>
+
+<ul>
+<li>برای درج نویسهٔ RLE از کد ‪<code>&amp;#8207;</code>‬ و یا بهتر از اون ‪<code>&amp;rlm;</code>‬ استفاده کنید.</li>
+<li>برای درج نویسهٔ LRE از کد ‪<code>&amp;#8206;</code>‬ و یا بهتر از اون ‪<code>&amp;lrm;</code>‬ استفاده کنید.</li>
+<li>برای درج نویسهٔ PDF از کد ‪<code>&amp;#8236;</code>‬ استفاده کنید.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">نوشته شده توسط <span class="fn">
+  
+    سروش
+  
+  </span></span>
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-18T00:00:00+04:30" pubdate data-updated="true">۲۷ 
+      شهریور 
+      ۱۳۹۳</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/frsy-rstbhchp-ywnykhd-stndrd/'>فارسی,راست‌به‌چپ,یونیکد,استاندارد</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://soroush.github.io/blog/unicode-bidi/" data-via="gigtupus" data-counturl="http://soroush.github.io/blog/unicode-bidi/" >توئیت</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment right" href="/blog/cross-platform-development/" title="پست قبلی: توسعهٔ چندسکویی">&laquo; توسعهٔ چندسکویی</a>
+      
+      
+        <a class="basic-alignment left" href="/blog/cross-qt-development/" title="پست بعدی: توسعهٔ میان‌نسخه‌ای">توسعهٔ میان‌نسخه‌ای &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>دیدگاه‌ها</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  حق تألیف &copy; 2017 - سروش -
+  <span class="credit">قدرت‌گرفته از <a href="http://octopress.org">اکتوپرس</a> | براساس طرح <a href="https://github.com/lucaslew/whitespace">فضای سفید</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'soroushr';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://soroush.github.io/blog/unicode-bidi/';
+        var disqus_url = 'http://soroush.github.io/blog/unicode-bidi/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

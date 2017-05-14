@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>نصب آسان نرم‌افزار از طریق Qt Creator - اختاپوس خسته</title>
+  <meta name="author" content="سروش">
+
+  
+  <meta name="description" content="روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست.
+با این وجود ممکنه گاهی اوقات بعضی کارهای تکراری کسل‌کننده به‌نظر برسه &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://soroush.github.io/blog/qt-creator-deploy">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="اختاپوس خسته" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44259177-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">اختاپوس خسته</a></h1>
+  
+    <h2>یادداشت‌هایی پیرامون کد، زندگی و دوستان</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/soroush" rel="subscribe-github" title="@soroush در گیت‌هاب">گیت‌هاب</a></li>
+</ul>
+  
+  
+  
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:soroush.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="جستجو"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">بلاگ</a></li>
+  <li><a href="/blog/archives">بایگانی</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">نصب آسان نرم‌افزار از طریق Qt Creator</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T00:00:00+03:30" pubdate data-updated="true">۹ 
+      اسفند 
+      ۱۳۹۲</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست.
+با این وجود ممکنه گاهی اوقات بعضی کارهای تکراری کسل‌کننده به‌نظر برسه. همگی
+می‌دونیم که کسل‌کنندگی بزرگترین دشمن گیک‌ها (و البته گیگتوپوس‌ها) هست. خوشبختانه
+توسعه‌دهنده‌های کیوت‌کریتور همگی گیک هستند و راه‌حل‌های مؤثری برای این کارها
+درنظر گرفته شده.</p>
+
+<p>اگر بخوایم یه کتابخانهٔ جدید رو با استفاده از کیوت بنویسیم، مسلماً بعد از یه
+مدتی دلمون می‌خواد که تست‌ش کنیم. خوب بهترین راه تست کردن یه کتابخونه اینه که
+اونو روی سیستم نصب کنیم و سوئیت تست رو اجرا کنیم. (البته اگر سوئیت تست براش
+نوشته باشیم!) روال کلی نصب به این شکله که شما اول دستور make رو اجرا می‌کنید،
+اگر برنامه درست کامپایل شد و همه‌چیز به‌خوبی پیش رفت، دستور sudo make install رو
+وارد می‌کنید. با این دستور کتابخونهٔ شما در مسیرهای پیش‌فرض (که qmake به make
+گفته و make از سیستم یاد گرفته) نصب میشه.</p>
+
+<p>مشکل از جایی شروع میشه که یکی بخواد از متدولوژی TDD برای توسعهٔ نرم‌افزارش
+استفاده کنه. در این صورت کوچک‌ترین تغییری که توی کدها ایجاد کنه باید تست بشه؛ و
+برای تست کل کارهای کسل‌کنندهٔ بالا باید تکرار بشه. خوب ما می‌خوایم راهی داشته
+باشیم که دیگه ترمینال رو باز نکنیم و هی دستورات تکراری توش ننویسیم. توی این پست
+راه‌حلی رو معرفی می‌کنم که مستقیماً از طریق کریتور و بدون باز کردن ترمینال
+بتونیم برنامه‌مون رو روی سیستم (با دسترسی روت) نصب کنیم :)</p>
+
+<!-- more -->
+
+
+<p>برای این کار از روش Deployment استفاده می‌کنیم. برای این کار از نوار کناری
+برگهٔ Project رو انتخاب کنید. (و یا کلید Ctrl+5 رو بزنید) از  صفحهٔ از
+قسمت‌کیت‌ها Run رو انتخاب کنید. (بغل‌دست Build) (موتعسفانه کلید میان‌بر نداره)
+خوب از قسمت Run Settings می‌تونیم بخش Deployment رو ببینیم. این‌جا به‌طور
+پیش‌فرض یک پیکربندی خالی وجود داره که هیچ دستوری رو اجرا نمی‌کنه و طبیعتاً هیچ
+کاری هم انجام نمیده:
+<img class="center" src="/images/posts/qt-creator-deploy.png" title="تنظیمات Deploy" ></p>
+
+<p>۱. روی دکمهٔ Rename کلیک می‌کنیم و یه اسم درست و حسابی برای کانفیگ‌مون انتخاب
+می‌کنیم. مثلاً Local Installation.<br/>
+۲. از قسمت Add Deploy Step گزینهٔ Custom Process Step رو انتخاب می‌کنیم.<br/>
+توی جعبهٔ ایجاد شده سه تا پارامتر هست. اولی (Command) دستوری رو که می‌خوایم اجرا
+بشه مشخص می‌کنه. دومی (Arguments) همون‌طور که از اسمش تابلوئه، آرگومان‌های اون
+دستور رو مشخص می‌کنه. اما سومی (Working Directory) مکانی رو که می‌خوایم دستورمون
+توش اجرا بشه رو مشخص می‌کنه. می‌تونیم یه آدرس صریح بهش بدیم، و یا اینکه از
+متغیرهای تعریف شده استفاده کنیم. متغیرها خیلی بهترن.<br/>
+۳. خوب دستوری که می‌خوایم اجرا کنیم sudo هست با آرگومان‌های make install اون هم
+در مسیری که کتابخونه‌مون رو توش build کردیم. مشکلی که داریم اینه که sudo رابط
+کاربری نیست و پسورد روت رو توی ترمینال (stdin) می‌گیره. خوب ما هم که می‌خواستیم
+کلاً ترمینال باز نکنیم! پس از رابط‌های سودو که DE مون مهیا می‌کنه استفاده
+می‌کنیم. دسکتاپ من KDE هست پس به‌جای sudo می‌نویسم kdesuo. اگر محیط کاری شما
+گنوم هست از gksu استفاده کنید. در آخر یه همچین چیزی میشه:</p>
+
+<p><img class="center" src="/images/posts/qt-creator-deploy-settings.png" title="دستوری که می‌خواهیم اجرا کنیم" ></p>
+
+<p>حالا اگر از منوی Build گزینهٔ Deploy Project رو بزنیم، ازمون پسورد روت پرسیده
+میشه و کل کتابخونه‌ها (یا برنامه‌مون) توی سیستم نصب میشه:</p>
+
+<p><img class="center" src="/images/posts/qt-creator-deploy-in-menu.png" title="آیتم Deploy در منو" >
+و</p>
+
+<p><img class="center" src="/images/posts/qt-creator-deploy-kdesu.png" title="پرسیدن پسورد روت توسط kdesu" ></p>
+
+<p>با این حال میشه حد و مرزهای تنبلی رو فراتر هم برد مثلاً من به عنوان یک گیگتوپوس
+جوان حوصله نمی‌کنم گزینه‌ای رو از بین منوها پیدا کنیم و روش کلیک کنم. برای همین
+برای Deploy یک کلید میان‌بُر تعیین می‌کنم که با زدن اون کلید کتابخونه‌مو نصب
+کنم. برای این کار از منوی Tools آخرین آیتم یعنی Options رو انتخاب کنید، از
+پنجرهٔ باز شده، توی تب کناری، اولین آیتم (یعنی Environment) رو انتخاب کنید، از
+تب وسط صفحه، برگهٔ Keyboar رو باز کنید. حالا توی قسمت Filter بنویسید Deply که
+راحت‌تر پیدا کنید. از لیست فیلتر شده آیتم Deploy رو انتخاب کنید و توی
+قسمت Key Sequence کلید میان‌بری رو که می‌خواید براش انتصاب بشه، بزنید. مثلاً من
+زدم Ctrl+Shift+D :</p>
+
+<p><img class="center" src="/images/posts/qt-creator-deploy-options.png" title="کلید میان‌بُر" ></p>
+
+<p>خوب این تنظیمات برای نصب کتابخانهٔ نرم‌افزاری روی سیستم‌های مبتنی‌بر لینوکس بود. تقریباً همهٔ برنامه‌هایی که من می‌نویسم چندسکویی هستند بنابراین باید برای ویندوز هم بتونم روال مشابه رو تکرار کنم. برای این کار تمام مراحل قبلی رو با یک کانفیگ جدید به اسم MinGW Install انجام میدم. پارامترها این‌ها خواهند بود:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Command: mingw32-make
+</span><span class='line'>Arguments: install INSTALL_ROOT=c:/mingw64/
+</span><span class='line'>Working Directory:%{buildDir}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>در واقع امکانات توزیع در کریتور برای توزیع نرم‌افزارها با روش‌های بومی پلتفرم‌ها
+درنظر گرفته شده. ولی چیزی نمی‌تونه باعث بشه که ازش به منظور دیگه‌ای استفاده
+نکنیم. مثلاً توزیع نرم‌افزار روی سیستم خودمون و یا حتا برای ساخت پکیج‌های
+نرم‌افزاری بومی به شکلی کاملاً اتوماتیک :) دقت داشته باشید که می‌تونید هر تعداد
+کانفیگ برای توزیع نرم‌افزارتون داشته باشید. مثلاً میشه با این کانفیگ از روی یک
+ریلیز خاص سورس، تاربال درست کرد:</p>
+
+<p><img class="center" src="/images/posts/qt-creator-deploy-make-tarball.png" title="ساخت tarball از روی نسخهٔ ۰٫۱٫۳" ></p>
+
+<p>من همیشه برنامه‌های متن‌بازم رو پکیج می‌کنم و روی یک رپوزیتوری دبین شخصی (PPA)
+روی اینترنت می‌ذارم. همین کار رو هم میشه مستقیم از طریق کریتور انجام داد! تعداد
+مراحلش خیلی بیشتره برای همین توضیح نمیدم. نتیجه‌ش این میشه که مستقیم از روی سور
+پکیج می‌سازم، اون پکیج رو مستقیم با کلید خصوصی‌م رمز می‌کنم، می‌ذارمش روی
+لانچپد! و همهٔ این کارها رو تنها با زدن کلید Ctrl+Shift+D انجام میدم :) این‌ها
+پکیج‌هایی هستند که با این روش ساختم و روی رپوزیتوری
+<a href="https://launchpad.net/~soroush-r/+archive/solap">SOLAP</a> (Soroush&rsquo;s own
+Libraries and Programs)
+منتشر کردم:
+<img class="center" src="/images/posts/solap.png" title="پکیج‌های رپوزیتوری شخصی من" ></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">نوشته شده توسط <span class="fn">
+  
+    سروش
+  
+  </span></span>
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T00:00:00+03:30" pubdate data-updated="true">۹ 
+      اسفند 
+      ۱۳۹۲</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://soroush.github.io/blog/qt-creator-deploy/" data-via="gigtupus" data-counturl="http://soroush.github.io/blog/qt-creator-deploy/" >توئیت</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment right" href="/blog/why-cs-is-bad/" title="پست قبلی: چرا سی‌شارپ بد است؟">&laquo; چرا سی‌شارپ بد است؟</a>
+      
+      
+        <a class="basic-alignment left" href="/blog/how-to-win-8-8-puzzle/" title="پست بعدی: چطور پازل ۳۱ زومیت را حل کردم">چطور پازل ۳۱ زومیت را حل کردم &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>دیدگاه‌ها</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  حق تألیف &copy; 2017 - سروش -
+  <span class="credit">قدرت‌گرفته از <a href="http://octopress.org">اکتوپرس</a> | براساس طرح <a href="https://github.com/lucaslew/whitespace">فضای سفید</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'soroushr';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://soroush.github.io/blog/qt-creator-deploy/';
+        var disqus_url = 'http://soroush.github.io/blog/qt-creator-deploy/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

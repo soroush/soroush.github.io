@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>محاسبهٔ مشارکت‌ها در پروژه‌های گروهی - اختاپوس خسته</title>
+  <meta name="author" content="سروش">
+
+  
+  <meta name="description" content="چند وقت پیش در مورد پروژهٔ ترجمهٔ گروهی یکی از کتاب‌های معتبر لینوکس پستی گذاشته
+بودم. تو اون پست توضیح داده بودم که چطوری می‌خوام از یه سیستم خاصی &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://soroush.github.io/blog/git-stats">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="اختاپوس خسته" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44259177-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">اختاپوس خسته</a></h1>
+  
+    <h2>یادداشت‌هایی پیرامون کد، زندگی و دوستان</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/soroush" rel="subscribe-github" title="@soroush در گیت‌هاب">گیت‌هاب</a></li>
+</ul>
+  
+  
+  
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:soroush.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="جستجو"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">بلاگ</a></li>
+  <li><a href="/blog/archives">بایگانی</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">محاسبهٔ مشارکت‌ها در پروژه‌های گروهی</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-26T00:00:00+03:30" pubdate data-updated="true">۴ 
+      مهر 
+      ۱۳۹۲</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>چند وقت پیش در مورد پروژهٔ ترجمهٔ گروهی یکی از کتاب‌های معتبر لینوکس پستی گذاشته
+بودم. تو اون پست توضیح داده بودم که چطوری می‌خوام از یه سیستم خاصی برای محاسبهٔ
+دقیق میزان مشارکت هر نفر استفاده کنم. امروز می‌خوام نحوهٔ استفاده از این سیستم
+رو توضیح بدم. همه‌چیز اونقدرها هم ساده نیست که اولش به نظر می‌رسه. برای برقراری
+عدالت (حرفای گنده!) خیلی باید تلاش می‌کردم.</p>
+
+<!-- more -->
+
+
+<p>اول از همه باید توضیح بدم که از ابزار فوق‌العاده خوشگل و قشنگ
+<a href="http://gitstats.sourceforge.net/">gitstats</a>
+استفاده می‌کنم. این برنامه با خوندن هیستوریِ یک رپوزیتوری گیت، میاد و خیلی خوشگل
+محاسبه می‌کنه که کی، چقدر کد نوشته و دقیقاً چند خط اضافه کرده و چند خط حذف کرده.
+پس بریم نصبش کنیم:</p>
+
+<figure class='code'><figcaption><span>نصب گیت‌استاتس </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install gitstats
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>بعدش می‌تونیم امتحانش کنیم. اول از همه باید بریم به مسیری که مخزن گیت‌مون اونجا
+قرار داره:</p>
+
+<figure class='code'><figcaption><span>اجرای گیت‌استاتس </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>workspace/tlb8th/
+</span><span class='line'>soroush@precise:~/workspace/tlb8th<span class="nv">$ </span>gitstats . ./statistics
+</span><span class='line'>Output path: statistics
+</span><span class='line'>Git path: .
+</span><span class='line'>Collecting data...
+</span><span class='line'><span class="o">[</span>0.00770<span class="o">]</span> &gt;&gt; git shortlog -s HEAD | wc -l
+</span><span class='line'><span class="o">[</span>0.00453<span class="o">]</span> &gt;&gt; git show-ref --tags
+</span><span class='line'><span class="o">[</span>0.01050<span class="o">]</span> &gt;&gt; git rev-list
+</span><span class='line'>             --pretty<span class="o">=</span>format:<span class="s2">&quot;%at %ai %aN &lt;%aE&gt;&quot;</span> HEAD | grep -v ^commit
+</span><span class='line'><span class="o">[</span>0.01069<span class="o">]</span> &gt;&gt; git rev-list
+</span><span class='line'>             --pretty<span class="o">=</span>format:<span class="s2">&quot;%at %T&quot;</span> HEAD | grep -v ^commit
+</span><span class='line'><span class="o">[</span>0.00584<span class="o">]</span> &gt;&gt; git ls-tree -r --name-only
+</span><span class='line'>             <span class="s2">&quot;41b277d16457a510dc05a553d0abee69538ace5c&quot;</span> | wc -l
+</span><span class='line'><span class="c"># کلی توضیحات ... </span>
+</span><span class='line'><span class="o">[</span>0.03374<span class="o">]</span> &gt;&gt; git log --shortstat --first-parent -m
+</span><span class='line'>             --pretty<span class="o">=</span>format:<span class="s2">&quot;%at %aN&quot;</span> HEAD
+</span><span class='line'>Warning: unexpected line <span class="s2">&quot; 1 file changed, 339 insertions(+)&quot;</span>
+</span><span class='line'>Warning: unexpected line <span class="s2">&quot; 1 file changed, 8 insertions(+)&quot;</span>
+</span><span class='line'>Warning: unexpected line <span class="s2">&quot; 1 file changed, 2 insertions(+)&quot;</span>
+</span><span class='line'>Warning: failed to handle line <span class="s2">&quot; 2 files changed, 115 insertions(+)&quot;</span>
+</span><span class='line'>Warning: unexpected line <span class="s2">&quot; 1 file changed, 17 insertions(+)&quot;</span>
+</span><span class='line'><span class="c"># و صدها پیغام دیگه مثل این ... بعدش:</span>
+</span><span class='line'>Refining data...
+</span><span class='line'>Saving cache...
+</span><span class='line'>Generating report...
+</span><span class='line'><span class="o">[</span>0.00371<span class="o">]</span> &gt;&gt; git --version
+</span><span class='line'><span class="o">[</span>0.00761<span class="o">]</span> &gt;&gt; gnuplot --version
+</span><span class='line'>Generating graphs...
+</span><span class='line'><span class="o">[</span>0.02855<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/lines_of_code.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.02795<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/domains.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.01915<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/day_of_week.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.01924<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/files_by_date.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.01940<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/commits_by_year.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.02842<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/lines_of_code_by_author.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.02273<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/month_of_year.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.03280<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/commits_by_author.plot&quot;</span>
+</span><span class='line'>&gt;&gt; gnuplot <span class="s2">&quot;statistics/commits_by_year_month.plot&quot;</span>
+</span><span class='line'>      Warning: empty y range <span class="o">[</span>82:82<span class="o">]</span>, adjusting to <span class="o">[</span>81.18:82.82<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>0.02960<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/commits_by_year_month.plot&quot;</span>
+</span><span class='line'><span class="o">[</span>0.02240<span class="o">]</span> &gt;&gt; gnuplot <span class="s2">&quot;statistics/hour_of_day.plot&quot;</span>
+</span><span class='line'>Execution <span class="nb">time </span>1.05387 secs, 0.99390 secs <span class="o">(</span>94.31 %<span class="o">)</span> in external commands<span class="o">)</span>
+</span><span class='line'>You may now run:
+</span><span class='line'>
+</span><span class='line'>   sensible-browser <span class="s1">&#39;statistics/index.html&#39;</span>
+</span><span class='line'>
+</span><span class='line'>soroush@precise:~/workspace/tlb8th<span class="nv">$ </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>خوب&hellip; گیت‌استات زحمت کشیده و برای ما تمام اطلاعات رپوزیتوری رو به شکل خیلی
+خوشگل و تمیز در فرمت HTML داخل پوشهٔ statistics ذخیره کرده. الان ما می‌تونیم با
+باز کردن فایل statistics/index.html محتویات گزارش‌های تولید شده رو ببینیم</p>
+
+<p>توی صفحهٔ اول گزارش‌های کلی در مورد رپوزیتوری رو می‌تونیم ببینیم:</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/42XnQ/embedded/result/light/"></iframe>
+
+
+<p>اگه روی لینک‌های دیگه کلیک کنیم اطلاعاتی با جزئیات بیشتر وجود داره</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/3EUmr/embedded/result/presentation/"></iframe>
+
+
+<h2>به همین سادگی؟</h2>
+
+<p>مسلماً نه :) این‌جا چند تا مشکل داریم. یکی این که متأسفانه دوستانمون از امضاهای
+متعددی استفاده کردن. یعنی یک نفر بیشتر از چهار امضا داشته. خوب این برای کسی که
+اولین بار از گیت استفاده کرده طبیعی‌یه. در ادامه روش حل این مشکل رو نشونتون
+میدم. اما مشکل دوم: برای محاسبهٔ هزینهٔ ترجمه‌ها تنها باید محتویات دایرکتوری fa
+محاسبه بشه. چون داخل en متون اصلی ور گذاشتم و همشون رو من کامیت کردم. بنابراین
+نباید هزینه‌ای بابت اون کامیت‌ها بگیرم. چون ترجمه‌شون نکردم.</p>
+
+<h3>چطوری امضاها رو اصلاح کنیم؟</h3>
+
+<p>خوشبختانه گیت به ما اجازه میده که هیستوری‌ها رو اصلاح کنیم. البته ریموت‌مون این
+اجازه رو بهمون نمیده. پس اول یه کلون از رپوزیتوری‌مون می‌گیریم و میریم اونجا:</p>
+
+<figure class='code'><figcaption><span>کلون </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/<span class="nv">$ </span><span class="nb">cd</span> ~/workspace
+</span><span class='line'>~/workspace/<span class="nv">$ </span>git clone ./tlb8th/ ./tlb8th-fa-only
+</span><span class='line'>Cloning into <span class="s1">&#39;./tlb8th-fa-only&#39;</span>...
+</span><span class='line'><span class="k">done</span>.
+</span><span class='line'>~/workspace/<span class="nv">$ </span><span class="nb">cd</span> ./tlb8th-fa-only
+</span><span class='line'>~/workspace/tlb8th-fa-only<span class="err">$</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>خوب حالا:</p>
+
+<figure class='code'><figcaption><span>اصلاح </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git filter-branch -f --commit-filter
+</span><span class='line'>&gt; <span class="s1">&#39;if [ &quot;$GIT_AUTHOR_NAME&quot; = &quot;maryam&quot; ];</span>
+</span><span class='line'><span class="s1">&gt; then export GIT_AUTHOR_NAME=&quot;Maryam Shirpour&quot;;</span>
+</span><span class='line'><span class="s1">&gt; export GIT_AUTHOR_EMAIL=████████@████████; # ایمیل سانسور شد</span>
+</span><span class='line'><span class="s1">&gt; fi;</span>
+</span><span class='line'><span class="s1">&gt; git commit-tree &quot;$@&quot;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>و همچنین برای بقیهٔ امضاها. این کار رو تکرار می‌کنیم. حالا اگر دوباره آمار
+بگیریم داریم:
+<img class="center" src="/images/posts/commits_by_author.png" title="'امضاهای اصلاح شده'" ></p>
+
+<h2>ولی کامیت‌ها چی؟ اونا رو چطور حذف کنیم؟</h2>
+
+<p>ولی هنوز یه مشکل وجود داره. کامیت‌های من از همه بیشتره در حالی که ترجمه‌ای انجام
+ندادم :) باید تمام کامیت‌هایی که خارج از مسیر /fa داخل رپوزیتوری انجام شدن، از
+هیستوری حذف بشن. برای این‌کار می‌تونیم پدر هیستوری رو در بیاریم:</p>
+
+<figure class='code'><figcaption><span>اصلاح هیستوری </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git filter-branch -f --subdirectory-filter fa -- --all
+</span><span class='line'>Rewrite 17617ba5af08cfe93eef3ba4dd4660ad6546fde0 <span class="o">(</span>52/52<span class="o">)</span>
+</span><span class='line'>Ref <span class="s1">&#39;refs/heads/master&#39;</span> was rewritten
+</span><span class='line'>Ref <span class="s1">&#39;refs/remotes/origin/master&#39;</span> was rewritten
+</span><span class='line'>WARNING: Ref <span class="s1">&#39;refs/remotes/origin/master&#39;</span> is unchanged
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>خوب وقتی دوباره آمار در میاریم ظاهراً همه‌چیز عادلانه‌ست؛ اما مشکل خیلی جدی وجود
+داره: <strong>اگه شما یه branch جدید ایجاد کرده باشید، gitstats کدهای شما رو
+نمی‌شماره</strong>:
+<img class="center" src="/images/posts/wrong-results.png" title="'نتایج غلط شمارش'" >
+ و صرفاً به همین دلیل هست که کلاً استفاده از گیت‌استاتس رو کنار
+می‌ذاریم :( به‌زودی یک گزارش خطا تنظیم می‌کنم و برای توسعه‌دهنده‌ها می‌فرستم.
+بعدش یه فورک از پروژه می‌گیرم و خودم شروع می‌کنم به اصلاح این برنامه و اضافه
+کردن چند تا ویژگی جدید.</p>
+
+<p>تو پست بعدی در مورد یه برنامهٔ مشابه که خیلی خیلی جالب‌تره و البته مشکلات
+برنامهٔ فعلی رو نداره، توضیحاتی رو ارائه خواهم داد.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">نوشته شده توسط <span class="fn">
+  
+    سروش
+  
+  </span></span>
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-26T00:00:00+03:30" pubdate data-updated="true">۴ 
+      مهر 
+      ۱۳۹۲</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/gyt/'>گیت</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://soroush.github.io/blog/git-stats/" data-via="gigtupus" data-counturl="http://soroush.github.io/blog/git-stats/" >توئیت</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment right" href="/blog/linux-migration/" title="پست قبلی: مهاجرت به لینوکس در قوهٔ مجریه">&laquo; مهاجرت به لینوکس در قوهٔ مجریه</a>
+      
+      
+        <a class="basic-alignment left" href="/blog/the-gap-between-academy-and-industry/" title="پست بعدی: خلأ بین آکادمی و صنعت">خلأ بین آکادمی و صنعت &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>دیدگاه‌ها</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  حق تألیف &copy; 2017 - سروش -
+  <span class="credit">قدرت‌گرفته از <a href="http://octopress.org">اکتوپرس</a> | براساس طرح <a href="https://github.com/lucaslew/whitespace">فضای سفید</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'soroushr';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://soroush.github.io/blog/git-stats/';
+        var disqus_url = 'http://soroush.github.io/blog/git-stats/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

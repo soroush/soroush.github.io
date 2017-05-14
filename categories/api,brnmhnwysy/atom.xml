@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[طبقه‌بندی‌هاAPI،برنامه‌نویسی | اختاپوس خسته]]></title>
+  <link href="http://soroush.github.io/categories/api,brnmhnwysy/atom.xml" rel="self"/>
+  <link href="http://soroush.github.io/"/>
+  <updated>2017-05-14T17:23:03+04:30</updated>
+  <id>http://soroush.github.io/</id>
+  <author>
+    <name><![CDATA[سروش]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ارتباط میان‌زبانی]]></title>
+    <link href="http://soroush.github.io/blog/porting-guide/"/>
+    <updated>2014-10-18T00:00:00+03:30</updated>
+    <id>http://soroush.github.io/blog/porting-guide</id>
+    <content type="html"><![CDATA[<p><blockquote><p>زبان مورد استفاده برای پیاده‌سازی یک ابزار، یکی از ویژگی‌های آن نیست.</p></blockquote></p>
+
+<p>دنیا پر از ابزارها و کتابخانه‌هایی هست که به‌دست برنامه‌نویسان مختلفی
+به‌زبان‌های مختلف نوشته شدن. بدون وجود این کتابخانه‌ها و ابزارها زندگی برای ما
+برنامه‌نویس‌ها (به‌دلایلی واضح) خیلی سخت می‌شد.</p>
+
+<p>به عقیدهٔ من همه‌چیز باید همه‌جا برای همه‌کس قابل استفاده باشه. یعنی این که
+مثلاً این که من فلان کتابخانهٔ کاربردی و باحال رو با زبان ‪C++‬ پیاده‌سازی کردم
+نباید باعث بشه که یک برنامه‌نویس پایتون یا جاوا نتونه ازش استفاده کنه. حتا
+زبان‌هایی که دامنه و کاربرد مختلفی دارن باید پشتیبانی بشن. مثلاً یکی از
+ابزارهایی که ساختم در اصل به‌عنوان یک «حل‌کنندهٔ مسأله» برای کاربردهای پیشرفتهٔ
+هوش مصنوعی طراحی شده، و این‌چنین موضوعاتی معمولاً  برای کاربردهای سیستمی و
+خاص‌منظوره استفاده میشن. اما هیچ دلیلی وجود نداره که یک برنامه‌نویس وب برای یک
+اپلیکیشن آنلاین نخواد از مدل‌سازی ارضای محدودیت برای حل یک سری مسائل داخل
+برنامه‌ش استفاده کنه، یا یک برنامه‌نویس اندرویید نخواد از سیستم‌های استنتاج فازی
+برای برنامه‌ش استفاده کنه. بنابراین وظیفهٔ منِ برنامه‌نویس است، که برای تمام
+زبان‌هایی که می‌تونم، <strong>رابط</strong> (=>interface)های <strong>بومی</strong> (=>native) فراهم کنم تا همه
+بتونن از ابزارم استفاده کنن.</p>
+
+<p>توی این پست نحوهٔ ایجاد رابط برای زبان‌های مختلف رو توضیح میدم. طبق این روش
+ساده، میشه به‌راحتی برای کتابخانه‌های ‪C++‬ رابط‌هایی برای تمام زبان‌های دیگه
+پیاده‌سازی کرد.</p>
+
+<!--more-->
+
+
+<p>فلسفهٔ یونیکس میگه که هر ابزار باید یک کار رو به شکلی خوب انجام بده. همچنین از
+نظر یونیکس چیزهایی که کارهایی رو به‌شکلی خوب انجام میدن با خط‌لوله(=>فارسی‌شدهٔ
+پایپ) با هم ترکیب میشن تا کارهای بزرگتر رو انجام بدن. از این فلسفه خیلی خوشم
+میاد و سعی کردم توی تمام چیزهایی که می‌سازم پیاده‌سازی‌ش کنم. با این حال اگر با
+طرز فکری مشابه بخوام ارتباط بین ابزارها رو تأمین کنم، باید رابط‌های خط‌فرمان
+خیلی سخت (و نه‌پیچیده)‌ای رو پیاده‌سازی کنم. که البته این کار رو هم کردم (: اما
+ارتباطی که من ازش صحبت می‌کنم در ردهٔ پایین‌تری هست. یعنی نمی‌خوام که یک
+برنامهٔ مجزا هر بار فراخوانی بشه و کلی ورودی بگیره و کلی هم خروجی چاپ کنه و یک
+سری پایپ‌هایی متوالی برای پردازش اطلاعات استفاده بشه (باوجود این که این کار
+خیلی زیبا هست). در عوض می‌خوام در سطح پایین‌تر، کتابخانهٔ مشترکی که نوشتم، به
+شکل یک API
+برای هر زبان برنامه‌نویسی هدف در دسترس باشه. برای این کار باید APIهای
+<strong>بومی</strong> هر زبان پیاده‌سازی بشه که در پشت صحنه از فراخوانی‌های کتابخونهٔ اصلی
+استفاده می‌کنن.</p>
+
+<p>اما این کار چطور ممکنه؟ مشکلات زیادی وجود داره. اول این که ABIی هر زبان فرق با
+زبان‌های دیگه متفاوته. دوم این که خیلی از زبان‌ها (از جمله زبان‌های مفسری) اصلا
+ABI
+ندارن. کلاً باینری ندارن که ساختار باینری تعریف‌شده داشته باشند. سومین مشکل هم
+اینه که هر زبانی یک مجموعهٔ مشخصی از ویژگی‌ها داره که با زبان دیگه همخوانی
+نداره. حتا با فرض همخوانی
+ABI
+نمیشه روی یک رابط مشخص بین زبان‌ها توافق کرد. مثلاً بین زبان‌های شی‌گرا،
+پیاده‌سازی شی‌گرایی خیلی تنوع داره. پس چیزی که من بهش توی ‪C++‬میگم <strong>کلاس</strong> یا
+<strong>اینترفیس</strong> با تعریف یک برنامه‌نویس گو فرق داره. حتا گیریم ساختارهای باینری
+این دو زبان یکی باشن، من چطور باید یک رابط برنامه‌نویسی برای گو فراهم کنم؟</p>
+
+<p>در واقع باید یک همچین ساختاری وجود داشته باشه:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>                                           +---------+
+</span><span class='line'>                                       +---&gt; Python  |
+</span><span class='line'>                                       |   +---------+
+</span><span class='line'>                                       |              
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+                     |   +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>|                    |    +&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+    +&mdash;&ndash;> Fortran |
+</span><span class='line'>| C++ API            |    |           |    |   +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>| Shared Library     &lt;&mdash;&mdash;> The Magic &lt;&mdash;&mdash;+            &lt;br/>
+</span><span class='line'>| (Object Oriented)  |    |           |    |   +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>|                    |    +&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+    +&mdash;&ndash;> Golang  |
+</span><span class='line'>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+                     |   +&mdash;&mdash;&mdash;&mdash;&ndash;+&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>                                       |              
+</span><span class='line'>                                       |   +---------+
+</span><span class='line'>                                       +---&gt; Perl    |
+</span><span class='line'>                                           +---------+
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>که در اون <strong>The Magic</strong> یک رابط باینری جهانی و استاندارد هست که تمام زبان‌های
+برنامه‌نویسی مجبور هستند به نحوی پیاده‌سازی‌ش کنن. خوشبختانه این رابط نه تنها
+وجود داره، بلکه رابطِ یک زبان برنامه‌نویسی استاندارد هم هست و اون زبان بی‌شک
+چیزی نیست جز: <strong>The C Programming Language</strong>.</p>
+
+<p>باید یک روشی پیدا کنم که رابط برنامه‌نویسی ‪C++‬ رو به C پورت کنم و بعد از اون
+تمام زبان‌ها می‌تونن wrapperهایی به‌شکل بومی و با استفاده از رابط Cی
+کتابخونه‌ای
+که ساختم استفاده کنن. در واقع میشه این:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>                              +---------+
+</span><span class='line'>                        +-----&gt; Python  |
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+    |     +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>|  C Interface         |    |              &lt;br/>
+</span><span class='line'>|  (Flattened API)     |    |     +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>| +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+ |    +&mdash;&mdash;&ndash;> Fortran |
+</span><span class='line'>| |                  | |    |     +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>| | C++ API          | >&mdash;&mdash;+              &lt;br/>
+</span><span class='line'>| | (Object Oriented)| |    |     +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>| |                  | |    +&mdash;&mdash;&ndash;> Golang  |
+</span><span class='line'>| +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+ |    |     +&mdash;&mdash;&mdash;&mdash;&ndash;+
+</span><span class='line'>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+    |&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>                        |     +---------+
+</span><span class='line'>                        +-----&gt; Perl    |
+</span><span class='line'>                              +---------+
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>خوب برای پورت کردن کد سی++ به سی لازمه که تمام کلاس‌ها و namespaceها رو از بین
+ببریم. برای این کار باید همه‌چیز به سبک شی‌گرایی سی پیاده‌سازی بشه. به این صورت
+که یک مجموعه از توابع داریم، که آرگومان اول همه‌شون، اشاره‌گری به شی‌ای هست که
+قصد داریم متدی از اون رو فراخوانی کنیم. اسم این ایده PIMPL idiom هست. و به
+استفاده از این ایده برای طراحی رابط C میگن C wrapper for C++ API یک مثال
+می‌تونه
+خیلی مفید باشه. این کلاس ‪C++‬‬ رو در نظر بگیرید:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">// foo.hpp</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">public</span><span class="o">:&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">explicit</span> <span class="n">Foo</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">s</span> <span class="p">);</span>
+</span><span class='line'><span class="o">~</span><span class="n">Foo</span><span class="p">();</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">bar</span><span class="p">(</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">private</span><span class="o">:&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">notYourBusiness</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+برای این کلاس رابط C داخل یک هدر مجزا برای زبان C به این شکل پیاده‌سازی میشه:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// foo.h&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifdef</span> <span class="n">__cplusplus</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">extern</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">C</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">struct</span> <span class="n">Foo_Type</span><span class="p">;</span> <span class="c1">// An opaque type</span>
+</span><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Foo_Type</span> <span class="n">Foo_Type</span><span class="p">;</span>
+</span><span class='line'><span class="n">Foo_Type</span><span class="o">*</span> <span class="nf">Foo_create</span><span class="p">(</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span> <span class="p">);</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">Foo_destroy</span><span class="p">(</span> <span class="n">Foo_Type</span> <span class="o">*</span> <span class="n">v</span> <span class="p">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">Foo_bar</span><span class="p">(</span> <span class="n">Foo_Type</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span> <span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifdef</span> <span class="n">__cplusplus</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+و پیاده‌سازی این رابط، داخل سورس ‪C++‬ همون کلاس (یا هر جای دیگه‌ای) به این شکل
+انجام میشه:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">// foo.cpp (or foo_c.cpp)</span>
+</span><span class='line'><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">Foo_create</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'><span class="k">try</span> <span class="p">{</span> <span class="cm">/* ممکنه سازندهٔ رشته استثنا صادر کنه*/</span>
+</span><span class='line'>    <span class="n">ms</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span> <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{}</span>
+</span><span class='line'><span class="k">return</span> <span class="k">static_cast</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">void</span><span class="o">*&amp;</span><span class="n">gt</span><span class="p">;(</span> <span class="n">ms</span> <span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">Foo_destroy</span><span class="p">(</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Foo</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Foo</span><span class="o">*&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">v</span><span class="p">);</span>
+</span><span class='line'><span class="k">delete</span> <span class="n">ms</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">Foo_bar</span><span class="p">(</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Foo</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Foo</span><span class="o">*&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">v</span><span class="p">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">ret_value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="cm">/* با فرض این که منفی به معنی خطا باشه */</span>
+</span><span class='line'><span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">ret_value</span> <span class="o">=</span> <span class="n">ms</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">bar</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span> <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{}</span>
+</span><span class='line'><span class="k">return</span> <span class="n">ret_value</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+خوب حالا یک برنامهٔ سی می‌تونه به‌راحتی با لینک کردن به این کتابخونه و
+‪<code>#include &lt;foo.h&gt;</code>‬
+به‌راحتی از تمام ویژگی‌های کلاس Foo استفاده کنه:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">foo</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">my</span> <span class="n">foo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Foo_bar</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// Thins happen</span>
+</span><span class='line'><span class="n">Foo_destroy</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+فقط برنامه‌نویس C باید حواسش باشه که هدرهای ‪C++‬ رو (که هیچ ربطی به اون ندارن)
+وارد برنامه‌ش نکنه. برای این که از این اتفاق جلوگیری کنیم، داخل هدرهای ‪C++‬
+مطمئن میشیم که کامپایلر ‪C++‬ در حال اجراست. در غیر این صورت یک خطای زمان
+کامپایل صادر می‌کنیم. این‌طوری:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">// foo.hpp&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifndef</span> <span class="n">__cplusplus</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">error</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">This</span> <span class="n">header</span> <span class="n">is</span> <span class="n">a</span> <span class="n">C</span><span class="o">++</span> <span class="n">header</span> <span class="n">and</span> <span class="n">it</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">used</span> <span class="n">via</span> <span class="n">a</span> <span class="n">C</span> <span class="n">compiler</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+از طرف دیگه یه برنامه‌نویس پایتون (یا هر زبان دیگه‌ای) می‌تونه یک رابط برای این
+کد بنویسه، طوری که کاربر نهایی (منظورم برنامه‌نویس پایتون نهایی هست) اصلا متوجه
+نشه که برنامه با ‪C++‬ نوشته شده و پایتون داره از رابط Cی اون استفاده می‌کنه:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">ctypes.util</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">loadName</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">foo</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="c"># ‮ مثلاً ‬‪libfoo.so.1.0.0‬ رو برمی‌گردونه‬</span>
+</span><span class='line'><span class="n">lib</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="n">loadName</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">Foo_create</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">lib</span><span class="o">.</span><span class="n">Foo_destroy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">Foo_bar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+و البته کمی حرفه‌ای‌تر از اینی که من مثال زدم ‪:P‬ نکتهٔ اصلی اینه که تمام این
+کارها بدون کوچکترین سرباری انجام میشه و کدهای فراخوانی شده کدهای ماشین هستند.</p>
+]]></content>
+  </entry>
+  
+</feed>

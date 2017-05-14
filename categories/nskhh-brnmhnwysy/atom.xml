@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[طبقه‌بندی‌هانسخه,برنامه‌نویسی | اختاپوس خسته]]></title>
+  <link href="http://soroush.github.io/categories/nskhh-brnmhnwysy/atom.xml" rel="self"/>
+  <link href="http://soroush.github.io/"/>
+  <updated>2017-05-14T17:23:03+04:30</updated>
+  <id>http://soroush.github.io/</id>
+  <author>
+    <name><![CDATA[سروش]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[توسعهٔ میان‌نسخه‌ای]]></title>
+    <link href="http://soroush.github.io/blog/cross-qt-development/"/>
+    <updated>2014-09-24T00:00:00+03:30</updated>
+    <id>http://soroush.github.io/blog/cross-qt-development</id>
+    <content type="html"><![CDATA[<p>سال گذشته توی
+<a href="http://onealonebit.wordpress.com/2013/09/10/cross-qt-development">وبلاگ انگلیسی‌م</a>
+پستی در مورد توسعهٔ نرم‌افزار بین نسخه‌های مختلف کیوت
+نوشته بودم که مدت‌هاست وقت نکردم ترجمه‌ش کنم. این پست در مورد توضیح یک روش
+کارامد برای کدنویسی بین
+نسخهٔ ۴ و ۵ کیوت هست اما میشه کلیت‌ش رو به تمام چارچوب‌ها و کتابخانه‌هایی که در
+یک بازهٔ زمانی چند نسخه دارند، تعمیم داد. برای برنامه‌هایی که به‌طور طولانی‌مدت
+پشتیبانی میشن، این شرایط خیلی زیاد پیش میاد.فرض کنید برنامه‌ای نوشته میشه که
+قراره با ZMQ نسخهٔ ۲ کار کنه. بعد از گذشت چند سال توسعه‌دهنده‌ها به این نتیجه
+می‌رسن که باید نسخهٔ ۳ پشتیبانی بشه و پکیج‌هایی از کدهای کامپایل شده با نسخهٔ ۳
+تهیه بشه. بنابراین بهترین راه حل نوشتن کدی هست که با هر دو نسخه کامپایل بشه.
+برای ابزارهایی که کتابخانه نیستند هم همین صادق هست. مثلاً اسکریپتی که قراره با
+پایتون ۲ کار کنه اما باید با پایتون ۳ هم کار کنه.</p>
+
+<!--more-->
+
+
+<p>کیوت نسخهٔ پنج نزدیک یک سال پیش منتشر شد. اولین نسخهٔ رسمی فاجعه‌آمیز بود!
+۵٫۰٫۱ کمی بهتر بود، ۵٫۱٫۰ به‌قدر کافی خوب بود و ۵٫۱٫۱ پایدار شده بود. در حال
+حاضر نسخهٔ ۵٫۳٫۰ را داریم که با وجود نسخهٔ پچ صفرم، به‌قدر کافی پایدار و
+بی‌اشکال شده. برای یک توسعهٔ دهندهٔ کیوت، عادت کردن به نسخهٔ جدید زیاد سخت
+نیست. یک راهنمای بسیار عالی هم
+<a href="http://qt-project.org/wiki/Transition_from_Qt_4.x_to_Qt5">اینجا</a>
+برای کسایی که می‌خوان از کیوت نسخهٔ چهار به پنج مهاجرت کنن نوشته شده.</p>
+
+<p>برای من هم اتفاق مشابهی می‌افته&hellip; دیر یا زود مجبور میشم که تمام پروژه‌هام رو
+به کیوت پنج ارتقا بدم. خوب پس منتظر چی هستم؟ یه خبر بد اینه که:
+<strong>سازگاری عقبگرد کد</strong>
+باید حتماً رعایت بشه! این یک مقدار کارم رو سخت خواهد کرد. چون پروژه‌هام
+رو روی ویندوز با استفاده از آخرین نسخه‌های پایدار کیوت می‌سازم و روی لینوکس با
+استفاده از نسخه‌های مخازن سیستم‌عامل. اکثر توزیع‌های لینوکس همچنان نسخهٔ ۴ رو
+به‌عنوان نسخهٔ اصلی کیوت توی مخازن نگه داشتن. و البته دلیلش هم واضحه: حجم بسیار
+بزرگ وابستگی بسته‌های دیگه به کیوت. اما توی ویندوز که کلاً چیزی به اسم پکیجینگ
+یا مدیریت وابستگی نداریم، دلیلی هم نداره بچسبیم به یه نسخهٔ پایدار. (به شکلی
+بسیار ناکارآمد و احمقانه، همیشه تمام پیش‌نیازهای یک برنامه رو بغل‌دستش منتشر
+می‌کنیم، و این تقصیر توسعه‌دهنده‌ها نیست. ویندوز مدلش این‌شکلی‌یه!)</p>
+
+<p>خوب پس بهترین راه حل برام تبدیل کد به یک حالت میانی هست که هم با کیوت ۴ کامپایل
+و اجرا بشه و هم با کیوت ۵. کسل‌کننده به‌نظر میرسه&hellip; خوب واقعاً هم کسل‌کننده‌ست.</p>
+
+<p>راهکار مشابه <a href="/blog/cross-platform-development">پست قبلی‌م</a>
+رو ادامه میدم. پس قانون اول میشه:</p>
+
+<p><blockquote><p>اگر روشی مثل (W) برای انجام وظیفه‌ای مثل (T) وجود داشته باشد، به‌طوری که هم با نسخهٔ ۴ و هم با نسخهٔ ۵ سازگار باشد، در این صورت از آن استفاده کنید؛ مگر این که پیچیدگی آن روش، بیشتر از مجموع پیچیدگی پیاده‌سازی روش ویژهٔ نسخهٔ چهارم و روش ویژهٔ نسخهٔ پنجم باشد. به بیان ریاضی:<br/><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span><br/><span class='line-number'>2</span><br/><span class='line-number'>3</span><br/><span class='line-number'>4</span><br/><span class='line-number'>5</span><br/><span class='line-number'>6</span><br/><span class='line-number'>7</span><br/><span class='line-number'>8</span><br/><span class='line-number'>9</span><br/><span class='line-number'>10</span><br/><span class='line-number'>11</span><br/><span class='line-number'>12</span><br/><span class='line-number'>13</span><br/><span class='line-number'>14</span><br/><span class='line-number'>15</span><br/></pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">if</span><span class="p">(</span> <span class="n">W</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">W4</span><span class="o">+</span> <span class="n">W5</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><br/></span><span class='line'><br/></span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W</span><span class="p">);</span><br/></span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span><br/></span><span class='line'><br/></span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><br/></span><span class='line'><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">&gt;</span> <span class="n">W4</span> <span class="o">+</span> <span class="n">W5</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><br/></span><span class='line'><br/></span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span> <span class="k">if</span><span class="p">(</span><span class="n">Qt5</span><span class="p">)</span><br/></span><span class='line'>     <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W5</span><span class="p">);</span><br/></span><span class='line'> <span class="k">else</span><br/></span><span class='line'>     <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W4</span><span class="p">);</span><br/></span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span><br/></span><span class='line'><br/></span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><br/></span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></p>
+
+<p>و قانون دوم هم نتیجهٔ بدیهی قانون اول خواهد بود:
+<blockquote><p>اگر روش مشترکی برای اجرای کیوت پنج و چهار وجود ندارد، هر دو روش را پیاده‌سازی کرده و زمان کامپایل تصمیم بگیرید که کدام پیاده‌سازی کامپایل شود.</p></blockquote></p>
+
+<p>اجازه بدید یک مثال از پروژهٔ Qtz بزنم. داخل فایل‌های پروژه من باید مراقب
+تغییرات
+در سیستم ماژول‌ها باشم. خوشبختانه ماکروهایی برای تشخیص نسخهٔ کیوت وجود دارند.
+حتا بهتر از آن متغیرهای شرطی برای اندازه‌گیری عدد نسخه.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>QT += core gui sql
+</span><span class='line'>greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+</span><span class='line'>greaterThan(QT_MAJOR_VERSION, 4): CONFIG   += C++11
+</span><span class='line'>lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=c++11</span></code></pre></td></tr></table></div></figure></notextile></div>
+و همین قاعده روی کدها هم تأثیر می‌ذاره:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">CandleGraphicsItem</span><span class="o">::</span><span class="n">CandleGraphicsItem</span><span class="p">(</span><span class="k">const</span> <span class="n">Candle</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">candle</span><span class="p">,</span> <span class="n">QGraphicsItem</span>
+</span><span class='line'><span class="o">*</span><span class="n">parent</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;:</span><span class="n">QGraphicsItem</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span> <span class="n">candle_</span><span class="p">(</span><span class="n">candle</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">if</span> <span class="n">QT_VERSION</span> <span class="o">&gt;=</span> <span class="mh">0x050000</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">setAcceptHoverEvents</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">else</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">setAcceptsHoverEvents</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">this</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">setY</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">candle</span><span class="p">.</span><span class="n">low_</span><span class="o">+</span><span class="n">candle</span><span class="p">.</span><span class="n">high_</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+با استفاده از ماکروی
+<a href="http://qt-project.org/doc/qt-5/qtglobal.html#QT_VERSION">QT_VERSION</a>
+از هدر <QtGlobal> می‌تونید به‌راحتی نسخهٔ کیوت رو تشخیص بدید که این خیلی خوبه
+(:
+حالا من می‌تونم نرم‌افزارم رو روی کیوت‌های ۴٫۶ تا ۵٫۳ کامپایل کنم.</p>
+
+<p>برای جزئیات بیشتر <a href="http://www.kdab.com/porting-from-qt-4-to-qt-5/">این مقاله</a>
+از
+بچه‌های KDAB رو بخونید. اون‌ها همچنین یک
+<a href="http://www.kdab.com/automated-porting-from-qt-4-to-qt-5/">اسکریپت</a> برای تبدیل
+اتوماتیک کدها از کیوت ۴ به کیوت ۵ نوشتن.</p>
+]]></content>
+  </entry>
+  
+</feed>

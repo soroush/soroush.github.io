@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[طبقه‌بندی‌هاگیت | اختاپوس خسته]]></title>
+  <link href="http://soroush.github.io/categories/gyt/atom.xml" rel="self"/>
+  <link href="http://soroush.github.io/"/>
+  <updated>2017-05-14T17:23:03+04:30</updated>
+  <id>http://soroush.github.io/</id>
+  <author>
+    <name><![CDATA[سروش]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[محاسبهٔ مشارکت‌ها در پروژه‌های گروهی]]></title>
+    <link href="http://soroush.github.io/blog/git-stats/"/>
+    <updated>2013-09-26T00:00:00+03:30</updated>
+    <id>http://soroush.github.io/blog/git-stats</id>
+    <content type="html"><![CDATA[<p>چند وقت پیش در مورد پروژهٔ ترجمهٔ گروهی یکی از کتاب‌های معتبر لینوکس پستی گذاشته
+بودم. تو اون پست توضیح داده بودم که چطوری می‌خوام از یه سیستم خاصی برای محاسبهٔ
+دقیق میزان مشارکت هر نفر استفاده کنم. امروز می‌خوام نحوهٔ استفاده از این سیستم
+رو توضیح بدم. همه‌چیز اونقدرها هم ساده نیست که اولش به نظر می‌رسه. برای برقراری
+عدالت (حرفای گنده!) خیلی باید تلاش می‌کردم.</p>
+
+<!-- more -->
+
+
+<p>اول از همه باید توضیح بدم که از ابزار فوق‌العاده خوشگل و قشنگ
+<a href="http://gitstats.sourceforge.net/">gitstats</a>
+استفاده می‌کنم. این برنامه با خوندن هیستوریِ یک رپوزیتوری گیت، میاد و خیلی خوشگل
+محاسبه می‌کنه که کی، چقدر کد نوشته و دقیقاً چند خط اضافه کرده و چند خط حذف کرده.
+پس بریم نصبش کنیم:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>نصب گیت‌استاتس </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install gitstats
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>بعدش می‌تونیم امتحانش کنیم. اول از همه باید بریم به مسیری که مخزن گیت‌مون اونجا
+قرار داره:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>اجرای گیت‌استاتس </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>workspace/tlb8th/
+</span><span class='line'>soroush@precise:~/workspace/tlb8th<span class="nv">$ </span>gitstats . ./statistics
+</span><span class='line'>Output path: statistics
+</span><span class='line'>Git path: .
+</span><span class='line'>Collecting data&amp;hellip;
+</span><span class='line'><span class="o">[</span>0.00770<span class="o">]</span> &gt;&gt; git shortlog -s HEAD | wc -l
+</span><span class='line'><span class="o">[</span>0.00453<span class="o">]</span> &gt;&gt; git show-ref &amp;mdash;tags
+</span><span class='line'><span class="o">[</span>0.01050<span class="o">]</span> &gt;&gt; git rev-list&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;         --pretty<span class="o">=</span>format:<span class="s2">&quot;%at %ai %aN &amp;lt;%aE&amp;gt;&quot;</span> HEAD | grep -v ^commit
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>0.01069<span class="o">]</span> &gt;&gt; git rev-list&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;         --pretty<span class="o">=</span>format:<span class="s2">&quot;%at %T&quot;</span> HEAD | grep -v ^commit
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>0.00584<span class="o">]</span> &gt;&gt; git ls-tree -r &amp;mdash;name-only&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;         <span class="s2">&quot;41b277d16457a510dc05a553d0abee69538ace5c&quot;</span> | wc -l
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;کلی توضیحات &amp;hellip;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>0.03374<span class="o">]</span> &gt;&gt; git log &amp;mdash;shortstat &amp;mdash;first-parent -m&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;         --pretty<span class="o">=</span>format:<span class="s2">&quot;%at %aN&quot;</span> HEAD
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Warning: unexpected line &amp;ldquo; 1 file changed, 339 insertions<span class="o">(</span>+<span class="o">)</span>&amp;rdquo;
+</span><span class='line'>Warning: unexpected line &amp;ldquo; 1 file changed, 8 insertions<span class="o">(</span>+<span class="o">)</span>&amp;rdquo;
+</span><span class='line'>Warning: unexpected line &amp;ldquo; 1 file changed, 2 insertions<span class="o">(</span>+<span class="o">)</span>&amp;rdquo;
+</span><span class='line'>Warning: failed to handle line &amp;ldquo; 2 files changed, 115 insertions<span class="o">(</span>+<span class="o">)</span>&amp;rdquo;
+</span><span class='line'>Warning: unexpected line &amp;ldquo; 1 file changed, 17 insertions<span class="o">(</span>+<span class="o">)</span>&amp;rdquo;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;و صدها پیغام دیگه مثل این &amp;hellip; بعدش:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Refining data&amp;hellip;
+</span><span class='line'>Saving cache&amp;hellip;
+</span><span class='line'>Generating report&amp;hellip;
+</span><span class='line'><span class="o">[</span>0.00371<span class="o">]</span> &gt;&gt; git &amp;mdash;version
+</span><span class='line'><span class="o">[</span>0.00761<span class="o">]</span> &gt;&gt; gnuplot &amp;mdash;version
+</span><span class='line'>Generating graphs&amp;hellip;
+</span><span class='line'><span class="o">[</span>0.02855<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/lines_of_code.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.02795<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/domains.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.01915<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/day_of_week.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.01924<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/files_by_date.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.01940<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/commits_by_year.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.02842<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/lines_of_code_by_author.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.02273<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/month_of_year.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.03280<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/commits_by_author.plot&amp;rdquo;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;blockquote&gt;&lt;p&gt;gnuplot &amp;ldquo;statistics/commits_by_year_month.plot&amp;rdquo;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;  Warning: empty y range <span class="o">[</span>82:82<span class="o">]</span>, adjusting to <span class="o">[</span>81.18:82.82<span class="o">]</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>0.02960<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/commits_by_year_month.plot&amp;rdquo;
+</span><span class='line'><span class="o">[</span>0.02240<span class="o">]</span> &gt;&gt; gnuplot &amp;ldquo;statistics/hour_of_day.plot&amp;rdquo;
+</span><span class='line'>Execution <span class="nb">time </span>1.05387 secs, 0.99390 secs <span class="o">(</span>94.31 %<span class="o">)</span> in external commands<span class="o">)</span>
+</span><span class='line'>You may now run:&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;   sensible-browser &amp;lsquo;statistics/index.html&amp;rsquo;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;soroush@precise:~/workspace/tlb8th<span class="err">$</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>خوب&hellip; گیت‌استات زحمت کشیده و برای ما تمام اطلاعات رپوزیتوری رو به شکل خیلی
+خوشگل و تمیز در فرمت HTML داخل پوشهٔ statistics ذخیره کرده. الان ما می‌تونیم با
+باز کردن فایل statistics/index.html محتویات گزارش‌های تولید شده رو ببینیم</p>
+
+<p>توی صفحهٔ اول گزارش‌های کلی در مورد رپوزیتوری رو می‌تونیم ببینیم:
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/42XnQ/embedded/result/light/"></iframe></p>
+
+<p>اگه روی لینک‌های دیگه کلیک کنیم اطلاعاتی با جزئیات بیشتر وجود داره
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/3EUmr/embedded/result/presentation/"></iframe></p>
+
+<h2>به همین سادگی؟</h2>
+
+<p>مسلماً نه :) این‌جا چند تا مشکل داریم. یکی این که متأسفانه دوستانمون از امضاهای
+متعددی استفاده کردن. یعنی یک نفر بیشتر از چهار امضا داشته. خوب این برای کسی که
+اولین بار از گیت استفاده کرده طبیعی‌یه. در ادامه روش حل این مشکل رو نشونتون
+میدم. اما مشکل دوم: برای محاسبهٔ هزینهٔ ترجمه‌ها تنها باید محتویات دایرکتوری fa
+محاسبه بشه. چون داخل en متون اصلی ور گذاشتم و همشون رو من کامیت کردم. بنابراین
+نباید هزینه‌ای بابت اون کامیت‌ها بگیرم. چون ترجمه‌شون نکردم.</p>
+
+<h3>چطوری امضاها رو اصلاح کنیم؟</h3>
+
+<p>خوشبختانه گیت به ما اجازه میده که هیستوری‌ها رو اصلاح کنیم. البته ریموت‌مون این
+اجازه رو بهمون نمیده. پس اول یه کلون از رپوزیتوری‌مون می‌گیریم و میریم اونجا:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>کلون </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/<span class="nv">$ </span><span class="nb">cd</span> ~/workspace
+</span><span class='line'>~/workspace/<span class="nv">$ </span>git clone ./tlb8th/ ./tlb8th-fa-only
+</span><span class='line'>Cloning into &amp;lsquo;./tlb8th-fa-only&amp;rsquo;&amp;hellip;
+</span><span class='line'><span class="k">done</span>.
+</span><span class='line'>~/workspace/<span class="nv">$ </span><span class="nb">cd</span> ./tlb8th-fa-only
+</span><span class='line'>~/workspace/tlb8th-fa-only<span class="err">$</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>خوب حالا:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>اصلاح </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git filter-branch -f &amp;mdash;commit-filter&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;&amp;lsquo;if <span class="o">[</span> &amp;ldquo;<span class="nv">$GIT_AUTHOR_NAME</span>&amp;rdquo; <span class="o">=</span> &amp;ldquo;maryam&amp;rdquo; <span class="o">]</span>;
+</span><span class='line'><span class="k">then </span><span class="nb">export </span><span class="nv">GIT_AUTHOR_NAME</span><span class="o">=</span>&amp;ldquo;Maryam Shirpour&amp;rdquo;;
+</span><span class='line'><span class="nb">export </span><span class="nv">GIT_AUTHOR_EMAIL</span><span class="o">=</span>████████@████████; <span class="c"># ایمیل سانسور شد</span>
+</span><span class='line'><span class="k">fi</span>;
+</span><span class='line'>git commit-tree &amp;ldquo;<span class="nv">$@</span>&amp;rdquo;&amp;rsquo;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+و همچنین برای بقیهٔ امضاها. این کار رو تکرار می‌کنیم. حالا اگر دوباره آمار
+بگیریم داریم:
+<img class="center" src="/images/posts/commits_by_author.png" title="&lsquo;امضاهای اصلاح شده&rsquo;" ></p>
+
+<h2>ولی کامیت‌ها چی؟ اونا رو چطور حذف کنیم؟</h2>
+
+<p>ولی هنوز یه مشکل وجود داره. کامیت‌های من از همه بیشتره در حالی که ترجمه‌ای انجام
+ندادم :) باید تمام کامیت‌هایی که خارج از مسیر /fa داخل رپوزیتوری انجام شدن، از
+هیستوری حذف بشن. برای این‌کار می‌تونیم پدر هیستوری رو در بیاریم:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>اصلاح هیستوری </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git filter-branch -f &amp;mdash;subdirectory-filter fa &amp;mdash; &amp;mdash;all
+</span><span class='line'>Rewrite 17617ba5af08cfe93eef3ba4dd4660ad6546fde0 <span class="o">(</span>52/52<span class="o">)</span>
+</span><span class='line'>Ref &amp;lsquo;refs/heads/master&amp;rsquo; was rewritten
+</span><span class='line'>Ref &amp;lsquo;refs/remotes/origin/master&amp;rsquo; was rewritten
+</span><span class='line'>WARNING: Ref &amp;lsquo;refs/remotes/origin/master&amp;rsquo; is unchanged
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+
+<p>خوب وقتی دوباره آمار در میاریم ظاهراً همه‌چیز عادلانه‌ست؛ اما مشکل خیلی جدی وجود
+داره: <strong>اگه شما یه branch جدید ایجاد کرده باشید، gitstats کدهای شما رو
+نمی‌شماره</strong>:
+<img class="center" src="/images/posts/wrong-results.png" title="&lsquo;نتایج غلط شمارش&rsquo;" >
+ و صرفاً به همین دلیل هست که کلاً استفاده از گیت‌استاتس رو کنار
+می‌ذاریم :( به‌زودی یک گزارش خطا تنظیم می‌کنم و برای توسعه‌دهنده‌ها می‌فرستم.
+بعدش یه فورک از پروژه می‌گیرم و خودم شروع می‌کنم به اصلاح این برنامه و اضافه
+کردن چند تا ویژگی جدید.</p>
+
+<p>تو پست بعدی در مورد یه برنامهٔ مشابه که خیلی خیلی جالب‌تره و البته مشکلات
+برنامهٔ فعلی رو نداره، توضیحاتی رو ارائه خواهم داد.</p>
+]]></content>
+  </entry>
+  
+</feed>
