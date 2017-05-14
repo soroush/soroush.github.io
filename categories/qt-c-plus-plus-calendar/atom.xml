@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[طبقه‌بندی‌هاqt,c++,calendar | اختاپوس خسته]]></title>
+  <link href="http://soroush.github.io/categories/qt-c-plus-plus-calendar/atom.xml" rel="self"/>
+  <link href="http://soroush.github.io/"/>
+  <updated>2017-05-15T03:16:26+04:30</updated>
+  <id>http://soroush.github.io/</id>
+  <author>
+    <name><![CDATA[سروش]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[تقویم جلالی در کیوت]]></title>
+    <link href="http://soroush.github.io/blog/calendaring-in-qt/"/>
+    <updated>2017-05-14T00:00:00+04:30</updated>
+    <id>http://soroush.github.io/blog/calendaring-in-qt</id>
+    <content type="html"><![CDATA[<p>تقویم فارسی (جلالی) یکی از مشکلات ما برنامه نویسها بوده و هست.</p>
+
+<!--more-->
+
+
+<h1>#</h1>
+]]></content>
+  </entry>
+  
+</feed>
