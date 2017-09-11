@@ -4,7 +4,7 @@
   <title><![CDATA[اختاپوس خسته]]></title>
   <link href="http://soroush.github.io/atom.xml" rel="self"/>
   <link href="http://soroush.github.io/"/>
-  <updated>2017-05-15T03:38:44+04:30</updated>
+  <updated>2017-09-11T19:59:41+04:30</updated>
   <id>http://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
@@ -12,6 +12,228 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet]]></title>
+    <link href="http://soroush.github.io/blog/libcpnet/"/>
+    <updated>2017-09-11T00:00:00+04:30</updated>
+    <id>http://soroush.github.io/blog/libcpnet</id>
+    <content type="html"><![CDATA[<p>کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
+ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما
+گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام
+می‌کنیم، روی ویندوز هم می‌تونید برنامه رو اجرا کنید. خوب این تصمیم مشکلات بسیار
+بزرگی برای برنامه‌نویس به‌وجود میاره. ازجمله برنامه‌نویسی شبکه&hellip; این پست به
+بررسی این مشکلات و ارائهٔ یک راه حل خوب خواهد پرداخت (: اگر قصد دارید کدی
+بنویسید که هم روی ویندوز و هم روی سیستم‌عامل‌های واقعی بتونه از شبکه استفاده
+کنه
+حتماً ادامهٔ مطلب رو بخونید.</p>
+
+<!--more-->
+
+
+<p>در لینوکس API ساده و بسیار کاربردی برای برنامه‌نویسی شبکه وجود داره که تقریباً
+تمام این API استاندارد شده. توابع زبان سی که خیلی ساده کارهایی رو با فلسفهٔ
+یونیکس (≈ هرچیزی یک فایل هست برای نوشتن و خواندن) انجام میده. به راحتی و با
+استفاده از این API سطح پایین میشه برنامه‌های شبکه با کارایی بالا نوشت.</p>
+
+<p>مشکل از جایی شروع میشه که این برنامه‌ها بخوان سمت ویندوز برن. متأسفانه
+سیستم‌عامل ویندوز از نظر طراحی هیچ استاندارد خاصی رو رعایت نکرده و تنها
+<a href="https://brianreiter.org/2010/08/24/the-sad-history-of-the-microsoft-posix%20-subsystem/">قسمت‌هایی از مشخصات POSIX</a>
+رو به‌صورت دست و پا شکسته و ناقص پیاده‌سازی کرده. از
+طرف دیگه API خوبی هم  برای کار کردن با سوکت‌ها نداره. نصف توابعی که فراهم شده
+POSIX
+هستند و نصف دیگه کاملاً
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394%%2028v=vs.85%29.aspx">من‌درآوردی</a>.</p>
+
+<p>معمولاً برنامه‌های بزرگ برای حل این مشکلات از کتابخانه‌هایی که پیاده‌‌سازی‌های
+چندسکویی (cross-platform) فراهم کردند استفاده می‌کنند. معروف‌ترین این
+پیاده‌سازی‌ها
+<a href="https://pocoproject.org">poco</a>,
+<a href="www.cs.wustl.edu/~schmidt/ACE.html">ACE</a>,
+<a href="https://think-async.com/">asio</a> و
+<a href="http://zeromq.org/">ØMQ</a>
+هستند. مشکلی که استفاده از این کتابخانه‌ها داره اینه که:</p>
+
+<ul>
+<li>خیلی پیچیده و بزرگ هستند. (بعضی‌ها حتا چندین مگابایت پیش‌نیازی اضافه
+می‌کنند. مثل کیوت)</li>
+<li>برای کارهای خاص و الگوهای پیچیده ساخته شده‌اند. (مثلا asio برای
+معماری‌های async و ZMQ برای الگوهای ارتباطی خاص)</li>
+</ul>
+
+
+<p> به همین دلیل جای خالی یک کتابخانهٔ <strong>ساده</strong> و <strong>بسیار سبک</strong> که با کمترین
+هزینه؛ برای ویندوز و لینوکس رابط برنامه‌نویسی <strong>سطح سوکت</strong> فراهم کنه احساس
+می‌شد. متأسفانه من همچین کدی پیدا نکردم. و شروع کردم به نوشتن یک کتابخانهٔ آزاد
+و خیلی خیلی ساده به زبان سی که امکان برنامه‌نویسی شبکه در سطح سوکت رو برای هر
+دو سیستم‌عامل فراهم می‌کنه. نتیجه چیزی شد که خودم خیلی ازش راضی بودم و تصمیم
+گرفتم منتشرش کنم.</p>
+
+<p>این کتابخانه از اینجا قابل دسترسی هست: <a href="https://github.com/soroush/libcpnet">https://github.com/soroush/libcpnet</a></p>
+
+<h2>ویژگی‌ها</h2>
+
+<ul>
+<li>API سطح سوکت هست. هیچ پیش‌فرضی در مورد الگوی برنامه‌نویسی یا پروتکل‌های سطح بالاتر از انتقال گرفته نشده؛</li>
+<li>سوکت‌های UDP و TCP تقریباً به‌طور کامل پشتیبانی میشن؛</li>
+<li>کد استاندارد سی هست (درواقع C99) که البته با C11 هم کامپایل میشه؛</li>
+<li>کد روی سیزده پلتفرم مختلف تست شده. (ویژوال استودیو ۲۰۱۷ و ۲۰۱۵ &ndash; release و debug &ndash; استاتیک و داینامیک + نسخه‌های 4.7 4.8 4.9 5.4 و 6 از gcc)؛</li>
+</ul>
+
+
+<h2>محدودیت‌ها</h2>
+
+<ul>
+<li>در حال حاضر فقط سوکت‌های datagram و stream (در واقع UDP و TCP) رو پیاده‌سازی
+کردم. این‌ها پرکاربردتر از بقیهٔ انواع سوکت‌ها هستند. البته سوکت‌های انواع دیگه رو هم به
+مرور اضافه می‌کنم؛</li>
+<li>این API کامل نیست. یعنی تمام توابع رو (مخصوصاً توابعی رو که هم توی لینوکس و
+هم توی ویندوز یکسان هستند) پوشش نمیده. دلیلش واضحه: دلیلی ندیدم پیاده‌سازی کنم.</li>
+</ul>
+
+
+<p>با وجود این محدودیت‌ها کتابخانه کاملاً کاربردی و قابل استفاده هست و مشکلات زیادی رو حل می‌کنه.</p>
+
+<h2>کد</h2>
+
+<p>هیچ چیز بهتر از کد نمی‌تونه توضیح بده (: کد سمت کلاینت برای اتصال از نوع TCP یه
+همچین چیزی میشه:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* Client-side sample code */</span>
+</span><span class='line'><span class="cm">/* Initialize networking API (Only needed in Windows) */</span>
+</span><span class='line'><span class="n">net_init</span><span class="p">();</span>
+</span><span class='line'><span class="cm">/* Start a client */</span>
+</span><span class='line'><span class="n">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/* Connect to port 50001 */</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">net_connect</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">50001</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Unable to connect: %s&quot;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span><span class='line'><span class="cm">/* Write to socket */</span>
+</span><span class='line'><span class="n">ssizet</span> <span class="n">io_size</span> <span class="o">=</span> <span class="n">net_write</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">io_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Unable to write: %s&quot;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">io_size</span> <span class="o">=</span> <span class="n">net_read</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">read_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Unable to read: %s&quot;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cm">/* ... */</span>
+</span><span class='line'><span class="cm">/* Cleanup (Only needed in Windows) */</span>
+</span><span class='line'><span class="n">net_clean</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>و کد سمت سرور برای باز کردن یک پورت و جواب دادن به اتصالات مختلف:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* Initialize networking API (if any needed) */</span>
+</span><span class='line'><span class="n">net_init</span><span class="p">();</span>
+</span><span class='line'><span class="cm">/* Start a server */</span>
+</span><span class='line'><span class="n">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/* Bind on port 50001 */</span>
+</span><span class='line'><span class="kt">uint16_t</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">50001</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">net_bind</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Unable to bind: %s&quot;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cm">/* Listen for incomming connections (backlog=10) */</span>
+</span><span class='line'><span class="n">net_listen</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/* Accept clients */</span>
+</span><span class='line'><span class="kt">char</span> <span class="n">address</span><span class="p">[</span><span class="mi">46</span><span class="p">];</span>
+</span><span class='line'><span class="n">socket_t</span> <span class="n">client</span> <span class="o">=</span> <span class="n">net_accept</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
+</span><span class='line'><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Client connected. Remote Address:`%s&#39; Assigned port number: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+</span><span class='line'><span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span><span class='line'><span class="kt">ssize_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">net_read</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Unable to read from socket: &quot;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Remote client stopped.&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">net_close</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="kt">ssize_t</span> <span class="n">w</span> <span class="o">=</span> <span class="n">net_write</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Unable to write to socket: &quot;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
+</span><span class='line'>    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>چند تا نکته:</p>
+
+<ul>
+<li>همهٔ توابع با ‪<code>net_</code>‬ شروع میشن.</li>
+<li>روی لینوکس لازم نیست ‪<code>net_init()</code>‬ و ‪<code>net_clean()</code>‬ رو بنویسید، اما ضرری هم نداره (هیچ کاری نمی‌کنه)</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[بدترین باگ کیوت!]]></title>
@@ -3119,80 +3341,6 @@ unicode-bidi:embed;">&amp;Settings</span>
 
 <p>ترجمهٔ فارسی جدید بیت‌کوین در کنار انتشار بعدی نسخهٔ رسمی نرم‌افزار قرار خواهد
 گرفت :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[خلأ بین آکادمی و صنعت]]></title>
-    <link href="http://soroush.github.io/blog/the-gap-between-academy-and-industry/"/>
-    <updated>2013-09-27T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/the-gap-between-academy-and-industry</id>
-    <content type="html"><![CDATA[<p>یه وضعیتی هست که بین بازار و دانشگاه به‌وجود اومده و خیلی اذیتم می‌کنه. من بهش
-میگم <strong>خلأ بین آکادمی و صنعت</strong>. شاید جای دیگه اسمش فرق کنه. البته مختص کشور ما
-هم نیست ولی طبق معمول بدترین حالتش توی کشور ما اتفاق افتاده {فرهنگ؟}</p>
-
-<p>این وضع باعث شده که بازاری ناهنجار و صنعتی عقب‌افتاده داشته باشیم. در مورد رشتهٔ
-خودم که مشکل رو با قد و قوارهٔ کاملش دارم می‌بینم. حدس می‌زنم بقیهٔ شاخه‌های
-مهندسی هم وضع مشابهی داشته باشن. و البته تا جایی که با دوستان‌مون که مکانیک و
-برق می‌خونن صحبت کردم؛ وضعیت اون‌ها هم دقیقاً مشابه وضع ماست.</p>
-
-<p>توی این پست ظهر جمعه‌ای، می‌خوام این وضع رو بررسی کنم و چیزهایی رو که دیدم
-براتون تعریف کنم.</p>
-
-<!-- more -->
-
-
-<h2>صورت‌مسأله</h2>
-
-<p>ما توی دانشگاه (همون آکادمی) درس‌های متعددی رو تو زمینه‌های مختلف یاد می‌گیریم.
-از تکنیک‌های مختلف هوش مصنوعی گرفته تا شبکه‌های عصبی، محاسبات نرم، طراحی
-کامپایلرها و کلی مباحث پیشرفته که توی دورهٔ فوق لیسانس آموزش داده میشه. اما وقتی
-وارد زندگی واقعی میشیم، از هیچکدوم از این‌ها استفاده نمی‌کنیم. توی بازار ما از
-تکنولوژی‌های متوسط به پایین استفاده می‌کنیم و دامنهٔ کاریِ ما محدود به همون
-تکنولوژی‌هاست. آخر سر همه میشینیم برنامه‌های حساب‌داری و یا مدیریتی می‌نویسیم،
-سایت طراحی می‌کنیم و غیره. و البته توی این روند هم به‌هیچ‌وجه از چیزی که تو درس
-هوش مصنوعی و یا نظریهٔ زبان و کامپایلر یاد گرفتیم استفاده نمی‌کنیم. این وضعیت یک
-گپ خیلی ناهنجار بین آکادمی و صنعت ایجاد می‌کنه. ممکنه بگید که خوب بازار کشش
-نداره و فیلان&hellip; بعضی‌ها هم میگن که نه، این‌طور نیست. مثلاً من رفتم فلان سازمان
-از دانش پیشرفتهٔ محاسبات برای حل کارهاشون استفاده می‌کردن&hellip; خوب بله. من هم
-کلی‌گویی می‌کنم، نه وضع قاعده.</p>
-
-<p><img class="left" src="http://soroush.github.io/images/posts/fezzik.jpg" title="روش غالب مهندسی نرم‌افزار در کشور ما: زورِ خر" ></p>
-
-<p>فرض کنید شما دارید روی یک موضوعی کار می‌کنید که با استفاده از تکنیک‌های
-برنامه‌ریزی هوش مصنوعی، و یا مدل‌سازی مسائل ارضای محدودیت، به‌راحتی قابل حل هست.
-کاری که می‌کنید چیه؟ شما می‌تونید توی متلب مدل‌سازی‌هاتون رو انجام بدید و نتایجش
-رو ببینید. اما وقتی قرار باشه برنامه روی کامپیوترهای یک سازمان نصب بشه، و یا روی
-یک سروری توی اینترنت، مسلماً بی‌خیال قضیه میشید. متلب قابل‌حمل نیست، و اصولاً
-برای توسعه ساخته نشده. هدف اصلی‌ش تحقیقات هست نه پیاده‌سازی. چه اتفاقی می‌افته؟
-شما پروژه‌تون رو به بی‌شوعورانه‌ترین شکل ممکن (به‌صورت broute force)
-پیاده‌سازی می‌کنید و یا حتا در مواردی ویژگی موردنظر رو از کاتالوگ نرم‌افزارتون
-حذف می‌کنید.</p>
-
-<h2>نتایج</h2>
-
-<p>اگه یه نگاهی به نرم‌افزارهای موجود تو بازار بندازیم می‌بینیم که این گپ باعث
-به‌وجود اومدن یک طرز فکر شده. اسم این طرز فکر رو می‌ذارم «ماسمالی». نگاه غالب یک
-مهندس نرم‌افزار ایرانی ماسمالی کردن محصول هست. یعنی این که مهم نیست کیفیت در چه
-حدی باشه و اصلاً کیفیت محصول ارائه شده یکی از مهیارهای ارزیابی موفقیت نیست. تنها
-چیزی که اهمیت داره اینه که محصول نرم‌افزاری چقدر راحت ساخته بشه.</p>
-
-<p>مثلاً نرم‌افزار سما رو در نظر بگیرید. خوب خیلی راحت میشه برنامه‌ریزی آموزشی رو
-با یه مدل‌سازی ارضای محدودیت به بهترین شکل ممکن پیاده‌سازی کرد. اما اگه شما اینو
-به توسعه‌دهنده‌های سما بگید بهتون می‌خندن. آخه CSP؟! حوصله داریا&hellip; بذار خود
-کارمند برنامه تنظیم کنه.</p>
-
-<p><img class="right" src="http://soroush.github.io/images/posts/hasamn_kachal.jpg" title="تفاوت بین حسن‌کچل و سیستم‌عامل" >
-عکس این تأثیر هم وجود داره. یعنی بازار روی دانشگاه تأثیر مخرب می‌ذاره. خوب
-دانشجویی که تفاوت بین بازار و دانشگاه رو می‌بینه طبیعتاً دانشگاه رو هم خراب
-می‌کنه. عملاً انگیزه‌ای برای یاد گرفتن (≠ پاس کردن) دروسی مثل سیستم عامل و یا
-هوش مصنوعی باقی نمی‌مونه. چون می‌دونه که آخرسر قراره بشینه برنامهٔ
-پایگاه‌داده‌ای بنویسه و هیچ‌کدوم از چیزایی که می‌خونه به دردش نمی‌خوره. اگر
-بخواهیم واقع‌بین باشیم، باید بگیم دانشجوها به‌واسطهٔ این <em>بی‌خیالی</em>، تبدیل به
-یک سری ماشین زیراکس میشن. یعنی اگر فرضاً استاد درس سیستم‌عامل بیاد پای تخته قصهٔ
-حسن کچل تعریف کنه، دانشجوها همون قصهٔ حسن کچل رو توی جزوه‌هاشون کپی می‌کنن و بعد
-آخر ترم همونو توی ورقه‌ها. جالب اینه که بیست می‌گیرن و با معدل بالا فارغ‌التحصیل
-هم میشن. و دوباره این فارغ‌التحصیل‌ها وارد بازار کار میشن و همین سیکل معیوب تا ابد ادامه پیدا می‌کنه&hellip;</p>
 ]]></content>
   </entry>
   
