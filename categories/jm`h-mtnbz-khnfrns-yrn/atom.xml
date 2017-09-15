@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاجامعه,متن‌باز,کنفرانس,ایران | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/jm`h-mtnbz-khnfrns-yrn/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/jm`h-mtnbz-khnfrns-yrn/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[زیکانف‌نامه]]></title>
-    <link href="http://soroush.github.io/blog/zconfination/"/>
+    <link href="https://soroush.github.io/blog/zconfination/"/>
     <updated>2014-09-17T00:00:00+04:30</updated>
-    <id>http://soroush.github.io/blog/zconfination</id>
+    <id>https://soroush.github.io/blog/zconfination</id>
     <content type="html"><![CDATA[<p>خوب دو هفته‌ای از برگزاری همایش سراسری نرم‌افزارهای آزاد/متن‌باز (زیکانف)
 می‌گذره و من هنوز هیچ پستی در مورد این که چقدر خوش گذشت و چه کارهایی کردیم،
 ننوشتم.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هافارسی,راست‌به‌چپ,یونیکد,استاندارد | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/frsy-rstbhchp-ywnykhd-stndrd/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/frsy-rstbhchp-ywnykhd-stndrd/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi]]></title>
-    <link href="http://soroush.github.io/blog/unicode-bidi/"/>
+    <link href="https://soroush.github.io/blog/unicode-bidi/"/>
     <updated>2014-09-18T00:00:00+04:30</updated>
-    <id>http://soroush.github.io/blog/unicode-bidi</id>
+    <id>https://soroush.github.io/blog/unicode-bidi</id>
     <content type="html"><![CDATA[<p>حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
 و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
 <a href="http://en.wikipedia.org/wiki/Plain_text">Plain Text</a>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاAPI،برنامه‌نویسی | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/api,brnmhnwysy/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/api,brnmhnwysy/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ارتباط میان‌زبانی]]></title>
-    <link href="http://soroush.github.io/blog/porting-guide/"/>
+    <link href="https://soroush.github.io/blog/porting-guide/"/>
     <updated>2014-10-18T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/porting-guide</id>
+    <id>https://soroush.github.io/blog/porting-guide</id>
     <content type="html"><![CDATA[<p><blockquote><p>زبان مورد استفاده برای پیاده‌سازی یک ابزار، یکی از ویژگی‌های آن نیست.</p></blockquote></p>
 
 <p>دنیا پر از ابزارها و کتابخانه‌هایی هست که به‌دست برنامه‌نویسان مختلفی

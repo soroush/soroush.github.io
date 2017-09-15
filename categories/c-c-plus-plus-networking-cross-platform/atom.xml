@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاc,c++,networking,cross-platform | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/c-c-plus-plus-networking-cross-platform/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/c-c-plus-plus-networking-cross-platform/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet]]></title>
-    <link href="http://soroush.github.io/blog/libcpnet/"/>
+    <link href="https://soroush.github.io/blog/libcpnet/"/>
     <updated>2017-09-11T00:00:00+04:30</updated>
-    <id>http://soroush.github.io/blog/libcpnet</id>
+    <id>https://soroush.github.io/blog/libcpnet</id>
     <content type="html"><![CDATA[<p>کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
 ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما
 گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام

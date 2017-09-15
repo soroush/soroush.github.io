@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاAPI،برنامه‌نویسی,dynamixel | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/api,brnmhnwysy-dynamixel/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/api,brnmhnwysy-dynamixel/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[کتابخانهٔ Dynamixel]]></title>
-    <link href="http://soroush.github.io/blog/libdynamixel-c%2B%2B11-api/"/>
+    <link href="https://soroush.github.io/blog/libdynamixel-c%2B%2B11-api/"/>
     <updated>2015-01-07T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/libdynamixel-c++11-api</id>
+    <id>https://soroush.github.io/blog/libdynamixel-c++11-api</id>
     <content type="html"><![CDATA[<p>مدتی هست که هم توی شبکه‌های اجتماعی و هم این‌جا فعالیتم خیلی کم شده. دلیلش
 پروژه‌ای هست که در حال حاضر وقت خیلی زیادی ازم می‌گیره و مجبورم به‌خاطرش
 مسافرت‌های طولانی رو برم و برگردم.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاqt,c++,bug | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/qt-c-plus-plus-bug/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/qt-c-plus-plus-bug/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[بدترین باگ کیوت!]]></title>
-    <link href="http://soroush.github.io/blog/worst-ever-bug/"/>
+    <link href="https://soroush.github.io/blog/worst-ever-bug/"/>
     <updated>2017-05-09T00:00:00+04:30</updated>
-    <id>http://soroush.github.io/blog/worst-ever-bug</id>
+    <id>https://soroush.github.io/blog/worst-ever-bug</id>
     <content type="html"><![CDATA[<p>کیوت به‌نظر من بهترین فریم‌ورک سی‌پلاس‌پلاس هست. یک کتابخانهٔ خیلی بزرگ با
 امکانات بسیار عالی و خوب که محیط کاری KDE به‌طور کامل برپایهٔ اون ساخته شده.
 اما از نسخهٔ 5.3 (ظاهراً) یک باگی به‌وجود آمده که زندگی رو برای ما خیلی سخت
@@ -169,7 +169,7 @@ qtbase-opensource-src (5.5.1+dfsg-16ubuntu7.3) UNRELEASED; urgency=medium</p>
 </ul>
 
 
-<p> &mdash; Soroush Rabiei <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#115;&#111;&#x72;&#x6f;&#x75;&#x73;&#104;&#64;&#97;&#x6d;&#x65;&#x74;&#105;&#x73;&#x63;&#x6f;&#x2e;&#105;&#114;">&#115;&#x6f;&#114;&#x6f;&#117;&#x73;&#x68;&#64;&#97;&#x6d;&#x65;&#116;&#x69;&#x73;&#x63;&#111;&#46;&#105;&#114;</a>  Tue, 09 May 2017 20:23:08 +0430
+<p> &mdash; Soroush Rabiei <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#115;&#x6f;&#x72;&#x6f;&#117;&#x73;&#104;&#x40;&#x61;&#109;&#101;&#116;&#x69;&#115;&#x63;&#x6f;&#x2e;&#x69;&#x72;">&#x73;&#111;&#x72;&#x6f;&#117;&#x73;&#104;&#x40;&#x61;&#x6d;&#101;&#116;&#x69;&#x73;&#99;&#111;&#x2e;&#x69;&#x72;</a>  Tue, 09 May 2017 20:23:08 +0430
 &hellip;
 ```</p>
 

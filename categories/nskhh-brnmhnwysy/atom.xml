@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هانسخه,برنامه‌نویسی | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/nskhh-brnmhnwysy/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/nskhh-brnmhnwysy/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[توسعهٔ میان‌نسخه‌ای]]></title>
-    <link href="http://soroush.github.io/blog/cross-qt-development/"/>
+    <link href="https://soroush.github.io/blog/cross-qt-development/"/>
     <updated>2014-09-24T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/cross-qt-development</id>
+    <id>https://soroush.github.io/blog/cross-qt-development</id>
     <content type="html"><![CDATA[<p>سال گذشته توی
 <a href="http://onealonebit.wordpress.com/2013/09/10/cross-qt-development">وبلاگ انگلیسی‌م</a>
 پستی در مورد توسعهٔ نرم‌افزار بین نسخه‌های مختلف کیوت

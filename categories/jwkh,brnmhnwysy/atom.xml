@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاجوک،برنامه‌نویسی | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/jwkh,brnmhnwysy/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/jwkh,brnmhnwysy/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[پادشاه و استادِ بزرگ]]></title>
-    <link href="http://soroush.github.io/blog/the-king-and-the-grandmaster/"/>
+    <link href="https://soroush.github.io/blog/the-king-and-the-grandmaster/"/>
     <updated>2014-10-03T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/the-king-and-the-grandmaster</id>
+    <id>https://soroush.github.io/blog/the-king-and-the-grandmaster</id>
     <content type="html"><![CDATA[<p>روزی پادشاهی استادِ بزرگ را نزد خویش فراخواند و به او گفت:</p>
 
 <p><blockquote><p>ای حکیم دانا!‌ به من چیزی بیاموز که در غمگینی مراخوشحال کرده و دوران خوشی مرا غمگین کند.</p></blockquote></p>

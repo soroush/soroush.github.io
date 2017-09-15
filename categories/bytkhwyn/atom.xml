@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هابیت‌کوین | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/bytkhwyn/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/bytkhwyn/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[بیت‌کوین فارسی]]></title>
-    <link href="http://soroush.github.io/blog/bitcoin-fa/"/>
+    <link href="https://soroush.github.io/blog/bitcoin-fa/"/>
     <updated>2013-10-18T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/bitcoin-fa</id>
+    <id>https://soroush.github.io/blog/bitcoin-fa</id>
     <content type="html"><![CDATA[<p>حدود دو ماهه که دارم در مورد
 <a href="http://en.wikipedia.org/wiki/Bitcoin">bitcoin</a>
 تحقیق می‌کنم. به‌نظر من یکی از ایده‌هایی

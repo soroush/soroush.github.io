@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://soroush.github.io/sitemap.xml
+Sitemap: https://soroush.github.io/sitemap.xml

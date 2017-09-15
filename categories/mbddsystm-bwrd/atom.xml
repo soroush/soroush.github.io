@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاامبددسیستم,بورد | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/mbddsystm-bwrd/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/mbddsystm-bwrd/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[این بورد لعنتی]]></title>
-    <link href="http://soroush.github.io/blog/damn-board/"/>
+    <link href="https://soroush.github.io/blog/damn-board/"/>
     <updated>2016-01-08T00:00:00+03:30</updated>
-    <id>http://soroush.github.io/blog/damn-board</id>
+    <id>https://soroush.github.io/blog/damn-board</id>
     <content type="html"><![CDATA[<p>مدتی‌یه که برای انجام یه پروژهٔ صنعتی یه بورد
 <a href="http://www.friendlyarm.net/products/smart210">Smart 210</a>
 به دستم رسیده. این بورد ساخت شرکت

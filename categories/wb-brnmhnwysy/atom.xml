@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[طبقه‌بندی‌هاوب,برنامه‌نویسی | اختاپوس خسته]]></title>
-  <link href="http://soroush.github.io/categories/wb-brnmhnwysy/atom.xml" rel="self"/>
-  <link href="http://soroush.github.io/"/>
-  <updated>2017-09-16T00:20:07+04:30</updated>
-  <id>http://soroush.github.io/</id>
+  <link href="https://soroush.github.io/categories/wb-brnmhnwysy/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2017-09-16T00:30:22+04:30</updated>
+  <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[چرا طراحی وب را دوست ندارم]]></title>
-    <link href="http://soroush.github.io/blog/why-do-I-hate-web-devel/"/>
+    <link href="https://soroush.github.io/blog/why-do-I-hate-web-devel/"/>
     <updated>2014-09-17T00:00:00+04:30</updated>
-    <id>http://soroush.github.io/blog/why-do-I-hate-web-devel</id>
+    <id>https://soroush.github.io/blog/why-do-I-hate-web-devel</id>
     <content type="html"><![CDATA[<p>ترجیح میدم برنامه‌نویسی وب انجام بدم تا کار طراحی ظاهر و گرافیک این‌جور چیزها.
 دلیل این وضعیت هم دو تا چیز هست:</p>
 
@@ -57,9 +57,9 @@ JavaScript و رفقا.</p>
   
   <entry>
     <title type="html"><![CDATA[توسعهٔ وب از دید یک گیگتوپوس]]></title>
-    <link href="http://soroush.github.io/blog/web-development-like-a-boss/"/>
+    <link href="https://soroush.github.io/blog/web-development-like-a-boss/"/>
     <updated>2014-03-25T00:00:00+04:30</updated>
-    <id>http://soroush.github.io/blog/web-development-like-a-boss</id>
+    <id>https://soroush.github.io/blog/web-development-like-a-boss</id>
     <content type="html"><![CDATA[<p>به‌دلایلی مجبور هستم سایت شرکتمون رو خودم طراحی کنم. همیشه از طراحی وب بدم
 می‌اومده. و این کار برام چندان آسون نیست. به نظر من روش‌ها و ابزارهایی که اکثر
 توسعه‌دهنده‌های وب ایرانی استفاده می‌کنن مشکلاتی داره. سعی کردم این مشکلات رو حل
