@@ -2,131 +2,175 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://soroush.github.io/blog/slm/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/ebo-qt/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/stager-is-pure-man/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/this-blog/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/persian/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/collabrative-translation/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/linux-migration/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/git-stats/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/the-gap-between-academy-and-industry/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/bitcoin-fa/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/ait/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/confusing/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/why-cs-is-bad/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/qt-creator-deploy/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/how-to-win-8-8-puzzle/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/web-development-like-a-boss/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/why-do-I-hate-web-devel/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
-    </url>
-    <url>
-        <loc>http://soroush.github.io/blog/zconfination/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/cross-platform-development/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/why-do-i-hate-java/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/git-stats/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/when-everything-goes-wrong/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/the-gap-between-academy-and-industry/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/bitcoin-fa/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/ait/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/confusing/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/why-cs-is-bad/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/qt-creator-deploy/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/installing-mysql-via-inno-setup/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/how-to-win-8-8-puzzle/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/web-development-like-a-boss/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/why-do-I-hate-web-devel/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/zconfination/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/cross-platform-development/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/unicode-bidi/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/spider-epigenetics/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/cross-qt-development/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/the-king-and-the-grandmaster/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/porting-guide/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/libdynamixel-c%2B%2B11-api/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/changes/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/return/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/the-c-plus-plus/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/why-do-i-love-emacs/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/damn-board/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/araxes/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/worst-ever-bug/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/wc-indicator/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
+    </url>
+    <url>
+        <loc>http://soroush.github.io/blog/calendaring-in-qt/</loc>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/libcpnet/</loc>
-        <lastmod>2017-09-11T19:58:33+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/archives/</loc>
-        <lastmod>2017-09-11T19:58:33+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/archives/</loc>
-        <lastmod>2017-09-11T19:58:33+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/blog/</loc>
-        <lastmod>2017-09-11T19:58:33+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/robots.txt</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/javascripts/datachart.coffee</loc>
@@ -134,10 +178,10 @@
     </url>
     <url>
         <loc>http://soroush.github.io/</loc>
-        <lastmod>2017-09-11T19:58:33+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
     <url>
         <loc>http://soroush.github.io/about-me/</loc>
-        <lastmod>2017-05-15T03:25:08+04:30</lastmod>
+        <lastmod>2017-09-16T00:18:38+04:30</lastmod>
     </url>
 </urlset>

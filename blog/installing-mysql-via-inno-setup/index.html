@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>نصب MySQL Server با استفاده از Inno Setup - اختاپوس خسته</title>
+  <meta name="author" content="سروش">
+
+  
+  <meta name="description" content="خیلی زیاد پیش میاد که توی برنامه‌هامون از پایگاه داده استفاده کنیم. معمولاً برای
+کارهای کوچیک از سیستم‌های پایگاه داده‌ای قابل حمل مثل SQLite استفاده &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://soroush.github.io/blog/installing-mysql-via-inno-setup">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="اختاپوس خسته" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Inconsolata|PT+Serif|PT+Serif+Caption" rel="stylesheet">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44259177-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">اختاپوس خسته</a></h1>
+  
+    <h2>یادداشت‌هایی پیرامون کد، زندگی و دوستان</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/soroush" rel="subscribe-github" title="@soroush در گیت‌هاب">گیت‌هاب</a></li>
+</ul>
+  
+  
+  
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:soroush.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="جستجو"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">بلاگ</a></li>
+  <li><a href="/blog/archives">بایگانی</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">نصب MySQL Server با استفاده از Inno Setup</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-13T00:00:00+03:30" pubdate data-updated="true">۲۲ 
+      اسفند 
+      ۱۳۹۲</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>خیلی زیاد پیش میاد که توی برنامه‌هامون از پایگاه داده استفاده کنیم. معمولاً برای
+کارهای کوچیک از سیستم‌های پایگاه داده‌ای قابل حمل مثل SQLite استفاده می‌کنیم
+SQLite
+در واقع یک کتابخانهٔ سی هست که بلده توی یک فایل داده‌ها رو به‌شکل ساختارمند
+بنویسه. بنابراین مشکلی نخواهیم داشت اگه بخواهیم برنامه‌ای رو که با استفاده از
+SQLite
+نوشتیم به کامپیوتر کاربرامون منتقل کنیم. اما مشکلی که در مورد SQLite وجود
+داره اینه که برای دامنهٔ وسیعی از کاربردها مناسب نیست. سرعتش خیلی کمه و
+محدودیت‌های جدی داره. در این موارد چاره‌ای نداریم از سیستم‌های مدیریت پایگاه
+داده‌ای پیشرفته‌تر (و پیچیده‌تر) مثل MySQL یا PostgreSQL استفاده کنیم. این
+سیستم‌ها خیلی قدرتمند و بی‌عیب و نقص هستند و اصولاً برای کار با حجم بسیار بالای
+داده‌ها ساخته شدند. اما مشکل اصلی همین‌جا شروع میشه! سیستم مدیریت پایگاه داده یک
+برنامهٔ کاملاً مستقل هست که معمولاً به‌شکل سرور باید روی کامپیوتر مقصد (کامپیوتر
+کاربر) نصب بشه و معمولاً پیکربندی نه‌چندان آسانی داره.</p>
+
+<p>توی این پست در مورد نحوهٔ نصب و پیکربندی سرور MySQL به‌شکل مخفیانه (و بی‌سروصدا)
+روی کامپیوترهای کاربران می‌نویسم. با استفاده از این روش خیلی آسون می‌تونید MySQL
+رو موقع نصب برنامهٔ خودتون، روی کامپیوتر کاربر نصب کنید و تنظیمات اولیه‌ش رو
+انجام بدید بدون این که روح کاربرمون خبردار بشه :) (البته شوخی کردم، براساس
+احترامی که برای کاربران قائل هستیم، یک سری پیغام‌هایی وسط پروسهٔ نصب نمایش داده
+میشه)</p>
+
+<!-- more -->
+
+
+<p>خوب اول کار باید بگم که ما از سیستم نصاب
+<a href="http://www.jrsoftware.org/isinfo.php">Inno Setup</a>
+استفاده می‌کنیم. اینوستاپ یک برنامهٔ متن‌باز بسیار عالی برای ساخت پکیج‌های نصب
+روی ویندوز هست. معمولاً برای تمام کارهای ویندوزی‌م از این برنامه استفاده می‌کنم.
+برنامه‌های نصب پروژهٔ
+<a href="https://sourceforge.net/projects/eboqt/">EBO-Qt</a>
+رو هم با همین برنامه درست کردم.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Command: mingw32-make
+</span><span class='line'>Arguments: install INSTALL_ROOT=c:/mingw64/
+</span><span class='line'>Working Directory:%{buildDir}</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">نوشته شده توسط <span class="fn">
+  
+    سروش
+  
+  </span></span>
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-13T00:00:00+03:30" pubdate data-updated="true">۲۲ 
+      اسفند 
+      ۱۳۹۲</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://soroush.github.io/blog/installing-mysql-via-inno-setup/" data-via="gigtupus" data-counturl="http://soroush.github.io/blog/installing-mysql-via-inno-setup/" >توئیت</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment right" href="/blog/qt-creator-deploy/" title="پست قبلی: نصب آسان نرم‌افزار از طریق Qt Creator">&laquo; نصب آسان نرم‌افزار از طریق Qt Creator</a>
+      
+      
+        <a class="basic-alignment left" href="/blog/how-to-win-8-8-puzzle/" title="پست بعدی: چطور پازل ۳۱ زومیت را حل کردم">چطور پازل ۳۱ زومیت را حل کردم &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>دیدگاه‌ها</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  حق تألیف &copy; 2017 - سروش -
+  <span class="credit">قدرت‌گرفته از <a href="http://octopress.org">اکتوپرس</a> | براساس طرح <a href="https://github.com/lucaslew/whitespace">فضای سفید</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'soroushr';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://soroush.github.io/blog/installing-mysql-via-inno-setup/';
+        var disqus_url = 'http://soroush.github.io/blog/installing-mysql-via-inno-setup/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
