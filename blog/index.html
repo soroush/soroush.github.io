@@ -9,8 +9,10 @@
   <meta name="author" content="سروش">
 
   
-  <meta name="description" content="کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
-ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و &hellip;">
+  <meta name="description" content="قبلاً در مورد
+باگ بسیار بدی
+که در کیوت به‌وجود آمده بود و روش حل آن نوشتم. این
+باگ باعث میشد امکان نوشتن نویسه‌های کنترلی مثل نیم‌فاصله و تغییر جهت &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +89,63 @@
   <div id="main">
     <div id="content">
       
+
+
+    <article class="post">
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/kates-zwnj-bug/">مشکل نیم‌فاصله در KDE و روش حل آن</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-12-18T00:00:00+03:30" pubdate data-updated="true">۲۷ 
+      آذر 
+      ۱۳۹۶</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>قبلاً در مورد
+<a href="/blog/worst-ever-bug">باگ بسیار بدی</a>
+که در کیوت به‌وجود آمده بود و روش حل آن نوشتم. این
+باگ باعث میشد امکان نوشتن نویسه‌های کنترلی مثل نیم‌فاصله و تغییر جهت
+به‌طور کامل از بین بره. (اگر از نیم‌فاصله استفاده نمی‌کنید و یا نمی‌دونید تغییر
+جهت متن چه اهمیتی داره حتماً
+<a href="/blog/unicode-bidi/">نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی</a> رو بخونید)</p>
+
+<p>الآن با گذشت چند ماه باگ مربوطه برطرف شده و با نسخهٔ 5.9.1 منتشر شده.
+(تغیرات گریت برای ماژول qtbase
+<a href="https://codereview.qt-project.org/#/c/179219/">اینجا</a>
+و برای ماژول qtdeclarative
+<a href="https://codereview.qt-project.org/#/c/179258/">اینجا</a>
+قابل مشاهده هستند)
+خوشبختانه برنامه‌های کیوت دیگه مشکل سابق رو ندارند و هم توی ماژول widgets و هم
+توی ماژول جدیدتر Qt Quick مشکل به‌طور کامل برطرف شده. خوب حداقل من این‌طور فکر
+می‌کردم!</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/kates-zwnj-bug/">ادامه</a>
+    </footer>
+  
+
+</article>
 
 
     <article class="post">
@@ -539,60 +598,6 @@ libdynamixel.
   
     <footer>
       <a rel="full-article" href="/blog/cross-qt-development/">ادامه</a>
-    </footer>
-  
-
-</article>
-
-
-    <article class="post">
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/unicode-bidi/">چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-18T00:00:00+04:30" pubdate data-updated="true">۲۷ 
-      شهریور 
-      ۱۳۹۳</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
-و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
-<a href="http://en.wikipedia.org/wiki/Plain_text">Plain Text</a>
-(یعنی محیط‌های متنی‌ای که شما کنترلی روی استایل و پاراگراف ندارید. مثل
-<a href="http://en.wikipedia.org/wiki/Gedit">gedit</a>
-یا
-<a href="http://en.wikipedia.org/wiki/Kate_%28text_editor%29">kate</a>
-یا مثلاً
-<a href="http://en.wikipedia.org/wiki/Notepad_%28software%29">notepad</a>).
-خیلی زود متوجه خواهید شد که روش ساده‌ای برای نوشتن کاراکترهایی که نه راست‌به‌چپ
-هستن و نه چپ‌به‌راست هستن، وجود نداره (در ادامه میگم که جهت یک کاراکتر یعنی
-چی). توی این پست می‌خوام روش استاندارد نوشتن متون دوطرفه رو معرفی کنم، و تأکید
-کنم که <strong>حتماً</strong> ازش استفاده کنید و هیچوقت به‌جای این‌کار از هک‌های متداول (مثل
-برعکس نوشتن ترتیب نویسه‌ها) استفاده نکنید چون این کار خیلی غلطه.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/unicode-bidi/">ادامه</a>
     </footer>
   
 
