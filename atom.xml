@@ -4,7 +4,7 @@
   <title><![CDATA[اختاپوس خسته]]></title>
   <link href="https://soroush.github.io/atom.xml" rel="self"/>
   <link href="https://soroush.github.io/"/>
-  <updated>2017-12-18T18:55:33+03:30</updated>
+  <updated>2018-04-13T18:33:44+04:30</updated>
   <id>https://soroush.github.io/</id>
   <author>
     <name><![CDATA[سروش]]></name>
@@ -12,6 +12,146 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[محاسبهٔ ثابت‌های ریاضی]]></title>
+    <link href="https://soroush.github.io/blog/calculate-pi-in-cpp/"/>
+    <updated>2018-04-13T00:00:00+04:30</updated>
+    <id>https://soroush.github.io/blog/calculate-pi-in-cpp</id>
+    <content type="html"><![CDATA[<p>هیچ‌کدام از استانداردهای سی‌پلاس‌پلاس و یا سی عدد π را تعریف نکرده‌اند.
+بنابراین هر برنامه‌نویسی که قصد داشته باشه از توابع مثلثاتی یا آماری استفاده
+کنه مجبوره خودش π رو تعریف کنه. خوشبختانه فایل‌های سرآیند استاندارد عدد π
+رو تعریف کرده‌اند، (ثابت <code>M_PI</code> در هدر <code>math.h</code> رو ببینید) با این وجود استفاده
+از این ثابت و ثابت‌های دیگه بسیار خطرناک هست و برای کاربردهای دقیق باعث بروز
+خطاهای عددی خواهد شد.</p>
+
+<p>خوشبختانه میشه با صرف هزینهٔ صفر در زمان اجرا π رو به‌صورت استاندارد (با
+تعاریف مشخص عددی) و البته در زمان کامپال محاسبه کرد. برای این کار از
+meta-programming
+به وسیلهٔ template ها در ‪C++‬ استفاده می‌کنیم. از مزایای این روش میشه به قابل
+حمل بودن و پیروی کامل از استاندارد IEEE 754 اشاره کرد که از لحاظ دقت عددی و
+یکسان بودن نتایج روی ماشین‌های مختلف بسیار مهم هست.</p>
+
+<p>برای محاسبهٔ عدد π روش‌های مختلفی وجود داره. اکثر این روش‌ها براساس
+محاسبهٔ یک سری یا دنباله هستند که در بینهایت به عدد پی همگرا میشه. یکی از
+بهترین روش‌ها فرمول
+<a href="http://crd-legacy.lbl.gov/~dhbailey/dhbpapers/pi-quest.%20pdf">Bailey–Borwein–Plouffe</a>
+هست. اثبات میشه که:
+$$\pi=\sum_{n=0}^{\infty}{\left[\frac{1}{16^{n}}\left(\frac{4}{8n+1}&ndash;\frac{2}{8n +4}&ndash;\frac{1}{8n+5}&ndash;\frac{1}{8n+6}\right)\right]}$$
+بنابراین با این کد توی ‪C++‬ می‌تونیم به‌سادگی عدد پی رو تا هر تعداد تکرار که
+میخواهیم حساب کنیم:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &lt;cstdint&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;limits&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">template</span> <span class="o">&lt;</span><span class="n">uint64_t</span> <span class="n">b</span><span class="p">,</span> <span class="n">uint64_t</span> <span class="n">e</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">pow</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">static</span> <span class="k">const</span> <span class="n">uint64_t</span> <span class="n">result</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">pow</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;::</span><span class="n">result</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">template</span> <span class="o">&lt;</span><span class="n">uint64_t</span> <span class="n">b</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">pow</span><span class="o">&lt;</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">static</span> <span class="k">const</span> <span class="n">uint64_t</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">template</span> <span class="o">&lt;</span><span class="n">uint64_t</span> <span class="n">n</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">bbp</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">constexpr</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span>
+</span><span class='line'>            <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">pow</span><span class="o">&lt;</span><span class="mi">16</span><span class="p">,</span> <span class="n">n</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">)</span>
+</span><span class='line'>            <span class="o">*</span> <span class="p">(</span>   <span class="mf">4.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">4.0</span><span class="p">)</span>
+</span><span class='line'>                <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">5.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">6.0</span><span class="p">))</span>
+</span><span class='line'>            <span class="o">+</span> <span class="n">bbp</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;::</span><span class="n">pi</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">template</span> <span class="o">&lt;&gt;</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">bbp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">constexpr</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="p">[])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">digits10</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;pi = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;pi = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;pi = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>نتایج:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">pi:</span> <span class="mf">3.14142246642247</span>
+</span><span class='line'><span class="nl">pi:</span> <span class="mf">3.14159265322809</span>
+</span><span class='line'><span class="nl">pi:</span> <span class="mf">3.14159265358979</span>
+</span><span class='line'><span class="nl">pi:</span> <span class="mf">3.14159265358979</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>چرا؟</h2>
+
+<p>روش‌های زیادی برای محاسبهٔ عدد پی وجود داره. چرا دقیقاً این روش بهتره؟ مثلاً
+روش نیوتون به‌صورت هندسی عدد پی رو به این صورت حساب می‌کنه:</p>
+
+<p>$$\pi=\frac{3}{4}\sqrt{3}+24\int_{0}^{\frac{1}{4}}{\sqrt{x-x^{2}}}\,dx$$</p>
+
+<p>که خوب از نظر عددی محاسبهٔ پیچیده‌تری داره و زمان کامپایل نمیشه درست حسابش کرد.
+روش‌های دیگه‌ای هم وجود دارن مثل روش تبدیل همگرایی افزایشی اویلر (OEIS A054387)
+که اثبات می‌کنه:</p>
+
+<p>$$\pi=\sum_{n=0}^{\infty}{\frac{\left({n!}^{2}2^{n-1}\right)}{\left(2n+1\right)! }}$$</p>
+
+<p>با بررسی تمام این سری‌ها متوجه میشیم که خطای عددی افزایشی در فرمول BBP از تمام
+فرمول‌های پیوسته و سری‌های گسستهٔ دیگه کمتره.</p>
+
+<h2>ثابت‌های دیگر</h2>
+
+<p>عدد پی تنها عدد گنگ مورد استفاده در ریاضیات نیست. با این حال در زمینهٔ محاسبات
+علمی به اعداد دیگه مثل عدد e (پایهٔ لگاریتم طبیعی، عدد اویلر) خیلی کم نیاز پیدا
+می‌کنیم. (در این مورد خاص دو دلیل داره. یکی این که به‌راحتی قابل تبدیل به
+محاسبات مختلط هست و دوم این که تابع استاندارد exp در زبان برنامه‌نویسی سی وجود
+داره (:</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[مشکل نیم‌فاصله در KDE و روش حل آن]]></title>
@@ -3252,166 +3392,6 @@ Libraries and Programs)
 <p>شرکتی که تازه تأسیس کردیم خیلی شرکت قوی و خوبی هست. کارهای خوبی می‌تونیم انجام
 بدیم اما به مافیا برخورد کردیم و با آقازاده‌ها مشکل داریم. اینجوریه که درآمد
 چندانی هم نمی‌تونیم داشته باشیم.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[پروژهٔ AIT]]></title>
-    <link href="https://soroush.github.io/blog/ait/"/>
-    <updated>2013-11-26T00:00:00+03:30</updated>
-    <id>https://soroush.github.io/blog/ait</id>
-    <content type="html"><![CDATA[<p>پروژهٔ AIT بزرگ‌ترین کار متن‌بازی هست که پیاده‌سازی کردم. AIT مخفف
-Artificial Intelligence Toolkit
-هست. هدف این کتابخانه فراهم کردن یک پلتفرم توسعه برای پروژه‌های تحقیقاتی و صنعتی
-در زمینهٔ هوش مصنوعی هست. حقیقتش اهداف بزرگ‌تری هم داره. مثلاً پر کردن خلأ بین
-آکادمی و صنعت در زمینهٔ هوش مصنوعی یکی از کارهایی هست که مدت‌هاست آرزو دارم انجامش بدم. توی پست دیگه
-در مورد این خلأ صحبت خواهم کرد.</p>
-
-<p>این پست به بررسی کتابخانهٔ AIT و کاربردهای فوق‌العاده جالبی که می‌تونه داشته
-باشه خواهد پرداخت. صفحهٔ اصلی پروژه رو توی
-<a href="http://soroush.github.io/ait/">همین سایت گذاشتم</a>
-و
-<a href="https://github.com/soroush/ait">رپوزیتوری گیت</a>
-هم در گیت‌هاب در دسترس هست.</p>
-
-<!-- more -->
-
-
-<h2>صورت مسأله</h2>
-
-<p>و آمّا AIT&hellip; این پروژه اول به صورت یک تکلیف درسی در دانشگاه نوشته شد و بعداً
-تکمیل‌ترش کردم و به‌صورت متن‌باز (با اجازه‌نامهٔ LGPL 2.1) منتشر کردم. در حال
-حاضر نسخهٔ 0.1.0 هست و طبیعتاً نمی‌تونه توی پروژه‌های دیگه استفاده بشه. تا آخر
-امسال اولین نسخهٔ پایدارش رو منتشر خواهم کرد. همون‌طور که گفتم، AIT یک پلتفرم
-توسعه برای پروژه‌های تحقیقاتی و صنعتی هست.</p>
-
-<p>ترم بهار ۹۱-۹۲ توی دانشگاه واحد درسی سیستم‌های همروند رو گذروندم. منتهی موضوع
-درس ارائه شده، اصلاً سیستم‌های همروند نبود بلکه «مسائل ارضای محدودیت» بود. چون
-ثبت درس اختیاری جدید سخته، با یه اسم دیگه ارائه داده بودن.</p>
-
-<p>پروژهٔ این درس پیاده‌سازی الگوریتم
-<a href="">Asynchronous Backtracking</a>
-و مشتقاتش بود. این
-الگوریتم توسط Yokoo و همکارانش سال 1992 برای حل مسائل
-ارضای محدودیت توزیع‌شده
-(<a href="http://en.wikipedia.org/wiki/Distributed_constraint_optimization">Distributed constraint optimization</a>)
-ارائه شده. بهینه‌سازی‌های متعددی هم تا
-به‌حال براش نوشتن. وظیفهٔ ما برای پروژهٔ پایانی درس، این بود که الگوریتم‌های
-ABT، Agile ABT و FC رو برای
-حل مسألهٔ هشت‌وزیر پیاده‌سازی کنیم.</p>
-
-<p>بزرگ‌ترین مشکل این پیاده‌سازی اینه که ماهیت مسأله توزیع شده است. مثلاً برای حل
-مسأله‌ای که \(n\) تا متغیر رو می‌خواد مقداردهی کنه، باید به همون تعداد عامل
-(agent)
-اجرا بشه و تمام این عامل‌ها با همدیگه ارسال و دریافت داده خواهند داشت.</p>
-
-<h2>مشکلات</h2>
-
-<p>اولین و بزرگ‌ترین مشکلی که برام به‌وجود اومد، برقراری ارتباط بین ایجنت‌ها بود.
-باید طوری بین ایجنت‌ها ارتباط برقرار می‌کردم که شرایط زیر ارضا می‌شد:</p>
-
-<ul>
-<li>هر ایجنت قابلیت ارسال و دریافت داده به‌صورت ناهمگام از تمام ایجنت‌ها داشته
-باشه</li>
-<li>ارتباطات قابل اعتماد باشه</li>
-<li>ترتیب حضور ایجنت‌ها (حتا مانیتور!) مهم نباشه</li>
-</ul>
-
-
-<p>ایجنت مانیتور به ایجنتی گفته میشه که مسئول مقداردهی به هیچ متغیری نیست و صرفاً
-پایان مسأله رو تشخیص میده و بقیهٔ ایجنت‌ها رو خاموش می‌کنه.</p>
-
-<p>مشکل دیگه‌ای که پیدا کرده بودم نحوهٔ پکت‌بندی و ارسال و دریافت داده‌ها بین
-برنامه‌ها بود. معمولاً وقتی همچین سناریوای پیش میاد یه برنامه‌نویس گزینه‌های
-متعددی رو در اختیار داره که ازشون استفاده کنه. اگر خیلی ول‌انگار باشه و یا جزو
-برنامه‌نویس‌های نسل جدید (نفخ‌افزارنویس‌ها) باشه از ابزارهایی مثل WCF، XML، SOAP
-و یا حتا RPC برای انتقال داده استفاده می‌کنه. حتا مورد داشتیم برای ارسال و
-دریافت اطلاعات توی شبکه بین دو برنامه اصرار داشته که HTTP Request بفرستیم و
-بگیریم! (استاد درس مهندسی نرم‌افزار ۲). حتا اگر برنامه‌نویس خیلی خیلی راحت‌طلب باشه (مثل
-توسعه‌دهنده‌های <a href="http://www.tsetmc.com/">شرکت فناوری اطلاعات بورس تهران</a>) از
-مزخرفاتی مثل WSDL و JSON هم می‌تونه استفاده کنه.</p>
-
-<p>اما متأسفانه {از دید خودم} و خوشبختانه {از دید برنامه‌ها} من به سبک
-برنامه‌نویس‌های دههٔ هفتاد و با دید کاربردگرا و مقیاس‌گرا به قضیه نگاه می‌کنم.
-یعنی تک‌تک بایت‌ها و ثانیه‌های مصرف شده در برنامه برای من مهم هستن. استراتژی‌های اصلی توسعهٔ
-نرم‌افزار رو همیشه با همین دید انتخاب می‌کنم. و البته معمولاً تو دردسر می‌افتم. در همین راستا تصمیم گرفتم با یک پروتکل
-فوق‌سبک و دست‌ساز داده‌ها رو بفرستم. خوب مسلماً اولین و ساده‌ترین چیزی که به ذهن
-می‌رسه
-<a href="http://en.wikipedia.org/wiki/Serialization">Serialization</a>
-هست.</p>
-
-<p>اما کار به این‌جا ختم نمی‌شه! سریال‌کردن دیتا با پروتکل‌های سبک
-<a href="http://en.wikipedia.org/wiki/Request_for_Comments">RFC</a>
-مشکلات
-پیاده‌سازی داره. مهم‌ترین این مشکلات برقراری ویژگی‌های چند سکویی هست. قبلاً گفتم
-که یکی از معیارهای اصلی من برای توسعهٔ نرم‌افزار، نوشتن کد قابل حمل هست. یعنی
-برنامه‌ای که می‌نویسم باید روی تمام معماری‌ها (
-<a href="http://en.wikipedia.org/wiki/ARM_architecture">ARM</a> , <a href="http://en.wikipedia.org/wiki/X86">x86</a> , <a href="http://en.wikipedia.org/wiki/X86-64">x86_64</a>
-) و تمام
-سیستم‌عامل‌ها، مثل لینوکس، یونیکس، FreeBSD, OS2 و حتا ویندوز؛ قابل اجرا باشه.
-برآورده کردن این هدف کار ساده‌ای نیست و اساس اکوسیستم (بسیار پردسر) توسعهٔ نرم‌افزار من رو
-تشکیل میده. از بحث اصلی خارج نشیم! سریال کردن داده‌ها به سبک پروتکل‌های RFC با
-حفظ قابلیت حمل کار ساده‌ای نیست. چطور؟ شما موانع زیادی برای برقراری ویژگی قابلیت
-حمل دارید از جمله:
-<a href="http://en.wikipedia.org/wiki/Endianness">bitness یا همون endianness</a>
-و
-<a href="http://en.wikipedia.org/wiki/Application_binary_interface">ABI</a>
-. اولی مربوط به معماری میشه. دومی هم همین‌طور :)
-bitness
-یک معماری ترتیب بیت‌ها رو مشخص می‌کنه. کلاً دو نوع bitness داریم. سیستم یا
-<a href="http://en.wikipedia.org/wiki/Little_endian#Little-endian">Little Endian</a>
- هست یا
-<a href="http://en.wikipedia.org/wiki/Little_endian#Big-endian">Big Endian</a>
-. از بین سیستم‌هایی که می‌شناسیم و باهاشون سروکار
-داریم، ARM از نوع BE هست و بقیه از نوع LE.</p>
-
-<p><img class="left" src="https://soroush.github.io/images/posts/Big-Endian.png" title="نمایش Big Endian" >
-فرض کنید شما یک عدد صحیح رو می‌خواهید بین  دو تا پروسس منتقل کنید. یکی از این
-پروسس‌ها روی سیستم‌عامل اندرویید گوشی‌تون اجرا میشه و دیگری روی لینوکس
-کامپیوترتون. اگر اولی یک عدد صحیح (int) رو به شکل 0A0B0C0D در چهار بایت ذخیره
-کرده باشه، دومی همون عدد رو به شکل 0D0C0B0A ذخیره می‌کنه! اصلاً کلمهٔ
-Little Endian
-هم از همین‌جا منشأ گرفته. یعنی بایت کم‌اهمیت، قبل از بایت پراهمیت ذخیره میشه.</p>
-
-<p>نیازی به توضیح بیشتر نیست که اگر یک داده رو از سیستم اولی به سیستم دومی بفرستیم
-(به هر طریقی) شاهد یک فاجعه خواهیم بود. مگر این که مکانیزم فراوری داده رو تو
-پایین‌ترین سطح مدیریت کنیم! طبیعتاً توسعه‌دهنده‌های حرفه‌ای قبل از ما راهکار
-مناسب رو ارائه دادن. با یک جستجوی ساده توی اینترنت و خوندن چند تا راهنما و
-مقایسه به این نتیجه می‌رسیم که ابزارهایی مثل
-<a href="http://www.boost.org/doc/libs/1_55_0/libs/serialization/doc/index.html">Boost Serialization Library</a>
-و چند
-تای دیگه حذف میشن. در آخر می‌مونه کتابخانهٔ بسیار عالی و پرمحتوای
-<a href="https://developers.google.com/protocol-buffers/">Google Protocols Buffers</a> .
-بافرهای پروتکل کتابخونه‌ای هست که به گفتهٔ خود نویسندگانش در گوگل به‌شکل درون‌سازمانی استفاده میشه و همون‌طور که از اسمش پیداست برای پیاده‌سازی پروتکل‌ها (احتمالاً RFC ها و غیره) ازش استفاده می‌کنن. تمام مسائل و مشکلات مربوط به معماری، اعم از bitness، تفاوت PDTها در زبان‌ها و همچنین نمایش‌های باینری متفاوت در پلتفرم‌های مختلف، در نظر گرفته شده و حل شده :)</p>
-
-<h3>وقتی برنامه‌ها با هم حرف می‌زنند</h3>
-
-<p>با استفاده از PB مشکلات مربوط به ساخت پکت‌های باینری حل میشه. اما چطوری این پکت‌ها رو بین برنامه‌ها رد و بدل می‌کنیم؟ خوب جواب اول استفاده از مکانیزم‌های معروف IPC (همون ارتباط میان‌پردازه‌ای) مثل Shared Memory و یا pipe هست. اما من ترجیح میدم از سوکت‌ها استفاده کنم. چون میشه بعداً گسترده‌ترش کرد و روی چند تا کامپیوتر اجراش کرد. با این حال API های استاندارد سوکت‌ها خیلی سطح پایین هستند و کار کردن باهاشون برای کسی که نمی‌خواد وارد دردسرهای سناریوهای مختلف ارتباطی بشه، کار چندان جالبی نیست. منظورم از سناریو، حالت‌های متداولی هست که ممکنه پیش بیاد. بذارید چند تا مثال بزنم:</p>
-
-<ul>
-<li>داده ارسال نشد؟ دوباره سعی کن.</li>
-<li>گیرنده گوش نمیده؟ صبر کن اجرا بشه دوباره بفرست.</li>
-<li>داده‌ای که اومده قسمتی از یه دادهٔ بزرگ‌تره؟ قسمتی از آخر یه پکت و اول یه پکت دیگه‌ست؟ خوب داده‌ها رو جمع کن، پکت‌ها رو تحلیل کن، بچسبون به هم و سالم به من تحویل بده.</li>
-</ul>
-
-
-<p>خوب این‌جا هم یه پیاده‌سازی خیلی عالی وجود داره به اسم ∅MQ یا همون
-<a href="http://www.zeromq.org/">ZeroMQ</a>
-.  این کتابخانه در واقع پیاده‌سازی یک لایهٔ میانی بین
-<a href="http://en.wikipedia.org/wiki/Transport_Layer">Transport Layer</a>
-و
-<a href="http://en.wikipedia.org/wiki/Application_Layer">Application Layer</a>
-در مدل شبکه هست. از این ابزار به عنوان
-Intelligent Transport Layer
-هم یاد می‌کنند.</p>
-
-<p>گزینهٔ دیگه‌ای هم برای برقراری ارتباط وجود داشت و اون هم استفاده از
-<a href="http://www.open-mpi.org/">OpenMPI</a>
-بود که کار ∅MQ و Protocol Buffers رو یک‌جا انجام میده. اما از ازش استفاده نکردم تنها به یک دلیل: در آینده می‌خوام این برنامه روی اینترنت و شبکه‌های پیچیده تست بشه. بنابراین باید ویژگی
-<a href="http://en.wikipedia.org/wiki/NAT_traversal">NAT Traversal</a>
-رو براش پیاده‌سازی کنم که با استفاده از API ی
-OpenMPI
-قابل پیاده‌سازی نیست.</p>
 ]]></content>
   </entry>
   

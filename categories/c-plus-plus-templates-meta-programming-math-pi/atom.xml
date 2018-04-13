@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[طبقه‌بندی‌هاc++,templates,meta-programming,math,pi | اختاپوس خسته]]></title>
+  <link href="https://soroush.github.io/categories/c-plus-plus-templates-meta-programming-math-pi/atom.xml" rel="self"/>
+  <link href="https://soroush.github.io/"/>
+  <updated>2018-04-13T18:33:44+04:30</updated>
+  <id>https://soroush.github.io/</id>
+  <author>
+    <name><![CDATA[سروش]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[محاسبهٔ ثابت‌های ریاضی]]></title>
+    <link href="https://soroush.github.io/blog/calculate-pi-in-cpp/"/>
+    <updated>2018-04-13T00:00:00+04:30</updated>
+    <id>https://soroush.github.io/blog/calculate-pi-in-cpp</id>
+    <content type="html"><![CDATA[<p>هیچ‌کدام از استانداردهای سی‌پلاس‌پلاس و یا سی عدد π را تعریف نکرده‌اند.
+بنابراین هر برنامه‌نویسی که قصد داشته باشه از توابع مثلثاتی یا آماری استفاده
+کنه مجبوره خودش π رو تعریف کنه. خوشبختانه فایل‌های سرآیند استاندارد عدد π
+رو تعریف کرده‌اند، (ثابت <code>M_PI</code> در هدر <code>math.h</code> رو ببینید) با این وجود استفاده
+از این ثابت و ثابت‌های دیگه بسیار خطرناک هست و برای کاربردهای دقیق باعث بروز
+خطاهای عددی خواهد شد.</p>
+
+<p>خوشبختانه میشه با صرف هزینهٔ صفر در زمان اجرا π رو به‌صورت استاندارد (با
+تعاریف مشخص عددی) و البته در زمان کامپال محاسبه کرد. برای این کار از
+meta-programming
+به وسیلهٔ template ها در ‪C++‬ استفاده می‌کنیم. از مزایای این روش میشه به قابل
+حمل بودن و پیروی کامل از استاندارد IEEE 754 اشاره کرد که از لحاظ دقت عددی و
+یکسان بودن نتایج روی ماشین‌های مختلف بسیار مهم هست.</p>
+
+<p>برای محاسبهٔ عدد π روش‌های مختلفی وجود داره. اکثر این روش‌ها براساس
+محاسبهٔ یک سری یا دنباله هستند که در بینهایت به عدد پی همگرا میشه. یکی از
+بهترین روش‌ها فرمول
+<a href="http://crd-legacy.lbl.gov/~dhbailey/dhbpapers/pi-quest.%20pdf">Bailey–Borwein–Plouffe</a>
+هست. اثبات میشه که:
+$$\pi=\sum_{n=0}^{\infty}{\left[\frac{1}{16^{n}}\left(\frac{4}{8n+1}&ndash;\frac{2}{8n +4}&ndash;\frac{1}{8n+5}&ndash;\frac{1}{8n+6}\right)\right]}$$
+بنابراین با این کد توی ‪C++‬ می‌تونیم به‌سادگی عدد پی رو تا هر تعداد تکرار که
+میخواهیم حساب کنیم:
+```c++</p>
+
+<h1>include <cstdint></h1>
+
+<h1>include <limits></h1>
+
+<h1>include <iostream></h1>
+
+<p>template &lt;uint64_t b, uint64_t e>
+struct pow {</p>
+
+<pre><code>static const uint64_t result = b * pow &lt; b, e - 1 &gt;::result;
+</code></pre>
+
+<p>};</p>
+
+<p>template &lt;uint64_t b>
+struct pow&lt;b, 0> {</p>
+
+<pre><code>static const uint64_t result = 1;
+</code></pre>
+
+<p>};</p>
+
+<p>template &lt;uint64_t n>
+struct bbp {</p>
+
+<pre><code>constexpr static double pi
+        = (1.0 / pow&lt;16, n&gt;::result)
+        * (   4.0 / (8 * n + 1.0) - 2.0 / (8 * n + 4.0)
+            - 1.0 / (8 * n + 5.0) - 1.0 / (8 * n + 6.0))
+        + bbp &lt; n - 1 &gt;::pi;
+</code></pre>
+
+<p>};</p>
+
+<p>template &lt;>
+struct bbp &lt; -1 > {</p>
+
+<pre><code>constexpr static double pi = 0;
+</code></pre>
+
+<p>};</p>
+
+<p>int main(int, char* []) {</p>
+
+<pre><code>std::cout.precision(std::numeric_limits&lt;double&gt;::digits10);
+std::cout &lt;&lt; "pi = " &lt;&lt; bbp&lt;1&gt;::pi &lt;&lt; std::endl;
+std::cout &lt;&lt; "pi = " &lt;&lt; bbp&lt;5&gt;::pi &lt;&lt; std::endl;
+std::cout &lt;&lt; "pi = " &lt;&lt; bbp&lt;10&gt;::pi &lt;&lt; std::endl;
+return 0;
+</code></pre>
+
+<p>}
+<code>
+نتایج:
+</code>
+pi: 3.14142246642247
+pi: 3.14159265322809
+pi: 3.14159265358979
+pi: 3.14159265358979
+```</p>
+
+<h2>چرا؟</h2>
+
+<p>روش‌های زیادی برای محاسبهٔ عدد پی وجود داره. چرا دقیقاً این روش بهتره؟ مثلاً
+روش نیوتون به‌صورت هندسی عدد پی رو به این صورت حساب می‌کنه:</p>
+
+<p>$$\pi=\frac{3}{4}\sqrt{3}+24\int_{0}^{\frac{1}{4}}{\sqrt{x-x^{2}}}\,dx$$</p>
+
+<p>که خوب از نظر عددی محاسبهٔ پیچیده‌تری داره و زمان کامپایل نمیشه درست حسابش کرد.
+روش‌های دیگه‌ای هم وجود دارن مثل روش تبدیل همگرایی افزایشی اویلر (OEIS A054387)
+که اثبات می‌کنه:</p>
+
+<p>$$\pi=\sum_{n=0}^{\infty}{\frac{\left({n!}^{2}2^{n-1}\right)}{\left(2n+1\right)! }}$$</p>
+
+<p>با بررسی تمام این سری‌ها متوجه میشیم که خطای عددی افزایشی در فرمول BBP از تمام
+فرمول‌های پیوسته و سری‌های گسستهٔ دیگه کمتره.</p>
+
+<h2>ثابت‌های دیگر</h2>
+
+<p>عدد پی تنها عدد گنگ مورد استفاده در ریاضیات نیست. با این حال در زمینهٔ محاسبات
+علمی به اعداد دیگه مثل عدد e (پایهٔ لگاریتم طبیعی، عدد اویلر) خیلی کم نیاز پیدا
+می‌کنیم. (در این مورد خاص دو دلیل داره. یکی این که به‌راحتی قابل تبدیل به
+محاسبات مختلط هست و دوم این که تابع استاندارد exp در زبان برنامه‌نویسی سی وجود
+داره (:</p>
+]]></content>
+  </entry>
+  
+</feed>
