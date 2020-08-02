@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://soroush.github.io/sitemap.xml
