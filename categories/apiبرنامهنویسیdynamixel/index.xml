@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>API،برنامه‌نویسی,dynamixel on اختاپوس خسته</title>
-    <link>http://soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8Cdynamixel/</link>
+    <link>https://soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8Cdynamixel/</link>
     <description>Recent content in API،برنامه‌نویسی,dynamixel on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
     <lastBuildDate>Wed, 07 Jan 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8Cdynamixel/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8Cdynamixel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>کتابخانهٔ Dynamixel</title>
-      <link>http://soroush.github.io/2015/01/07/libdynamixel-c-11-api/</link>
+      <link>https://soroush.github.io/2015/01/07/libdynamixel-c-11-api/</link>
       <pubDate>Wed, 07 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://soroush.github.io/2015/01/07/libdynamixel-c-11-api/</guid>
+      <guid>https://soroush.github.io/2015/01/07/libdynamixel-c-11-api/</guid>
       <description>&lt;p&gt;مدتی هست که هم توی شبکه‌های اجتماعی و هم این‌جا فعالیتم خیلی کم شده. دلیلش
 پروژه‌ای هست که در حال حاضر وقت خیلی زیادی ازم می‌گیره و مجبورم به‌خاطرش
 مسافرت‌های طولانی رو برم و برگردم.&lt;/p&gt;

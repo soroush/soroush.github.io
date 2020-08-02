@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>c&#43;&#43;, templates, meta-programming, math,pi on اختاپوس خسته</title>
-    <link>http://soroush.github.io/categories/c&#43;&#43;-templates-meta-programming-mathpi/</link>
+    <link>https://soroush.github.io/categories/c&#43;&#43;-templates-meta-programming-mathpi/</link>
     <description>Recent content in c&#43;&#43;, templates, meta-programming, math,pi on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
     <lastBuildDate>Fri, 13 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://soroush.github.io/categories/c++-templates-meta-programming-mathpi/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://soroush.github.io/categories/c++-templates-meta-programming-mathpi/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>محاسبهٔ ثابت‌های ریاضی</title>
-      <link>http://soroush.github.io/2018/04/13/math-constants-in-cpp/</link>
+      <link>https://soroush.github.io/2018/04/13/math-constants-in-cpp/</link>
       <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://soroush.github.io/2018/04/13/math-constants-in-cpp/</guid>
+      <guid>https://soroush.github.io/2018/04/13/math-constants-in-cpp/</guid>
       <description>هیچ‌کدام از استانداردهای سی‌پلاس‌پلاس و یا سی عدد π را تعریف نکرده‌اند. بنابراین هر برنامه‌نویسی که قصد داشته باشه از توابع مثلثاتی یا آماری استفاده کنه مجبوره خودش π رو تعریف کنه. خوشبختانه فایل‌های سرآیند استاندارد عدد π رو تعریف کرده‌اند، (ثابت M_PI در هدر math.h رو ببینید) با این وجود استفاده از این ثابت و ثابت‌های دیگه بسیار خطرناک هست و برای کاربردهای دقیق باعث بروز خطاهای عددی خواهد شد.</description>
     </item>
     
