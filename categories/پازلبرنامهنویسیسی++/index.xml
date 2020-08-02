@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>پازل,برنامه‌نویسی,سی&#43;&#43; on اختاپوس خسته</title>
-    <link>soroush.github.io/categories/%D9%BE%D8%A7%D8%B2%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C%D8%B3%DB%8C&#43;&#43;/</link>
+    <link>http://soroush.github.io/categories/%D9%BE%D8%A7%D8%B2%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C%D8%B3%DB%8C&#43;&#43;/</link>
     <description>Recent content in پازل,برنامه‌نویسی,سی&#43;&#43; on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
     <lastBuildDate>Fri, 21 Mar 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="soroush.github.io/categories/%D9%BE%D8%A7%D8%B2%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C%D8%B3%DB%8C++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://soroush.github.io/categories/%D9%BE%D8%A7%D8%B2%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C%D8%B3%DB%8C++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>چطور پازل 8 را به روش ‪C&#43;&#43;‬ حل کنیم</title>
-      <link>soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</link>
+      <link>http://soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</link>
       <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</guid>
+      <guid>http://soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</guid>
       <description>اولین روز سال ۱۳۹۳ و اولین پست همین سال :) برای شروع سال چه چیزی بهتر از یه پازل فکری می‌تونه باشه؟ امروز جمعه‌ست و اول سال با آخر هفته شروع شده. آخرهفته‌ها فرصت مناسبی برای پروژه‌های کوچیک و جالب هست. خوب زومیت زحمت کشیده و پازل شمارهٔ ۳۱ام رو روز اول فروردین منتشر کرده. توی این پست می‌خوام توضیح بدم که چطوری این پازل رو حل کردم. در واقع تقلب کردم.</description>
     </item>
     

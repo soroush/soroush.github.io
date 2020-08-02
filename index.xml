@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>اختاپوس خسته</title>
-    <link>soroush.github.io/</link>
+    <link>http://soroush.github.io/</link>
     <description>Recent content on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
     <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="soroush.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://soroush.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>تقویم هجری خورشیدی در کیوت</title>
-      <link>soroush.github.io/2020/08/02/persian-calendar-in-qt/</link>
+      <link>http://soroush.github.io/2020/08/02/persian-calendar-in-qt/</link>
       <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2020/08/02/persian-calendar-in-qt/</guid>
+      <guid>http://soroush.github.io/2020/08/02/persian-calendar-in-qt/</guid>
       <description>&lt;p&gt;برای ما ایرانی‌ها استفاده از تقویم فارسی در محیط کامپیوتری همیشه چالش‌برانگیز
 بوده. به‌طور سیستم‌های رایانه‌ای با درنظر داشتن امکان تغییر تقویم‌ها طراحی و
 توسعه پیدا نمی‌کنند و ما همیشه مجبوریم جای خالی تقویم رسمی کشور - هجری خورشیدی -
@@ -33,7 +33,7 @@
 کنم. نسخهٔ نهایی همراه با کیوت ۵٫۱۴ در تاریخ ۲۱ آذر سال ۱۳۹۸ منتشر شد. این پست
 به چالش‌ها و روال توسعهٔ تقویم و نحوهٔ استفاده از API اختصاص داده شده.
 &lt;figure&gt;
-    &lt;img src=&#34;soroush.github.io/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
+    &lt;img src=&#34;http://soroush.github.io/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
             &lt;h4&gt;نمونهٔ اجرا&lt;/h4&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -42,26 +42,26 @@
     
     <item>
       <title>محاسبهٔ ثابت‌های ریاضی</title>
-      <link>soroush.github.io/2018/04/13/math-constants-in-cpp/</link>
+      <link>http://soroush.github.io/2018/04/13/math-constants-in-cpp/</link>
       <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2018/04/13/math-constants-in-cpp/</guid>
+      <guid>http://soroush.github.io/2018/04/13/math-constants-in-cpp/</guid>
       <description>هیچ‌کدام از استانداردهای سی‌پلاس‌پلاس و یا سی عدد π را تعریف نکرده‌اند. بنابراین هر برنامه‌نویسی که قصد داشته باشه از توابع مثلثاتی یا آماری استفاده کنه مجبوره خودش π رو تعریف کنه. خوشبختانه فایل‌های سرآیند استاندارد عدد π رو تعریف کرده‌اند، (ثابت M_PI در هدر math.h رو ببینید) با این وجود استفاده از این ثابت و ثابت‌های دیگه بسیار خطرناک هست و برای کاربردهای دقیق باعث بروز خطاهای عددی خواهد شد.</description>
     </item>
     
     <item>
       <title>مشکل نیم‌فاصله در KDE و روش حل آن</title>
-      <link>soroush.github.io/2017/12/18/kates-zwnj-bug/</link>
+      <link>http://soroush.github.io/2017/12/18/kates-zwnj-bug/</link>
       <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2017/12/18/kates-zwnj-bug/</guid>
+      <guid>http://soroush.github.io/2017/12/18/kates-zwnj-bug/</guid>
       <description>&lt;p&gt;قبلاً در مورد
-&lt;a href=&#34;soroush.github.io/2017/05/09/worst-ever-bug/&#34;&gt;باگ بسیار بدی&lt;/a&gt;
+&lt;a href=&#34;http://soroush.github.io/2017/05/09/worst-ever-bug/&#34;&gt;باگ بسیار بدی&lt;/a&gt;
 که در کیوت به‌وجود آمده بود و روش حل آن نوشتم. این
 باگ باعث میشد امکان نوشتن نویسه‌های کنترلی مثل نیم‌فاصله و تغییر جهت
 به‌طور کامل از بین بره. (اگر از نیم‌فاصله استفاده نمی‌کنید و یا نمی‌دونید تغییر
 جهت متن چه اهمیتی داره حتماً
-&lt;a href=&#34;soroush.github.io/2014/09/18/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
+&lt;a href=&#34;http://soroush.github.io/2014/09/18/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
 رو بخونید)&lt;/p&gt;
 &lt;p&gt;الآن با گذشت چند ماه باگ مربوطه برطرف شده و با نسخهٔ 5.9.1 منتشر شده.
 (تغیرات گریت برای ماژول qtbase
@@ -76,10 +76,10 @@
     
     <item>
       <title>برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet</title>
-      <link>soroush.github.io/2017/09/11/libcpnet/</link>
+      <link>http://soroush.github.io/2017/09/11/libcpnet/</link>
       <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2017/09/11/libcpnet/</guid>
+      <guid>http://soroush.github.io/2017/09/11/libcpnet/</guid>
       <description>&lt;p&gt;کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
 ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما
 گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام
@@ -93,16 +93,16 @@
     
     <item>
       <title>بدترین باگ کیوت!</title>
-      <link>soroush.github.io/2017/05/09/worst-ever-bug/</link>
+      <link>http://soroush.github.io/2017/05/09/worst-ever-bug/</link>
       <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2017/05/09/worst-ever-bug/</guid>
+      <guid>http://soroush.github.io/2017/05/09/worst-ever-bug/</guid>
       <description>&lt;p&gt;کیوت به‌نظر من بهترین فریم‌ورک سی‌پلاس‌پلاس هست. یک کتابخانهٔ خیلی بزرگ با
 امکانات بسیار عالی و خوب که محیط کاری KDE به‌طور کامل برپایهٔ اون ساخته شده.
 اما از نسخهٔ 5.3 (ظاهراً) یک باگی به‌وجود آمده که زندگی رو برای ما خیلی سخت
 کرده: عدم امکان وارد کردن نویسه‌های کنترلی و نیم‌فاصله‌های چسبان و غیرچسبان!
 (قبلاً در مورد مورد
-&lt;a href=&#34;soroush.github.io/2014/09/18/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
+&lt;a href=&#34;http://soroush.github.io/2014/09/18/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
 نوشتم.) حوزهٔ تأثیر این باگ به قدری بزرگ و
 گسترده است که کار با محیط KDE رو برای ما غیرممکن کرده. تصور کنید که تقریباً هیچ
 جایی توی سیستم‌عامل و برنامه‌های کاربردی محیط دسکتاپ نتونید نویسه‌های کنترلی و
@@ -116,10 +116,10 @@
     
     <item>
       <title>این بورد لعنتی</title>
-      <link>soroush.github.io/2016/01/08/damn-board/</link>
+      <link>http://soroush.github.io/2016/01/08/damn-board/</link>
       <pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2016/01/08/damn-board/</guid>
+      <guid>http://soroush.github.io/2016/01/08/damn-board/</guid>
       <description>&lt;p&gt;مدتی‌یه که برای انجام یه پروژهٔ صنعتی یه بورد
 &lt;a href=&#34;http://www.friendlyarm.net/products/smart210&#34;&gt;Smart 210&lt;/a&gt;
 به دستم رسیده. این بورد ساخت شرکت
@@ -130,7 +130,7 @@
 آینده برای کسایی که می‌خوان باهاش کار کنن مفید باشه یا لااقل باعث باشه از خریدش
 منصرف بشن (:
 &lt;figure&gt;
-    &lt;img src=&#34;soroush.github.io/static/images/smart210.jpg&#34;/&gt; &lt;figcaption&gt;
+    &lt;img src=&#34;http://soroush.github.io/static/images/smart210.jpg&#34;/&gt; &lt;figcaption&gt;
             &lt;h4&gt;بورد اصلی و پردازندهٔ Smart 210&lt;/h4&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -139,10 +139,10 @@
     
     <item>
       <title>کتابخانهٔ Dynamixel</title>
-      <link>soroush.github.io/2015/01/07/libdynamixel-c-11-api/</link>
+      <link>http://soroush.github.io/2015/01/07/libdynamixel-c-11-api/</link>
       <pubDate>Wed, 07 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2015/01/07/libdynamixel-c-11-api/</guid>
+      <guid>http://soroush.github.io/2015/01/07/libdynamixel-c-11-api/</guid>
       <description>&lt;p&gt;مدتی هست که هم توی شبکه‌های اجتماعی و هم این‌جا فعالیتم خیلی کم شده. دلیلش
 پروژه‌ای هست که در حال حاضر وقت خیلی زیادی ازم می‌گیره و مجبورم به‌خاطرش
 مسافرت‌های طولانی رو برم و برگردم.&lt;/p&gt;
@@ -154,10 +154,10 @@ libdynamixel.
     
     <item>
       <title>ارتباط میان‌زبانی</title>
-      <link>soroush.github.io/2014/10/18/ultimate-software-porting-guide/</link>
+      <link>http://soroush.github.io/2014/10/18/ultimate-software-porting-guide/</link>
       <pubDate>Sat, 18 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/10/18/ultimate-software-porting-guide/</guid>
+      <guid>http://soroush.github.io/2014/10/18/ultimate-software-porting-guide/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;زبان مورد استفاده برای پیاده‌سازی یک ابزار، یکی از ویژگی‌های آن نیست.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -183,10 +183,10 @@ libdynamixel.
     
     <item>
       <title>پادشاه و استادِ بزرگ</title>
-      <link>soroush.github.io/2014/10/03/the-king-and-the-grandmaster/</link>
+      <link>http://soroush.github.io/2014/10/03/the-king-and-the-grandmaster/</link>
       <pubDate>Fri, 03 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/10/03/the-king-and-the-grandmaster/</guid>
+      <guid>http://soroush.github.io/2014/10/03/the-king-and-the-grandmaster/</guid>
       <description>روزی پادشاهی استادِ بزرگ را نزد خویش فراخواند و به او گفت:
  ای حکیم دانا!‌ به من چیزی بیاموز که در غمگینی مراخوشحال کرده و دوران خوشی مرا غمگین کند.
  استادِ بزرگ به وی گفت:
@@ -195,10 +195,10 @@ libdynamixel.
     
     <item>
       <title>توسعهٔ میان‌نسخه‌ای</title>
-      <link>soroush.github.io/2014/09/24/cross-qt-development/</link>
+      <link>http://soroush.github.io/2014/09/24/cross-qt-development/</link>
       <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/09/24/cross-qt-development/</guid>
+      <guid>http://soroush.github.io/2014/09/24/cross-qt-development/</guid>
       <description>&lt;p&gt;سال گذشته توی
 &lt;a href=&#34;http://onealonebit.wordpress.com/2013/09/10/cross-qt-development&#34;&gt;وبلاگ انگلیسی‌م&lt;/a&gt;
 پستی در مورد توسعهٔ نرم‌افزار بین نسخه‌های مختلف کیوت
@@ -216,10 +216,10 @@ libdynamixel.
     
     <item>
       <title>توسعهٔ چندسکویی</title>
-      <link>soroush.github.io/2014/09/18/cross-platform-development/</link>
+      <link>http://soroush.github.io/2014/09/18/cross-platform-development/</link>
       <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/09/18/cross-platform-development/</guid>
+      <guid>http://soroush.github.io/2014/09/18/cross-platform-development/</guid>
       <description>&lt;p&gt;دوست دارم برنامه‌ها و کتابخونه‌هام روی پلتفرم‌های مختلف اجرا بشن. هرچه بیشتر
 بهتر! البته همیشه هدف اصلی همیشه
 &lt;a href=&#34;http://en.wikipedia.org/wiki/Linux&#34;&gt;لینوکس&lt;/a&gt;
@@ -241,10 +241,10 @@ APIهای
     
     <item>
       <title>چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi</title>
-      <link>soroush.github.io/2014/09/18/unicode-bidi/</link>
+      <link>http://soroush.github.io/2014/09/18/unicode-bidi/</link>
       <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/09/18/unicode-bidi/</guid>
+      <guid>http://soroush.github.io/2014/09/18/unicode-bidi/</guid>
       <description>&lt;p&gt;حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
 و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
 &lt;a href=&#34;http://en.wikipedia.org/wiki/Plain_text&#34;&gt;Plain Text&lt;/a&gt;
@@ -263,49 +263,49 @@ APIهای
     
     <item>
       <title>چطور پازل 8 را به روش ‪C&#43;&#43;‬ حل کنیم</title>
-      <link>soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</link>
+      <link>http://soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</link>
       <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</guid>
+      <guid>http://soroush.github.io/2014/03/21/how-to-solve-8-8-puzzle/</guid>
       <description>اولین روز سال ۱۳۹۳ و اولین پست همین سال :) برای شروع سال چه چیزی بهتر از یه پازل فکری می‌تونه باشه؟ امروز جمعه‌ست و اول سال با آخر هفته شروع شده. آخرهفته‌ها فرصت مناسبی برای پروژه‌های کوچیک و جالب هست. خوب زومیت زحمت کشیده و پازل شمارهٔ ۳۱ام رو روز اول فروردین منتشر کرده. توی این پست می‌خوام توضیح بدم که چطوری این پازل رو حل کردم. در واقع تقلب کردم.</description>
     </item>
     
     <item>
       <title>نصب آسان نرم‌افزار از طریق Qt Creator</title>
-      <link>soroush.github.io/2014/02/28/qt-creator-deploy/</link>
+      <link>http://soroush.github.io/2014/02/28/qt-creator-deploy/</link>
       <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2014/02/28/qt-creator-deploy/</guid>
+      <guid>http://soroush.github.io/2014/02/28/qt-creator-deploy/</guid>
       <description>روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست. با این وجود ممکنه گاهی اوقات بعضی کارهای تکراری کسل‌کننده به‌نظر برسه. همگی می‌دونیم که کسل‌کنندگی بزرگترین دشمن گیک‌ها (و البته گیگتوپوس‌ها) هست. خوشبختانه توسعه‌دهنده‌های کیوت‌کریتور همگی گیک هستند و راه‌حل‌های مؤثری برای این کارها درنظر گرفته شده.
 اگر بخوایم یه کتابخانهٔ جدید رو با استفاده از کیوت بنویسیم، مسلماً بعد از یه مدتی دلمون می‌خواد که تست‌ش کنیم.</description>
     </item>
     
     <item>
       <title>بیت‌کوین فارسی</title>
-      <link>soroush.github.io/2013/10/18/bitcoin-i18n/</link>
+      <link>http://soroush.github.io/2013/10/18/bitcoin-i18n/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2013/10/18/bitcoin-i18n/</guid>
+      <guid>http://soroush.github.io/2013/10/18/bitcoin-i18n/</guid>
       <description>حدود دو ماهه که دارم در مورد bitcoin تحقیق می‌کنم. به‌نظر من یکی از ایده‌هایی هست که دنیا رو متحول خواهد کرد. به هم زدن نظم اقتصادی دنیا با یک سیستم پولی کاملاً غیرمتمرکز چیزی‌یه که به زودی تبدیل به کابوس دولت‌ها خواهد شد.
 اما این پست در مورد خودِ بیت‌کوین و سیستم‌ش نیست. می‌خوام در مورد ترجمهٔ فارسی این پروژه بنویسم. متأسفانه این ترجمه به دست افراد ناشی و (البته با نیت خیر) انجام شده.</description>
     </item>
     
     <item>
       <title>خلأ بین دانشگاه و صنعت</title>
-      <link>soroush.github.io/2013/09/27/the-gap-between-university-and-industry/</link>
+      <link>http://soroush.github.io/2013/09/27/the-gap-between-university-and-industry/</link>
       <pubDate>Fri, 27 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2013/09/27/the-gap-between-university-and-industry/</guid>
+      <guid>http://soroush.github.io/2013/09/27/the-gap-between-university-and-industry/</guid>
       <description>یه وضعیتی هست که بین بازار و دانشگاه به‌وجود اومده و خیلی اذیتم می‌کنه. من بهش میگم خلأ بین آکادمی و صنعت. شاید جای دیگه اسمش فرق کنه. البته مختص کشور ما هم نیست ولی طبق معمول بدترین حالتش توی کشور ما اتفاق افتاده {فرهنگ؟}
 این وضع باعث شده که بازاری ناهنجار و صنعتی عقب‌افتاده داشته باشیم. در مورد رشتهٔ خودم که مشکل رو با قد و قوارهٔ کاملش دارم می‌بینم.</description>
     </item>
     
     <item>
       <title>مهاجرت به لینوکس در قوهٔ مجریه</title>
-      <link>soroush.github.io/2013/09/20/linux-migration/</link>
+      <link>http://soroush.github.io/2013/09/20/linux-migration/</link>
       <pubDate>Fri, 20 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>soroush.github.io/2013/09/20/linux-migration/</guid>
+      <guid>http://soroush.github.io/2013/09/20/linux-migration/</guid>
       <description>دوشنبه ۱۸ شهریور بود که سایت شبکهٔ خبر، خبری رو منتشر کرد که بازخورد شدیدی بین کاربران لینوکس و توسعه‌دهنده‌های متن‌باز داخلی داشت. ماجرا به‌طور خلاصه از این قرار بود که دولت مصوبه‌ای رو تصویب کرده که براساس اون ارگان‌های مربوطه موظف هستند ظرف شش ماه برنامهٔ مهاجرت به لینوکس رو تحویل وزارت ارتباطات و فناوری اطلاعات بدن. خیلی از سایت‌ها و جوامع کاربری موضوع رو از دید خودشون تحلیل کردن و بلافاصله تحلیل‌های متنوعی منتشر شد.</description>
     </item>
     
