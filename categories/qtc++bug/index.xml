@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>qt,c&#43;&#43;,bug on اختاپوس خسته</title>
-    <link>https://soroush.github.io/categories/qtc&#43;&#43;bug/</link>
+    <link>soroush.github.io/categories/qtc&#43;&#43;bug/</link>
     <description>Recent content in qt,c&#43;&#43;,bug on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
     <lastBuildDate>Tue, 09 May 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://soroush.github.io/categories/qtc++bug/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="soroush.github.io/categories/qtc++bug/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>بدترین باگ کیوت!</title>
-      <link>https://soroush.github.io/post/worst-ever-bug/</link>
+      <link>soroush.github.io/2017/05/09/worst-ever-bug/</link>
       <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/post/worst-ever-bug/</guid>
+      <guid>soroush.github.io/2017/05/09/worst-ever-bug/</guid>
       <description>&lt;p&gt;کیوت به‌نظر من بهترین فریم‌ورک سی‌پلاس‌پلاس هست. یک کتابخانهٔ خیلی بزرگ با
 امکانات بسیار عالی و خوب که محیط کاری KDE به‌طور کامل برپایهٔ اون ساخته شده.
 اما از نسخهٔ 5.3 (ظاهراً) یک باگی به‌وجود آمده که زندگی رو برای ما خیلی سخت
 کرده: عدم امکان وارد کردن نویسه‌های کنترلی و نیم‌فاصله‌های چسبان و غیرچسبان!
 (قبلاً در مورد مورد
-&lt;a href=&#34;https://soroush.github.io/post/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
+&lt;a href=&#34;soroush.github.io/2014/09/18/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
 نوشتم.) حوزهٔ تأثیر این باگ به قدری بزرگ و
 گسترده است که کار با محیط KDE رو برای ما غیرممکن کرده. تصور کنید که تقریباً هیچ
 جایی توی سیستم‌عامل و برنامه‌های کاربردی محیط دسکتاپ نتونید نویسه‌های کنترلی و

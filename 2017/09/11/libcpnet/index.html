@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa-ir" lang="fa-ir">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet &middot; اختاپوس خسته</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="soroush.github.iocss/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="soroush.github.iocss/poole.css">
+  <link type="text/css" rel="stylesheet" href="soroush.github.iocss/syntax.css">
+  <link type="text/css" rel="stylesheet" href="soroush.github.iocss/hyde.css">
+  <link type="text/css" rel="stylesheet" href="soroush.github.iocss/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="soroush.github.iostatic/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="soroush.github.io"><h1>اختاپوس خسته</h1></a>
+      <p class="lead">
+       یادداشت‌هایی دربارهٔ برنامه‌نویسی و زندگی 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="soroush.github.io">صفحهٔ اول</a> </li>
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="fab fa-github"></i> soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p>حقوق نشر محفوظ است.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet</h1>
+
+  <time datetime=2017-09-11T00:00:00Z class="post-date">دوشنبه، ۲۰ شهریور ۱۳۹۶</time>
+  <p>کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
+ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما
+گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام
+می‌کنیم، روی ویندوز هم می‌تونید برنامه رو اجرا کنید. خوب این تصمیم مشکلات بسیار
+بزرگی برای برنامه‌نویس به‌وجود میاره. ازجمله برنامه‌نویسی شبکه&hellip; این پست به
+بررسی این مشکلات و ارائهٔ یک راه حل خوب خواهد پرداخت (: اگر قصد دارید کدی
+بنویسید که هم روی ویندوز و هم روی سیستم‌عامل‌های واقعی بتونه از شبکه استفاده
+کنه
+حتماً ادامهٔ مطلب رو بخونید.</p>
+<p>در لینوکس API ساده و بسیار کاربردی برای برنامه‌نویسی شبکه وجود داره که تقریباً
+تمام این API استاندارد شده. توابع زبان سی که خیلی ساده کارهایی رو با فلسفهٔ
+یونیکس (≈ هرچیزی یک فایل هست برای نوشتن و خواندن) انجام میده. به راحتی و با
+استفاده از این API سطح پایین میشه برنامه‌های شبکه با کارایی بالا نوشت.</p>
+<p>مشکل از جایی شروع میشه که این برنامه‌ها بخوان سمت ویندوز برن. متأسفانه
+سیستم‌عامل ویندوز از نظر طراحی هیچ استاندارد خاصی رو رعایت نکرده و تنها
+[قسمت‌هایی از مشخصات POSIX]
+(<a href="https://brianreiter.org/2010/08/24/the-sad-history-of-the-microsoft-posix">https://brianreiter.org/2010/08/24/the-sad-history-of-the-microsoft-posix</a> -subsystem/)
+رو به‌صورت دست و پا شکسته و ناقص پیاده‌سازی کرده. از
+طرف دیگه API خوبی هم  برای کار کردن با سوکت‌ها نداره. نصف توابعی که فراهم شده
+POSIX
+هستند و نصف دیگه کاملاً
+[من‌درآوردی]
+(<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394%25">https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394%</a> 28v=vs.85%29.aspx).</p>
+<p>معمولاً برنامه‌های بزرگ برای حل این مشکلات از کتابخانه‌هایی که پیاده‌‌سازی‌های
+چندسکویی (cross-platform) فراهم کردند استفاده می‌کنند. معروف‌ترین این
+پیاده‌سازی‌ها
+<a href="https://pocoproject.org">poco</a>,
+<a href="www.cs.wustl.edu/~schmidt/ACE.html">ACE</a>,
+<a href="https://think-async.com/">asio</a> و
+<a href="http://zeromq.org/">ØMQ</a>
+هستند. مشکلی که استفاده از این کتابخانه‌ها داره اینه که:</p>
+<ul>
+<li>خیلی پیچیده و بزرگ هستند. (بعضی‌ها حتا چندین مگابایت پیش‌نیازی اضافه
+می‌کنند. مثل کیوت)</li>
+<li>برای کارهای خاص و الگوهای پیچیده ساخته شده‌اند. (مثلا asio برای
+معماری‌های async و ZMQ برای الگوهای ارتباطی خاص)</li>
+</ul>
+<p>به همین دلیل جای خالی یک کتابخانهٔ <strong>ساده</strong> و <strong>بسیار سبک</strong> که با کمترین
+هزینه؛ برای ویندوز و لینوکس رابط برنامه‌نویسی <strong>سطح سوکت</strong> فراهم کنه احساس
+می‌شد. متأسفانه من همچین کدی پیدا نکردم. و شروع کردم به نوشتن یک کتابخانهٔ آزاد
+و خیلی خیلی ساده به زبان سی که امکان برنامه‌نویسی شبکه در سطح سوکت رو برای هر
+دو سیستم‌عامل فراهم می‌کنه. نتیجه چیزی شد که خودم خیلی ازش راضی بودم و تصمیم
+گرفتم منتشرش کنم.</p>
+<p>این کتابخانه از اینجا قابل دسترسی هست: <a href="https://github.com/soroush/libcpnet">https://github.com/soroush/libcpnet</a></p>
+<h2 id="ویژگیها">ویژگی‌ها</h2>
+<ul>
+<li>API سطح سوکت هست. هیچ پیش‌فرضی در مورد الگوی برنامه‌نویسی یا پروتکل‌های سطح بالاتر از انتقال گرفته نشده؛</li>
+<li>سوکت‌های UDP و TCP تقریباً به‌طور کامل پشتیبانی میشن؛</li>
+<li>کد استاندارد سی هست (درواقع C99) که البته با C11 هم کامپایل میشه؛</li>
+<li>کد روی سیزده پلتفرم مختلف تست شده. (ویژوال استودیو ۲۰۱۷ و ۲۰۱۵ - release و debug - استاتیک و داینامیک + نسخه‌های 4.7 4.8 4.9 5.4 و 6 از gcc)؛</li>
+</ul>
+<h2 id="محدودیتها">محدودیت‌ها</h2>
+<ul>
+<li>در حال حاضر فقط سوکت‌های datagram و stream (در واقع UDP و TCP) رو پیاده‌سازی
+کردم. این‌ها پرکاربردتر از بقیهٔ انواع سوکت‌ها هستند. البته سوکت‌های انواع دیگه رو هم به
+مرور اضافه می‌کنم؛</li>
+<li>این API کامل نیست. یعنی تمام توابع رو (مخصوصاً توابعی رو که هم توی لینوکس و
+هم توی ویندوز یکسان هستند) پوشش نمیده. دلیلش واضحه: دلیلی ندیدم پیاده‌سازی کنم.</li>
+</ul>
+<p>با وجود این محدودیت‌ها کتابخانه کاملاً کاربردی و قابل استفاده هست و مشکلات زیادی رو حل می‌کنه.</p>
+<h2 id="کد">کد</h2>
+<p>هیچ چیز بهتر از کد نمی‌تونه توضیح بده (: کد سمت کلاینت برای اتصال از نوع TCP یه
+همچین چیزی میشه:
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Client-side sample code */</span>
+<span class="cm">/* Initialize networking API (Only needed in Windows) */</span>
+<span class="n">net_init</span><span class="p">();</span>
+<span class="cm">/* Start a client */</span>
+<span class="n">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
+<span class="cm">/* Connect to port 50001 */</span>
+<span class="k">if</span><span class="p">(</span><span class="n">net_connect</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="mi">50001</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to connect: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="cm">/* Write to socket */</span>
+<span class="n">ssizet</span> <span class="n">io_size</span> <span class="o">=</span> <span class="n">net_write</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">io_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to write: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">io_size</span> <span class="o">=</span> <span class="n">net_read</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">read_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to read: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cm">/* ... */</span>
+<span class="cm">/* Cleanup (Only needed in Windows) */</span>
+<span class="n">net_clean</span><span class="p">();</span></code></pre></div></p>
+<p>و کد سمت سرور برای باز کردن یک پورت و جواب دادن به اتصالات مختلف:
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Initialize networking API (if any needed) */</span>
+<span class="n">net_init</span><span class="p">();</span>
+<span class="cm">/* Start a server */</span>
+<span class="n">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
+<span class="cm">/* Bind on port 50001 */</span>
+<span class="n">uint16_t</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">50001</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">net_bind</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to bind: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cm">/* Listen for incomming connections (backlog=10) */</span>
+<span class="n">net_listen</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="cm">/* Accept clients */</span>
+<span class="kt">char</span> <span class="n">address</span><span class="p">[</span><span class="mi">46</span><span class="p">];</span>
+<span class="n">socket_t</span> <span class="n">client</span> <span class="o">=</span> <span class="n">net_accept</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Client connected. Remote Address:`%s&#39; Assigned port number: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="n">ssize_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">net_read</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to read from socket: &#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Remote client stopped.&#34;</span><span class="p">);</span>
+    <span class="n">net_close</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">ssize_t</span> <span class="n">w</span> <span class="o">=</span> <span class="n">net_write</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to write to socket: &#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
+    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div></p>
+<p>چند تا نکته:</p>
+<ul>
+<li>همهٔ توابع با ‪<code>net_</code>‬ شروع میشن.</li>
+<li>روی لینوکس لازم نیست ‪<code>net_init()</code>‬ و ‪<code>net_clean()</code>‬ رو بنویسید، اما ضرری هم نداره (هیچ کاری نمی‌کنه)</li>
+</ul>
+</div>
+
+<h2>دیدگاه‌ها</h2>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "soroushr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

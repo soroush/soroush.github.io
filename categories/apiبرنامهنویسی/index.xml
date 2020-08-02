@@ -1,30 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>API،برنامه‌نویسی on اختاپوس خسته</title>
-    <link>https://soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/</link>
+    <link>soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/</link>
     <description>Recent content in API،برنامه‌نویسی on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
-    <lastBuildDate>Sat, 18 Oct 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jan 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="soroush.github.io/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ارتباط میان‌زبانی</title>
-      <link>https://soroush.github.io/post/ultimate-software-porting-guide/</link>
+      <link>soroush.github.io/2014/10/18/ultimate-software-porting-guide/</link>
       <pubDate>Sat, 18 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/post/ultimate-software-porting-guide/</guid>
+      <guid>soroush.github.io/2014/10/18/ultimate-software-porting-guide/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;زبان مورد استفاده برای پیاده‌سازی یک ابزار، یکی از ویژگی‌های آن نیست.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;دنیا پر از ابزارها و کتابخانه‌هایی هست که به‌دست برنامه‌نویسان مختلفی
 به‌زبان‌های مختلف نوشته شدن. بدون وجود این کتابخانه‌ها و ابزارها زندگی برای ما
 برنامه‌نویس‌ها (به‌دلایلی واضح) خیلی سخت می‌شد.&lt;/p&gt;
-
 &lt;p&gt;به عقیدهٔ من همه‌چیز باید همه‌جا برای همه‌کس قابل استفاده باشه. یعنی این که
 مثلاً این که من فلان کتابخانهٔ کاربردی و باحال رو با زبان ‪C++‬ پیاده‌سازی کردم
 نباید باعث بشه که یک برنامه‌نویس پایتون یا جاوا نتونه ازش استفاده کنه. حتا
@@ -37,7 +35,6 @@
 برای برنامه‌ش استفاده کنه. بنابراین وظیفهٔ منِ برنامه‌نویس است، که برای تمام
 زبان‌هایی که می‌تونم، &lt;strong&gt;رابط&lt;/strong&gt; (=&amp;gt;interface)های &lt;strong&gt;بومی&lt;/strong&gt; (=&amp;gt;native) فراهم کنم تا همه
 بتونن از ابزارم استفاده کنن.&lt;/p&gt;
-
 &lt;p&gt;توی این پست نحوهٔ ایجاد رابط برای زبان‌های مختلف رو توضیح میدم. طبق این روش
 ساده، میشه به‌راحتی برای کتابخانه‌های ‪C++‬ رابط‌هایی برای تمام زبان‌های دیگه
 پیاده‌سازی کرد.&lt;/p&gt;</description>

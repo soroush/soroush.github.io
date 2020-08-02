@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>بیت‌کوین on اختاپوس خسته</title>
-    <link>https://soroush.github.io/categories/%D8%A8%DB%8C%D8%AA%DA%A9%D9%88%DB%8C%D9%86/</link>
+    <link>soroush.github.io/categories/%D8%A8%DB%8C%D8%AA%DA%A9%D9%88%DB%8C%D9%86/</link>
     <description>Recent content in بیت‌کوین on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fa-ir</language>
     <lastBuildDate>Fri, 18 Oct 2013 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://soroush.github.io/categories/%D8%A8%DB%8C%D8%AA%DA%A9%D9%88%DB%8C%D9%86/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="soroush.github.io/categories/%D8%A8%DB%8C%D8%AA%DA%A9%D9%88%DB%8C%D9%86/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>بیت‌کوین فارسی</title>
-      <link>https://soroush.github.io/post/bitcoin-i18n/</link>
+      <link>soroush.github.io/2013/10/18/bitcoin-i18n/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/post/bitcoin-i18n/</guid>
+      <guid>soroush.github.io/2013/10/18/bitcoin-i18n/</guid>
       <description>حدود دو ماهه که دارم در مورد bitcoin تحقیق می‌کنم. به‌نظر من یکی از ایده‌هایی هست که دنیا رو متحول خواهد کرد. به هم زدن نظم اقتصادی دنیا با یک سیستم پولی کاملاً غیرمتمرکز چیزی‌یه که به زودی تبدیل به کابوس دولت‌ها خواهد شد.
 اما این پست در مورد خودِ بیت‌کوین و سیستم‌ش نیست. می‌خوام در مورد ترجمهٔ فارسی این پروژه بنویسم. متأسفانه این ترجمه به دست افراد ناشی و (البته با نیت خیر) انجام شده.</description>
     </item>
