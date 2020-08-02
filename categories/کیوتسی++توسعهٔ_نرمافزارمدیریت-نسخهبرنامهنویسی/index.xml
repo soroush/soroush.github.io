@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>کیوت,سی&#43;&#43;,توسعهٔ_نرم‌افزار,مدیریت نسخه,برنامه‌نویسی on اختاپوس خسته</title>
+    <link>https://soroush.github.io/categories/%DA%A9%DB%8C%D9%88%D8%AA%D8%B3%DB%8C&#43;&#43;%D8%AA%D9%88%D8%B3%D8%B9%D9%87%D9%94_%D9%86%D8%B1%D9%85%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA-%D9%86%D8%B3%D8%AE%D9%87%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/</link>
+    <description>Recent content in کیوت,سی&#43;&#43;,توسعهٔ_نرم‌افزار,مدیریت نسخه,برنامه‌نویسی on اختاپوس خسته</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fa-ir</language>
+    <lastBuildDate>Wed, 24 Sep 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://soroush.github.io/categories/%DA%A9%DB%8C%D9%88%D8%AA%D8%B3%DB%8C++%D8%AA%D9%88%D8%B3%D8%B9%D9%87%D9%94_%D9%86%D8%B1%D9%85%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA-%D9%86%D8%B3%D8%AE%D9%87%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>توسعهٔ میان‌نسخه‌ای</title>
+      <link>https://soroush.github.io/post/cross-qt-development/</link>
+      <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/post/cross-qt-development/</guid>
+      <description>&lt;p&gt;سال گذشته توی
+&lt;a href=&#34;http://onealonebit.wordpress.com/2013/09/10/cross-qt-development&#34;&gt;وبلاگ انگلیسی‌م&lt;/a&gt;
+پستی در مورد توسعهٔ نرم‌افزار بین نسخه‌های مختلف کیوت
+نوشته بودم که مدت‌هاست وقت نکردم ترجمه‌ش کنم. این پست در مورد توضیح یک روش
+کارامد برای کدنویسی بین
+نسخهٔ ۴ و ۵ کیوت هست اما میشه کلیت‌ش رو به تمام چارچوب‌ها و کتابخانه‌هایی که در
+یک بازهٔ زمانی چند نسخه دارند، تعمیم داد. برای برنامه‌هایی که به‌طور طولانی‌مدت
+پشتیبانی میشن، این شرایط خیلی زیاد پیش میاد.فرض کنید برنامه‌ای نوشته میشه که
+قراره با ZMQ نسخهٔ ۲ کار کنه. بعد از گذشت چند سال توسعه‌دهنده‌ها به این نتیجه
+می‌رسن که باید نسخهٔ ۳ پشتیبانی بشه و پکیج‌هایی از کدهای کامپایل شده با نسخهٔ ۳
+تهیه بشه. بنابراین بهترین راه حل نوشتن کدی هست که با هر دو نسخه کامپایل بشه.
+برای ابزارهایی که کتابخانه نیستند هم همین صادق هست. مثلاً اسکریپتی که قراره با
+پایتون ۲ کار کنه اما باید با پایتون ۳ هم کار کنه.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
