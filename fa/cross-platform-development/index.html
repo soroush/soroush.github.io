@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>توسعهٔ چندسکویی &middot; اختاپوس خسته</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/all.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde-rtl.css"><link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole-rtl.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/fa//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/fa/"><h1>اختاپوس خسته</h1></a>
+      <p class="lead">
+       یادداشت‌هایی دربارهٔ برنامه‌نویسی و زندگی 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="fab fa-github"></i> soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p>حق نشر محفوظ است.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>توسعهٔ چندسکویی</h1>
+
+  <time datetime=2014-09-18T00:00:00Z class="post-date">پنجشنبه، ۲۷ شهریور ۱۳۹۳</time>
+  <p>دوست دارم برنامه‌ها و کتابخونه‌هام روی پلتفرم‌های مختلف اجرا بشن. هرچه بیشتر
+بهتر! البته همیشه هدف اصلی همیشه
+<a href="http://en.wikipedia.org/wiki/Linux">لینوکس</a>
+و <a href="http://en.wikipedia.org/wiki/Unix-like">سیستم‌های شبه‌یونیکس</a> هستند. با این
+حال بدم نمیاد که عملکرد مشابهی رو برای ویندوز و اندرویید، شاید هم مک‌اواس فراهم
+کنم. در واقع <strong>پلتفرم</strong> نباید یک محدودیت برای استفاده از نرم‌افزار باشه. مجموع
+این‌ها ما رو به ایدهٔ
+<a href="http://en.wikipedia.org/wiki/Cross-platform">توسعهٔ چندسکویی</a>
+می‌رسونه. متأسفانه این کار چندان ساده هم نیست. استاندارد پذیرفته‌شده‌ای برای
+APIهای
+سیستم‌عامل‌ها وجود نداره. همچنین هیچ الگوی کلی‌ای برای عملیات سیستم‌عامل
+موجود نیست. توسعه‌دهنده‌ها باید با درنظر داشتن تمام نیازمندی‌های چندسکویی کد
+بنویسند.</p>
+<p>توی این پست، تجربهٔ شخصی خودم رو در مورد توسعهٔ چندسکویی پروژهٔ AIT می‌نویسم.
+توی اون پروژه به مشکلات زیادی برخوردم و تعدادی‌شون رو حل کردم. این نوشته یک
+چک‌لیست ساده برای کسایی که می‌خوان توسعهٔ چندسکویی انجام بدن فراهم می‌کنه که
+بتونن از مشکلات توسعهٔ چندسکویی با زبان‌های ‏‪C/C++‬ پیشگیری کنن. رفتیم که بریم :)</p>
+<h2 id="زبان">زبان</h2>
+<blockquote>
+<p>Ⅰ. با یک زبان ویژهٔ پلتفرم کد ننویسید.</p>
+</blockquote>
+<p>این کار رو نکنید. با C#، C++ CLI یا ابزارهای دیگهٔ مایکروسافت کد ننویسید.
+<figure>
+    <img src="/static/images/c&#43;&#43;.png"/> <figcaption>
+            <h4>C&#43;&#43; به‌قدر کافی چندسکویی است. چون برای تمام پلتفرم‌ها کامپایلر دارد (حداقل پلتفرم‌های درست و حسابی)</h4>
+        </figcaption>
+</figure>
+</p>
+<h2 id="کد">کد</h2>
+<blockquote>
+<p>Ⅱ. کد وابسته به یک پلتفرم خاص ننویسید. حتا اگر شده به قیمت اضافه کردن وابستگی‌های بیشتر.</p>
+</blockquote>
+<p>قانون شمارهٔ دو میگه که نرم‌افزار شما نباید وابسته به ابزارهای ویژهٔ پلتفرم خاصی
+باشه. این به معنی هست که مثلاً از
+<a href="http://en.wikipedia.org/wiki/Berkeley_sockets">Berkeley socket API</a>
+توی سیستم‌های یونیکس استفاده نکنید. همچنین از
+<a href="http://en.wikipedia.org/wiki/Winsock">Winsock</a>
+روی ویندوز. به‌جای استفاده از این APIها یک پیش‌نیاز جدید اضافه کنید که کاربرد
+موردنظر رو به شکل چندسکویی پیاده‌سازی کرده باشه. مثلاً
+<a href="http://en.wikipedia.org/wiki/Asio_C%2B%2B_library">Boost ASIO</a>
+برای کارهای شبکه می‌تونه یه راهکار چندسکویی باشه. ASIO خودش چندسکویی‌یه بنابراین
+کدی که ازش استفاده می‌کنه نیازی به تغییر روی سکوها نداره.</p>
+<p>درصورتی که بخواید یک API سطح سیستم‌عامل بنویسید، باید پیاده‌سازی مربوط به هر
+پلتفرم رو بنویسید و بعد با استفاده از تعریف‌های شرطی زمان کامپایل زمان کامپایل
+مشخص کنید که کدوم کامپایل بشه. مثل این:
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">int</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#ifdefined(OS_WIN32)
+</span><span class="cp"></span>              <span class="n">Sleep</span><span class="p">(</span><span class="n">ms</span><span class="p">);</span>
+<span class="cp">#elifdefined(OS_LINUX)
+</span><span class="cp"></span>             <span class="n">usleep</span><span class="p">(</span><span class="n">ms</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+<span class="cp">#endif
+</span><span class="cp"></span><span class="p">}</span>
+</code></pre></div>
+در صورتی که روش استاندارد مشترکی برای انجام کاری روی پلتفرمی وجود داشته باشه،
+توسعه‌دهنده باید به‌جای انجام فراخوانی سیستمی از اون روش استفاده کنه. کد بالا
+می‌تونه با این کد جایگزین بشه:</p>
+<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">int</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// تضمین میشه که به‌خوبی روی هر سکویی که کامپایل میشه کار کنه!
+</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="n">ms</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+البته تأخیر دومی نیازمند C++11 هست. شاید بعد از سال ۲۰۱۵ توسعه‌دهنده‌های
+مایکروسافت تصمیم بگیرن که سویت کامپایلرشون یه سویت به‌دردنخورِ مزخرفِ ازرده‌خارج
+نباشه و شاید موفق بشن استاندارد ۲۰۱۱ رو به‌طور کامل پیاده‌سازی کنن.</p>
+<h2 id="سیستم-ساخت-build-system">سیستم ساخت (Build System)</h2>
+<blockquote>
+<p>Ⅲ. نباید از یک بیلدسیستم مختص پلتفرمی خاص استفاده کنید. در صورت عدم وجود سیستم ساخت مستقل از پلتفرم، از چند سیستم ساخت استفاده کنید.</p>
+</blockquote>
+<p>پلتفرم‌های مختلف از سیستم‌های ساخت متفاوت استفاده می‌کنند. سیستم‌های ساخت متداول عبارتند از
+GNU Make
+و
+Microsoft NMake.
+تعداد زیادی نرم‌افزار برای تولید سیستم‌ساخت وجود دارد از جمله
+GNU Autohell, CMake, QMake و Microsoft Visual Studio.
+ابزارهای گنو شاید روی ویندوز شهروند درجهٔ یک شمرده نشوند. برای همین ممکن است
+بخواهید از MSVC استفاده کنید. معمولاً سیستم‌های ساخت با همدیگر تداخل پیدا
+نمی‌کنند. شما می‌توانید فایل‌های Autohell را داخل دایرکتوری کد داشته باشید و در
+عین حال فایل‌های مربوط به Solution و QMake. با این همه بهتر است از یک سیستم
+چندسکویی مثل CMake استفاده کنید.</p>
+</div>
+
+<h2>دیدگاه‌ها</h2>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

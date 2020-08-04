@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تقویم هجری خورشیدی در کیوت &middot; اختاپوس خسته</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/all.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde-rtl.css"><link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole-rtl.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/fa//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/fa/"><h1>اختاپوس خسته</h1></a>
+      <p class="lead">
+       یادداشت‌هایی دربارهٔ برنامه‌نویسی و زندگی 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="fab fa-github"></i> soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p>حق نشر محفوظ است.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>تقویم هجری خورشیدی در کیوت</h1>
+
+  <time datetime=2020-08-02T00:00:00Z class="post-date">یکشنبه، ۱۲ مرداد ۱۳۹۹</time>
+  <p>برای ما ایرانی‌ها استفاده از تقویم فارسی در محیط کامپیوتری همیشه چالش‌برانگیز
+بوده. به‌طور سیستم‌های رایانه‌ای با درنظر داشتن امکان تغییر تقویم‌ها طراحی و
+توسعه پیدا نمی‌کنند و ما همیشه مجبوریم جای خالی تقویم رسمی کشور - هجری خورشیدی -
+رو با هک و روش‌های غیرمتعارف پر کنیم.</p>
+<p>برای من همیشه نبود تقویم هجری شمسی در کیوت آزاردهنده بوده. وقتی
+می‌خواستم تاریخ رو داخل برنامه‌های ‪C++‬ نشون بدم؛ یا باید از ویجت‌هایی که خودم
+ساختم استفاده می‌کردم یا به تاریخ گرگورین (میلادی) بسنده می‌کردم. از نسخهٔ ۴٫۶ و
+دقیقاً بعد از زمانی که ترجمهٔ فارسی کیوت رو منتشر کردم، به فکر پیاده‌سازی تقویم
+رسمی کشور توی این فریم‌ورک بودم. متأسفانه اون روزها امکان پیاده‌سازی به دلایل
+محتلف وجود نداشت. با این حال اولین نمونه‌ها رو ساختم ولی به کیوت ۵ نرسید. کیوت ۵
+داستان غم‌انگیز خودش رو داشت و با انتشار نسخهٔ نارس ۵٬۰٬۰ ؛ فرصتی که با تغییر
+نسخه از چهار به پنج به وجود آمده بود هم از دست رفت. اما بالأخره بعد از گذشت ۶
+سال و فراموش شدن موضوع تونستم تقویم هجری خورشیدی رو برای کیوت ۵٫۱۰ پیاده‌سازی
+کنم. نسخهٔ نهایی همراه با کیوت ۵٫۱۴ در تاریخ ۲۱ آذر سال ۱۳۹۸ منتشر شد. این پست
+به چالش‌ها و روال توسعهٔ تقویم و نحوهٔ استفاده از API اختصاص داده شده.
+<figure>
+    <img src="/fa/static/images/jalali.gif"/> <figcaption>
+            <h4>نمونهٔ اجرا</h4>
+        </figcaption>
+</figure>
+</p>
+<h2 id="مشکل-سازگاری-عقبگرد">مشکل سازگاری عقبگرد</h2>
+<p>ممکنه این سؤال برای شما پیش بیاد که خوب چرا نمی‌شد مثلاً توی نسخه‌های وسطی (پنج
+و خورده) پیاده‌سازی تقویم رو انجام داد؟ خوب چون باید
+Source Compability و Backward Compability
+رعایت می‌شدند. یعنی مثلا وقتی کسی برنامه‌ای رو نوشته که به کیوت نسخهٔ ۵٫۱ لینک
+کرده، باید بتونه بدون کامپایل دوبارهٔ برنامهٔ خودش؛ صرفاً نسخهٔ کیوت رو به ۵٫۲
+ارتقا بده. در دنیای ‪C++‬ این به معنی تغییر نکردن چینش (layout) حافظه برای
+کلاس‌هایی مثل
+QDate
+و البته ویجت‌هایی مثل
+QDateEdit
+و
+QCalendarWidget
+هست. به این کار (آپدیت کردن پیش‌نیازها بدون منفجر شدن سیستم) میگن
+Drop-in Replacement.
+یعنی هر نسخهٔ x.y.z از هر کتابخانه‌ای باید بدون ایجاد کرش یا خطای لینک در برنامه‌هایی
+که ازش استفاده کردند قابل <strong>جایگزینی</strong> با نسخهٔ x.y+α.z+β باشه&hellip;</p>
+<p>خوب من این داستان رو به فراموشی سپردم و منتظر نسخهٔ ۶ بودم تا این که سال پیش سر قضیهٔ متفاوتی به فکرم رسید
+که احتمال داره راهی برای رسیدن به این هدف بدون شکستن سازگاری عقبگرد و سازگاری کد
+وجود داشته باشه. ایدهٔ خام اولیه این بود که تقویم‌ها بدون نیاز به ورود به حافظهٔ
+کلاس‌های Core در کلاس‌های مجزایی پیاده‌سازی بشوند و callbackهایی به کلاس‌های
+تقویم در کلاس‌های اصلی ایجاد بشه! بسیار هیجان‌انگیز و البته خام بود این ایده.
+اما متأسفانه وقتی ایدهٔ اصلی رو بین توسعه‌دهنده‌های کیوت مطرح کردم به من نشون
+دادند که این امکان وجود نداره. با این وجود میشد طور دیگری هم پیاده‌سازی رو انجام
+داد. این روش آخری روش مطلوب من نبود: من دوست داشتم API عمومی QDate تقویم رو
+داشته باشه. اما با این روش تقویم داخل اشیایی از نوع تاریخ قرار نمی‌گرفت. با یه
+مثال توضیح میدم.</p>
+<p>من دوست داشتم این‌طوری بشه:
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
+<span class="n">d</span><span class="p">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">);</span>
+<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 5 Mordad 1396
+</span><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
+<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
+</span></code></pre></div>
+ولی در آخر این API استفاده شد:
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
+<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 27 July 2017
+</span><span class="c1"></span><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span> 
+<span class="c1">// Thursday 5 Mordad 1396
+</span><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
+<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span>
+ <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
+</span></code></pre></div>
+ناگفته نماند ایرادات زیادی توی طراحی QDate وجود داره که در اثر بدهی فنی بیست و
+چند ساله روی هم انباشته شدن! برای نسخهٔ ۶ کیوت برنامه‌هایی دارم در مورد این که
+کل کلاس‌های مربوط به تاریخ و زمان رو اصلاح کنم. (بخش بعدی بیشتر توضیح میدم که
+چرا ایراد داره).</p>
+<h2 id="تقویمنگاری-و-روز-ژولین">تقویم‌نگاری و روز ژولین</h2>
+<p>تاریخ در فریم‌ورک کیوت (و خیلی سیستم‌های کامپیوتری دیگه) به‌صورت <strong>تعداد روزهای
+گذشته از مبدأای خاص</strong> نگه داشته میشه. فقط و فقط این عدد هست که در حافظه ذخیره
+میشه و برای محاسباتی مثل مقایسه و غیره به کار برده میشه. هر وقت نیاز شد این عدد
+به سال و ماه و روز تبدیل میشه. عدد مربوطه
+<a href="https://fa.wikipedia.org/wiki/%D8%B1%D9%88%D8%B2_%DA%98%D9%88%D9%84%DB%8C%D9%88%D8%B3%DB%8C">روز ژولیوسی</a>
+یا روز ژولین
+( <a href="https://en.wikipedia.org/wiki/Julian_day">Julian Day</a> )
+انتخاب شده که برابر با تعداد روزهای گذشته از اول ژانویهٔ ۴۷۱۳ قبل از میلاد مسیح (تقریباً ۶۷۳۰ سال پیش) تا تاریخ مورد نظر هست.
+برای مثال: روز پنجم مردادماه ۱۳۹۶ برابر با ۲۷ام جولای ۲۰۱۷ در واقع ۲٬۴۵۷٬۹۶۱ امین روز ژولیوسی هست.</p>
+<p>مشکلی که این روش داره اینه که هر وقت نیاز باشه ما سال ماه یا روز رو بدونیم باید
+تبدیل انجام بدیم! هیچ بهینه‌سازی یا مکانیزمی برای کش کردن این تبدیل پیش‌بینی
+نشده و همواره وقت ارزشمند پردازنده‌ها برای محاسبهٔ بین عدد روز ژولیوسی (JDN) و
+تاریخ (y,m,d) هدر میره! خوب چرا اعداد سال و ماه و روز رو به‌صورت جدا نگه نداشتن؟
+به نظر من هیچ توجیهی نداره و اشتباهه.</p>
+<p>تاریخ در فریم‌ورک کیوت تا قبل از مبدأ و بعد از بزرگ‌ترین عدد ممکن در پلتفرم
+مورد اجرا رو نمی‌تونه نشون بده. عددی که کیوت نگه می‌داره یک عدد علامت‌دار شصت و
+چهار بیتی هست. چرا علامت‌دار؟ دلیلی نداره. چرا شصت و چهار بیت؟ بازم دلیلی نداره.
+در واقع با ۳۲ بیت بدون علامت می‌شد دامنهٔ بسیار بزرگی از تاریخ‌ها رو برای
+محاسبات علمی ساده و کاربردهای روزمره پوشش داد. برای مثال توی پلتفرم من
+(<a href="https://en.wikipedia.org/wiki/X86-64">X86_64</a>)
+آخرین آخرین روز ژولیوسی پشتیبانی شده برابر است با:</p>
+<p>$$2^{64-1} = 9,223,372,036,854,775,808$$</p>
+<p>طبق الگوریتم تبدیل اگر این عدد رو به تاریخ گرگورین تبدیل کنیم، می‌رسیم به تاریخ
+$$25,252,734,927,761,842$$
+که بزرگ‌ترین سال میلادی پیشتیبانی شده هست!
+از شش‌هزار سال پیش تا بیست و پنج کوادریلیون سال بعد رو (قاعدتاً) میشه توی QDate
+نگهداری کرد! با این وجود واقعیت در مورد APIی کلاس QDate خیلی متفاوته. محدودهٔ
+پشتیبانی شدهٔ تاریخ خیلی کوچیکتر از محدودهٔ ریاضیاتی عدد ۶۴بیتی هست. واضحه که
+محدودهٔ محاسبهٔ سال‌ها کاملاً غیرقابل قبول هست و باید اصلاح بشه. این یک اشتباه
+بزرگ در طراحی کلاس QDate هست که به نزدیک بیست سال پیش برمی‌گرده و کسی بهش
+اهمیتی نداده.</p>
+<h3 id="تبدیل-روز-ژولیوسی-به-تاریخ-هجری-شمسی">تبدیل روز ژولیوسی به تاریخ هجری شمسی</h3>
+<p>هیچ الگوریتم شناخته شده‌ای برای تبدیل تاریخ هجری شمسی وجود نداره. تقریباً تمام
+تقویم‌پژوهان معاصر در مورد دوره‌های کبیسه‌گری و طول سال هجری خورشیدی تحقیق
+کرده‌‌اند که البته هیچ اشاره‌ای به مبدأ تاریخ به شکل روز ژولیوسی و نحوهٔ
+تبدیل‌ها نداشتند. بنابراین من مجبور شدم روز شروع دورهٔ معاصر (یکم فروردین سال
+۴۷۵ هجری شمسی) رو محاسبه کنم و با استفاده از  طول سال میانگین که در مطالعات دکتر
+موسی اکرمی با دقت بسیار خوبی محاسبه شده، یک الگوریتم نه چندان بهینه برای تبدیل
+تاریخ به روز ژولیوسی و برعکس درست کنم.</p>
+<p>این الگوریتم اما چالش‌های زیادی داشت. از جمله این که سال‌های منفی و دوره‌های قبل
+از دورهٔ فعلی مشکل ایجاد می‌کردند. توضیح این که سال صفر در تقویم‌نگاری جلالی
+(بعدها هجری خورشیدی) وجود نداره قبل از سال ۱ مستقیم میریم سال ‪-۱‬ . همین
+قضیه برای تقویم اسلامی و گرگورین هم صادق هست. به‌هرحال الگوریتم به خوبی جواب داد
+و جز برای یکی دو سال کبیسه که با الگوریتم ۳۳ ساله متفاوت بود، مشکل خاصی نداره.
+در مورد تفاوت‌ها من تصمیم گرفتم که الگوریتم مبتنی‌بر دوره‌های ۲۰۲۸ ساله با
+کبیسه‌های محاسبه شده توسط اکرمی رو ملاک قرار بدم. چون الگوریتم ۳۳ ساله ضعیف‌تر
+ساخته شده و سال کبیسه رو درست حساب نمی‌کنه. هرچند تقویم رسمی کشور براساس هیچکدام
+از این دو تا نیست! تقویم رسمی هیچ نظری در مورد سال‌های کبسهٔ جدید و کبیسه بودن
+یا نبودن سال‌های قدیم نداره. (احتمالاً به دلیل اختلافات تاریخی در زمینهٔ
+تقویم‌نگاری) در مورد سال‌های جدید هر سال براساس مشاهدات اعتدال بهاری تصمیم گرفته
+میشه که سال کبیسه هست یا نه. البته این مشاهدات در زمان معاصر باعث میشه که
+الگوریتم من تطابق صددرصدی با سال‌های بعدی تا سال ۱۴۳۲ داشته باشه . کبیسه بودن
+سال‌های ۱۴۳۲ و ۱۴۳۳ براساس الگوریتم مؤسسهٔ ژئوفیزیک دانشگاه تهران با الگوریتم
+سال میانی که من استفاده می‌کنم تطابق نداره که البته زیاد هم مهم نیست.</p>
+<p>یک مشکل بزرگی که این الگوریتم داره اینه که راهی برای تست کامل اون وجود نداره!
+هیچ مرجع قابل اطمینانی که داده‌های تقویمی در اختیار عموم قرار داده باشه پیدا
+نکردم. حداقل هیچ مرجعی هم وجود نداره که تاریخ‌های معادل گرگورین و جلالی رو داشته
+باشه! تنها مرجعی که وجود داره و میشه ازش برای تست استفاده کرد الگوریتم تبدیل
+تاریخ ۳۳ ساله  است که توسط تیم فارسی‌وب شریف توسعه داده شده. این هم البته دقیق
+نیست و برای سال‌های منفی اصلا کار نمی‌کنه و برای سال‌های پیش از شروع دوره (سال
+یک تا ۴۷۵) مشکل داره. در نهایت بعد از مکاتبه با مؤسسه ژئوفیزیک و مطرح کردن مشکل؛
+فایل اکسلی رو در اختیار من قرار دادند که تاریخ‌های رسمی رو ثبت کرده بود.
+الگوریتم من در بازه‌های این فایل (شروع شده از زمان امیرکبیر، اوایل تاریخ‌نگاری
+مدرن در ایران) جز برای سال ۱۴۳۲ و ۱۴۳۳ ؛ برای تمام سال‌ها با محاسبات مؤسسه
+ژئوفیزیک مطابقت کامل داشت.</p>
+<h2 id="اصول-طراحی-api-در-کیوت">اصول طراحی API در کیوت</h2>
+<p>فریم‌ورک کیوت یک چهارچوب توسعهٔ نرم‌افزار بسیار بزرگ و باسابقه‌ است. وابستگی‌های
+نرم‌افزارهای مختلف به کیوت بسیار سنگین و پرتعداده. مثلاً تمام
+<a href="https://kde.org/">محیط کاری KDE</a>
+با کیوت توسعه داده شده. همچین تعداد زیادی از نرم‌افزارها؛ گیم‌ها و برنامه‌های
+مختلف. وقتی شرایط اینطوری باشه؛ روند توسعه بسیار سنگین و کند پیش میشه.
+توسعه‌دهنده مجبوره اصول زیادی رو رعایت کنه و API ای که منتشر می‌کنه پیرو اصول
+خاص و سازگار با بقیهٔ فریم‌ورک باشه. این قواعد برای توسعهٔ فریم‌ورک کیوت در
+<a href="https://wiki.qt.io/API_Design_Principles">API Design Principles</a>
+توضیح داده شده‌اند. حتی استایل کدها و مستندات باید مطابق با بقیهٔ فریم‌ورک باشه که اون هم در مستند
+<a href="https://wiki.qt.io/Qt_Coding_Style">Qt Coding Style</a>
+توضیح داده شده.</p>
+<p>رعایت تمام این‌ها در زمان اضافه کردن تقویم‌های جدید بسیار کار دشوار و
+طاقت‌فرسایی بود! من شش مدل API مختلف پیشنهاد دادم که همگی توسط توسعه‌دهنده‌های
+کیوت و Codereviewer ها قبل از پیاده‌سازی رد شدند. در زمان پیاده‌سازی با یکی از
+توسعه‌دهنده‌های اصلی کیوت (که بسیار شخص باتجربه‌ای هم هست) کار رو جلو بردیم. با
+این حال بعد از چند ماه کدنوشتن و تست کردن با API موافقت نشد! توسعه‌دهنده‌های
+دیگه روش دیگری رو توصیه کردند که در نهایت با اون روش موافقت شد.</p>
+<p>تمام این‌ها به شدت زمان توسعه و پیچیدگی کار رو بالا میبرد ولی در نهایت با کمک
+توسعه‌دهنده‌های حرفه‌ای‌تر کیوت؛ موفق شدیم API رو طوری طراحی کنیم که واقعاً
+«تقویم» باشه و در عین حال BC و CC رو نقض نکنه.</p>
+<h2 id="بومیسازی">بومی‌سازی</h2>
+<p>کیوت از بومی‌سازی (Localisation - l18n) استفاده می‌کنه. این یکی از بهترین
+ویژگی‌های این فریم‌ورک بسیار باحال هست (: هرچند تقریباً هیچ توسعه‌دهندهٔ
+فارسی‌زبانی از Locale استفاده نمی‌کنه (در حالی که ما بیشتر از همه بهش احتیاج
+داریم&hellip;). برای اضافه کردن یک تقویم جدید نیاز بود داده‌های بومی‌سازی برای تمام
+زبان‌های دنیا تولید بشه. برای مثال کیوت نیاز داشت که بدونه اسم ماه دوم تقویم
+هجری خورشیدی در فارسی «<strong>اردیبهشت</strong>»، در فارسی دری «<strong>ثور</strong>»، در
+انگلیسی «<strong>Ordibehesht</strong>» در عربی «<strong>أذربیهشت</strong>» و در کره‌ای «<strong>오르디베헤쉬트</strong>» نوشته
+میشه.</p>
+<p>اسکریپت‌هایی برای کیوت نوشته شده بودند که داده‌های
+<a href="http://cldr.unicode.org/">CLDR</a>
+رو اول تبدیل به یک فایل بسیار بزرگ XML و بعد تبدیل به کد ‪C++‬ می‌کردند. این‌ها
+مشخصاً ناکافی بودند و من باید الگوریتم‌های موجود در این اسکریپت‌ها رو طوری تغییر
+میدادم که برای داده‌های تقویم فارسی هم یک بافر بزرگ تشکیل بدند و این بافر رو توی
+کد ‪C++‬ اضافه کنند&hellip; در نهایت اسکریپت‌های پایتون مورد نظر رو تغییر دادم
+به‌طوری که تقویم جلالی رو هم پشتیبانی بکنه.</p>
+<h2 id="کلاسهای-گرافیکی">کلاس‌های گرافیکی</h2>
+<p>کار کردن با تاریخ و زمان بدون درنظر گرفتن ویجت‌های گرافیکی خیلی جالب به نظر
+نمی‌رسه. بنابراین من باید حداقل سه تا کلاس
+<a href="https://doc.qt.io/qt-5/qcalendarwidget.html">QCalendarWidget</a> ،
+<a href="https://doc.qt.io/qt-5/qdateedit.html">QDateEdit</a> و
+<a href="https://doc.qt.io/qt-5/qdatetimeedit.html">QDateTimeEdit</a>
+را تغییر داده و پشتیبانی از تقویم‌های غیر از گرگورین رو اضافه کنم. حاصل رو در
+گیف ابتدای پست مشاهده می‌کنید.</p>
+<h2 id="کارهای-باقیمانده">کارهای باقی‌مانده</h2>
+<p>متأسفانه ما زمانی تقویم جلالی رو رسوندیم که تکنولوژی طراحی UI داشت به شدت تغییر
+می‌کرد. انتظار میره در طول چند سال آینده
+Widgetها
+به‌طور کامل کنار گذاشته بشوند و
+QML
+جایگزین بشه. QML المان‌های تقویم رو داره. توسعهٔ اون قسمت برعهدهٔ کس دیگری بود و
+متأسفانه تقویم فارسی (و بقیهٔ تقویم‌ها) برای QML نرسید. امیدوار هستیم همراه ۵٬۱۶ منتشر کنیم.</p>
+</div>
+
+<h2>دیدگاه‌ها</h2>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

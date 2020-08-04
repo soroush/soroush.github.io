@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The Bored Octopus</title>
+    <link>https://soroush.github.io/en/post/</link>
+    <description>Recent content in Posts on The Bored Octopus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://soroush.github.io/en/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Non-Gregorian Calendar Systems in Qt</title>
+      <link>https://soroush.github.io/en/2020/08/02/persian-calendar-in-qt/</link>
+      <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/2020/08/02/persian-calendar-in-qt/</guid>
+      <description>&lt;p&gt;For Iranian general public, working with date and time in a computer system has always
+been challenging. As opposed to - almost - entire population of the planet, we use a
+different calendar system (actually a better one!) but computer systems are not
+designed and developed with non-Gregorian calendaring in mind. So we always have
+to use unconventional methods and hacks to provide functionality of
+the official calendar of the country - Solar Hijri&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Personally, for me the absence of the Solar Hijri calendar in Qt has always
+been annoying. Whenever I wanted to work with date and time in my C++ GUI
+applications, I had two options: Either use my own custom widgets (which where
+not as good as Qt&amp;rsquo;s widgets), or simply use the Gregorian calendar (which is
+annoying for the final user).&lt;/p&gt;
+&lt;p&gt;Since version 4.6, right after I released Persian translation of Qt, I was
+thinking of implementing the solar calendar for this
+framework. Unfortunately, in that time it was not possible to implement it for
+many reasons. However, I made some prototypes, but it did not make it to Qt5.
+Q5 had its own sad story, with the premature release of version 5.0; the
+opportunity created by changing the major version was also missed.
+Though finally, after 6 years and forgetting all about calendars, I had the
+chance to implement the solar Hijri calendar for Qt 5.10. The final version has
+released with Qt 5.14 on December 12, 2019. This post describes challenges, and
+the process of the work, and also the API itself.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;https://soroush.github.io/en/en/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
+            &lt;h4&gt;Running Example&lt;/h4&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
