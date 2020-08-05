@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>چندسکویی on اختاپوس خسته</title>
+    <link>https://soroush.github.io/fa/categories/%DA%86%D9%86%D8%AF%D8%B3%DA%A9%D9%88%DB%8C%DB%8C/</link>
+    <description>Recent content in چندسکویی on اختاپوس خسته</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 11 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://soroush.github.io/fa/categories/%DA%86%D9%86%D8%AF%D8%B3%DA%A9%D9%88%DB%8C%DB%8C/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet</title>
+      <link>https://soroush.github.io/fa/1396/06/20/libcpnet/</link>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/fa/1396/06/20/libcpnet/</guid>
+      <description>&lt;p&gt;کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
+ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما
+گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام
+می‌کنیم، روی ویندوز هم می‌تونید برنامه رو اجرا کنید. خوب این تصمیم مشکلات بسیار
+بزرگی برای برنامه‌نویس به‌وجود میاره. ازجمله برنامه‌نویسی شبکه&amp;hellip; این پست به
+بررسی این مشکلات و ارائهٔ یک راه حل خوب خواهد پرداخت (: اگر قصد دارید کدی
+بنویسید که هم روی ویندوز و هم روی سیستم‌عامل‌های واقعی بتونه از شبکه استفاده
+کنه
+حتماً ادامهٔ مطلب رو بخونید.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>توسعهٔ چندسکویی</title>
+      <link>https://soroush.github.io/fa/cross-platform-development/</link>
+      <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/fa/cross-platform-development/</guid>
+      <description>&lt;p&gt;دوست دارم برنامه‌ها و کتابخونه‌هام روی پلتفرم‌های مختلف اجرا بشن. هرچه بیشتر
+بهتر! البته همیشه هدف اصلی همیشه
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Linux&#34;&gt;لینوکس&lt;/a&gt;
+و &lt;a href=&#34;http://en.wikipedia.org/wiki/Unix-like&#34;&gt;سیستم‌های شبه‌یونیکس&lt;/a&gt; هستند. با این
+حال بدم نمیاد که عملکرد مشابهی رو برای ویندوز و اندرویید، شاید هم مک‌اواس فراهم
+کنم. در واقع &lt;strong&gt;پلتفرم&lt;/strong&gt; نباید یک محدودیت برای استفاده از نرم‌افزار باشه. مجموع
+این‌ها ما رو به ایدهٔ
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Cross-platform&#34;&gt;توسعهٔ چندسکویی&lt;/a&gt;
+می‌رسونه. متأسفانه این کار چندان ساده هم نیست. استاندارد پذیرفته‌شده‌ای برای
+APIهای
+سیستم‌عامل‌ها وجود نداره. همچنین هیچ الگوی کلی‌ای برای عملیات سیستم‌عامل
+موجود نیست. توسعه‌دهنده‌ها باید با درنظر داشتن تمام نیازمندی‌های چندسکویی کد
+بنویسند.&lt;/p&gt;
+&lt;p&gt;توی این پست، تجربهٔ شخصی خودم رو در مورد توسعهٔ چندسکویی پروژهٔ AIT می‌نویسم.
+توی اون پروژه به مشکلات زیادی برخوردم و تعدادی‌شون رو حل کردم. این نوشته یک
+چک‌لیست ساده برای کسایی که می‌خوان توسعهٔ چندسکویی انجام بدن فراهم می‌کنه که
+بتونن از مشکلات توسعهٔ چندسکویی با زبان‌های ‏‪C/C++‬ پیشگیری کنن. رفتیم که بریم :)&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

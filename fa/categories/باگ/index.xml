@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>باگ on اختاپوس خسته</title>
+    <link>https://soroush.github.io/fa/categories/%D8%A8%D8%A7%DA%AF/</link>
+    <description>Recent content in باگ on اختاپوس خسته</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 18 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://soroush.github.io/fa/categories/%D8%A8%D8%A7%DA%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>مشکل نیم‌فاصله در KDE و روش حل آن</title>
+      <link>https://soroush.github.io/fa/kates-zwnj-bug/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/fa/kates-zwnj-bug/</guid>
+      <description>&lt;p&gt;قبلاً در مورد
+&lt;a href=&#34;https://soroush.github.io/fa/1396/02/19/worst-ever-bug/&#34;&gt;باگ بسیار بدی&lt;/a&gt;
+که در کیوت به‌وجود آمده بود و روش حل آن نوشتم. این
+باگ باعث میشد امکان نوشتن نویسه‌های کنترلی مثل نیم‌فاصله و تغییر جهت
+به‌طور کامل از بین بره. (اگر از نیم‌فاصله استفاده نمی‌کنید و یا نمی‌دونید تغییر
+جهت متن چه اهمیتی داره حتماً
+&lt;a href=&#34;https://soroush.github.io/fa/1393/06/27/unicode-bidi/&#34;&gt;نویسه‌های کنترلی و جهت‌دهی متون فارسی/انگلیسی&lt;/a&gt;
+رو بخونید)&lt;/p&gt;
+&lt;p&gt;الآن با گذشت چند ماه باگ مربوطه برطرف شده و با نسخهٔ 5.9.1 منتشر شده.
+(تغیرات گریت برای ماژول qtbase
+&lt;a href=&#34;https://codereview.qt-project.org/#/c/179219/&#34;&gt;اینجا&lt;/a&gt;
+و برای ماژول qtdeclarative
+&lt;a href=&#34;https://codereview.qt-project.org/#/c/179258/&#34;&gt;اینجا&lt;/a&gt;
+قابل مشاهده هستند)
+خوشبختانه برنامه‌های کیوت دیگه مشکل سابق رو ندارند و هم توی ماژول widgets و هم
+توی ماژول جدیدتر Qt Quick مشکل به‌طور کامل برطرف شده. خوب حداقل من این‌طور فکر
+می‌کردم!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
