@@ -103,10 +103,10 @@ annoying for the final user).</p>
 thinking of implementing the solar calendar for this
 framework. Unfortunately, in that time it was not possible to implement it for
 many reasons. However, I made some prototypes, but it did not make it to Qt5.
-Q5 had its own sad story, with the premature release of version 5.0; the
+Qt5 had its own sad story, with the premature release of version 5.0; the
 opportunity created by changing the major version was also missed.
 Though finally, after 6 years and forgetting all about calendars, I had the
-chance to implement the solar Hijri calendar for Qt 5.10. The final version has
+chance to implement the solar Hijri calendar for Qt 5.10. The final version has been
 released with Qt 5.14 on December 12, 2019. This post describes challenges, and
 the process of the work, and also the API itself.</p>
 <figure>
@@ -126,8 +126,12 @@ the process of the work, and also the API itself.</p>
 
   <time datetime="2018-04-13T00:00:00Z" class="post-date">Fri, Apr 13, 2018</time>
 
-  None of C++ standards has defined π number. So every programmer who needs to do some math including, for example, trigonomerty or statistics, has to define π herself. Luckily header files have defined π (See M_PI in math.h). Though it is not ultimately safe and portable to use these constants. It might casue numeric errors in critical applications.
-Fortunately it is possible to calculate π number at compile time, having zero overhead in runtime, while complying to IEEE 754 completely.
+  <p>None of C++ standards has defined π number. So every programmer who needs to do
+some math including, for example, trigonomerty or statistics, has to define π
+herself. Luckily header files have defined π (See <code>M_PI</code> in <code>math.h</code>). Though it
+is not ultimately safe and portable to use these constants. It might casue
+numeric errors in critical applications. In this blog post, I am going to show a
+better way to reach a safe π.</p>
   
   <div class="read-more-link">
     <a href="/en/2018/04/13/math-constants-in-cpp/">Read More...</a>
