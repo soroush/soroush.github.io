@@ -1,26 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>qt, c&#43;&#43;, calendar on اختاپوس خسته</title>
-    <link>https://soroush.github.io/fa/categories/qt-c&#43;&#43;-calendar/</link>
-    <description>Recent content in qt, c&#43;&#43;, calendar on اختاپوس خسته</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://soroush.github.io/fa/categories/qt-c++-calendar/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>تقویم هجری خورشیدی در کیوت</title>
-      <link>https://soroush.github.io/fa/1399/05/12/persian-calendar-in-qt/</link>
-      <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://soroush.github.io/fa/1399/05/12/persian-calendar-in-qt/</guid>
-      <description>&lt;p&gt;برای ما ایرانی‌ها استفاده از تقویم فارسی در محیط کامپیوتری همیشه چالش‌برانگیز
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>qt, c++, calendar on اختاپوس خسته</title><link>https://soroush.github.io/fa/categories/qt-c++-calendar/</link><description>Recent content in qt, c++, calendar on اختاپوس خسته</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/categories/qt-c++-calendar/index.xml" rel="self" type="application/rss+xml"/><item><title>تقویم هجری خورشیدی در کیوت</title><link>https://soroush.github.io/fa/1399/05/12/persian-calendar-in-qt/</link><pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate><guid>https://soroush.github.io/fa/1399/05/12/persian-calendar-in-qt/</guid><description>&lt;p>برای ما ایرانی‌ها استفاده از تقویم فارسی در محیط کامپیوتری همیشه چالش‌برانگیز
 بوده. به‌طور سیستم‌های رایانه‌ای با درنظر داشتن امکان تغییر تقویم‌ها طراحی و
 توسعه پیدا نمی‌کنند و ما همیشه مجبوریم جای خالی تقویم رسمی کشور - هجری خورشیدی -
-رو با هک و روش‌های غیرمتعارف پر کنیم.&lt;/p&gt;
-&lt;p&gt;برای من همیشه نبود تقویم هجری شمسی در کیوت آزاردهنده بوده. وقتی
+رو با هک و روش‌های غیرمتعارف پر کنیم.&lt;/p>
+&lt;p>برای من همیشه نبود تقویم هجری شمسی در کیوت آزاردهنده بوده. وقتی
 می‌خواستم تاریخ رو داخل برنامه‌های ‪C++‬ نشون بدم؛ یا باید از ویجت‌هایی که خودم
 ساختم استفاده می‌کردم یا به تاریخ گرگورین (میلادی) بسنده می‌کردم. از نسخهٔ ۴٫۶ و
 دقیقاً بعد از زمانی که ترجمهٔ فارسی کیوت رو منتشر کردم، به فکر پیاده‌سازی تقویم
@@ -31,13 +13,9 @@
 سال و فراموش شدن موضوع تونستم تقویم هجری خورشیدی رو برای کیوت ۵٫۱۰ پیاده‌سازی
 کنم. نسخهٔ نهایی همراه با کیوت ۵٫۱۴ در تاریخ ۲۱ آذر سال ۱۳۹۸ منتشر شد. این پست
 به چالش‌ها و روال توسعهٔ تقویم و نحوهٔ استفاده از API اختصاص داده شده.
-&lt;figure&gt;
-    &lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
-            &lt;h4&gt;نمونهٔ اجرا&lt;/h4&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+&lt;figure>
+&lt;img src="https://soroush.github.io/fa/fa/static/images/jalali.gif"/> &lt;figcaption>
+&lt;h4>نمونهٔ اجرا&lt;/h4>
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p></description></item></channel></rss>

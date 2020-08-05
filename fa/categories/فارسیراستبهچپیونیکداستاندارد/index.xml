@@ -1,36 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>فارسی,راست‌به‌چپ,یونیکد,استاندارد on اختاپوس خسته</title>
-    <link>https://soroush.github.io/fa/categories/%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%D8%B1%D8%A7%D8%B3%D8%AA%D8%A8%D9%87%DA%86%D9%BE%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%D8%AF%D8%A7%D8%B1%D8%AF/</link>
-    <description>Recent content in فارسی,راست‌به‌چپ,یونیکد,استاندارد on اختاپوس خسته</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 18 Sep 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://soroush.github.io/fa/categories/%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%D8%B1%D8%A7%D8%B3%D8%AA%D8%A8%D9%87%DA%86%D9%BE%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%D8%AF%D8%A7%D8%B1%D8%AF/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi</title>
-      <link>https://soroush.github.io/fa/1393/06/27/unicode-bidi/</link>
-      <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://soroush.github.io/fa/1393/06/27/unicode-bidi/</guid>
-      <description>&lt;p&gt;حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>فارسی,راست‌به‌چپ,یونیکد,استاندارد on اختاپوس خسته</title><link>https://soroush.github.io/fa/categories/%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%D8%B1%D8%A7%D8%B3%D8%AA%D8%A8%D9%87%DA%86%D9%BE%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%D8%AF%D8%A7%D8%B1%D8%AF/</link><description>Recent content in فارسی,راست‌به‌چپ,یونیکد,استاندارد on اختاپوس خسته</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 18 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/categories/%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%D8%B1%D8%A7%D8%B3%D8%AA%D8%A8%D9%87%DA%86%D9%BE%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%D8%AF%D8%A7%D8%B1%D8%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi</title><link>https://soroush.github.io/fa/1393/06/27/unicode-bidi/</link><pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate><guid>https://soroush.github.io/fa/1393/06/27/unicode-bidi/</guid><description>&lt;p>حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
 و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Plain_text&#34;&gt;Plain Text&lt;/a&gt;
+&lt;a href="http://en.wikipedia.org/wiki/Plain_text">Plain Text&lt;/a>
 (یعنی محیط‌های متنی‌ای که شما کنترلی روی استایل و پاراگراف ندارید. مثل
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Gedit&#34;&gt;gedit&lt;/a&gt;
+&lt;a href="http://en.wikipedia.org/wiki/Gedit">gedit&lt;/a>
 یا
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Kate_%28text_editor%29&#34;&gt;kate&lt;/a&gt;
+&lt;a href="http://en.wikipedia.org/wiki/Kate_%28text_editor%29">kate&lt;/a>
 یا مثلاً
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Notepad_%28software%29&#34;&gt;notepad&lt;/a&gt;).
+&lt;a href="http://en.wikipedia.org/wiki/Notepad_%28software%29">notepad&lt;/a>).
 خیلی زود متوجه خواهید شد که روش ساده‌ای برای نوشتن کاراکترهایی که نه راست‌به‌چپ
 هستن و نه چپ‌به‌راست هستن، وجود نداره (در ادامه میگم که جهت یک کاراکتر یعنی
 چی). توی این پست می‌خوام روش استاندارد نوشتن متون دوطرفه رو معرفی کنم، و تأکید
-کنم که &lt;strong&gt;حتماً&lt;/strong&gt; ازش استفاده کنید و هیچوقت به‌جای این‌کار از هک‌های متداول (مثل
-برعکس نوشتن ترتیب نویسه‌ها) استفاده نکنید چون این کار خیلی غلطه.&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+کنم که &lt;strong>حتماً&lt;/strong> ازش استفاده کنید و هیچوقت به‌جای این‌کار از هک‌های متداول (مثل
+برعکس نوشتن ترتیب نویسه‌ها) استفاده نکنید چون این کار خیلی غلطه.&lt;/p></description></item></channel></rss>
