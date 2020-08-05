@@ -74,6 +74,14 @@ MathJax.Hub.Config({
     <div class="posts">
 <article class="post">
   <h1 class="post-title">
+    <a href="https://soroush.github.io/en/2020/08/05/translating-blog/">English Blog!</a>
+  </h1>
+
+  <time datetime=2020-08-05T00:00:00Z class="post-date"></time>
+  So I started to translate my old Persian content into English, as an exercise (well, mostly out of bordem duo to COVID-19 lockdown&hellip;). I&rsquo;ll keep dates intact. I hope you&rsquo;ll find it interesting&hellip;
+  
+</article><article class="post">
+  <h1 class="post-title">
     <a href="https://soroush.github.io/en/2020/08/02/persian-calendar-in-qt/">Non-Gregorian Calendar Systems in Qt</a>
   </h1>
 
@@ -107,6 +115,35 @@ the process of the work, and also the API itself.</p>
   
   <div class="read-more-link">
     <a href="/en/2020/08/02/persian-calendar-in-qt/">Read More...</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="https://soroush.github.io/en/2017/05/09/worst-ever-bug/">Worst Ever Qt Bug (for me!)</a>
+  </h1>
+
+  <time datetime=2017-05-09T00:00:00Z class="post-date"></time>
+  <p>I think Qt is one of the best software development frameworks. It has a nice GUI
+library alongside with many other tools, provided as a neat and clean API. KDE
+desktop environment is almost entirely based on Qt framework. I&rsquo;ve been using it
+for a decade now, and I have successfully delivered dozens of projects &ndash; both
+embedded and desktop &ndash; most of them only using Qt. Though starting from version
+5.3, a tiny bug has appeared in the core library, that makes life difficult for
+me: It is impossible to insert invisible characters in Qt&rsquo;s text engine. That is
+you can&rsquo;t type ZWNJ, ZWJ, LRE, RLE and PDF characters. (I have described what
+they in this post:
+<a href="">Control Charachters and Bi-Directional Text</a>.
+The effect of this bug is so huge that makes it impossible for me to use KDE or
+any other application that uses Qt. To see how it didn&rsquo;t work for us, imagine
+being unable to type, for example, &ldquo;space&rdquo; character in any application on your
+operating system! In this post I am going to show a workaround and explain how
+to fix this bug. It is already fixed in recent versions of Qt, though it is not
+in official repositories yet. Fortunately, the workaround is very simple and
+does not break anything. Finally I&rsquo;ll provide a patch for 5.9. Hope this helps
+someone.</p>
+  
+  <div class="read-more-link">
+    <a href="/en/2017/05/09/worst-ever-bug/">Read More...</a>
   </div>
   
 </article>

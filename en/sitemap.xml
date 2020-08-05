@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://soroush.github.io/en/categories/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fa"
@@ -14,6 +14,46 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://soroush.github.io/en/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://soroush.github.io/en/2020/08/05/translating-blog/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://soroush.github.io/en/categories/personal/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://soroush.github.io/en/post/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fa"
+                href="https://soroush.github.io/fa/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://soroush.github.io/en/post/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://soroush.github.io/en/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fa"
+                href="https://soroush.github.io/fa/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://soroush.github.io/en/"
                 />
   </url>
   
@@ -33,21 +73,6 @@
   </url>
   
   <url>
-    <loc>https://soroush.github.io/en/post/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://soroush.github.io/fa/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://soroush.github.io/en/post/"
-                />
-  </url>
-  
-  <url>
     <loc>https://soroush.github.io/en/categories/qt-c&#43;&#43;-calendar/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -63,17 +88,32 @@
   </url>
   
   <url>
-    <loc>https://soroush.github.io/en/</loc>
-    <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <loc>https://soroush.github.io/en/categories/qtc&#43;&#43;bug/</loc>
+    <lastmod>2017-05-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fa"
-                href="https://soroush.github.io/fa/"
+                href="https://soroush.github.io/fa/categories/qtc&#43;&#43;bug/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://soroush.github.io/en/"
+                href="https://soroush.github.io/en/categories/qtc&#43;&#43;bug/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://soroush.github.io/en/2017/05/09/worst-ever-bug/</loc>
+    <lastmod>2017-05-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fa"
+                href="https://soroush.github.io/fa/1396/02/19/worst-ever-bug/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://soroush.github.io/en/2017/05/09/worst-ever-bug/"
                 />
   </url>
   

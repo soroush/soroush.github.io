@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Worst Ever Qt Bug (for me!) &middot; The Bored Octopus</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/all.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/en//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/en/"><h1>The Bored Octopus</h1></a>
+      <p class="lead">
+       Notes on Life and Engineering 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="fab fa-github"></i> soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p>All rights reserved.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Worst Ever Qt Bug (for me!)</h1>
+
+  <time datetime=2017-05-09T00:00:00Z class="post-date"></time>
+  <p>I think Qt is one of the best software development frameworks. It has a nice GUI
+library alongside with many other tools, provided as a neat and clean API. KDE
+desktop environment is almost entirely based on Qt framework. I&rsquo;ve been using it
+for a decade now, and I have successfully delivered dozens of projects &ndash; both
+embedded and desktop &ndash; most of them only using Qt. Though starting from version
+5.3, a tiny bug has appeared in the core library, that makes life difficult for
+me: It is impossible to insert invisible characters in Qt&rsquo;s text engine. That is
+you can&rsquo;t type ZWNJ, ZWJ, LRE, RLE and PDF characters. (I have described what
+they in this post:
+<a href="">Control Charachters and Bi-Directional Text</a>.
+The effect of this bug is so huge that makes it impossible for me to use KDE or
+any other application that uses Qt. To see how it didn&rsquo;t work for us, imagine
+being unable to type, for example, &ldquo;space&rdquo; character in any application on your
+operating system! In this post I am going to show a workaround and explain how
+to fix this bug. It is already fixed in recent versions of Qt, though it is not
+in official repositories yet. Fortunately, the workaround is very simple and
+does not break anything. Finally I&rsquo;ll provide a patch for 5.9. Hope this helps
+someone.</p>
+<h2 id="the-bugfix-that-gave-birth-to-another-bug">The Bugfix That Gave Birth to Another Bug</h2>
+<p>Everything was going fine in Qt, until December 2013. That day someone reported
+a bug regarding accent characters. Apparently he couldn&rsquo;t get combinational
+character codes to work (for example SHIFT+Ü in German). This bug affected older
+versions back to 5.2. The fix was simple: Add a filter code right at the text
+entry level, to filter out all un-printable characters. That includes every
+single control character that we use to format Persian, Arabic and all other
+right-to-left texts, also two space chars (Zero Width Non-Joining Space, and
+Zero Width Joining Space) that we use often in Persian text. In fact, you can&rsquo;t
+spell proper Persian without ZWNJ at all. The fix was released with 5.4 and
+still exists in 5.8. You can still insert those characters elsewhere (like
+LibreOffice) and copy/paste them into your Qt application. But it is not a
+pleasant experience at all!</p>
+<h2 id="the-bugfix">The Bugfix</h2>
+<p>The bug was reported by five or six people around the world, as expected, mostly
+from middle-east.
+<a href="https://bugreports.qt.io/browse/QTBUG-42074">QTBUG-42074</a> was reported in
+October 2014 and is followd by
+<a href="https://bugreports.qt.io/browse/QTBUG-55608">QTBUG-55608</a>,
+<a href="https://bugreports.qt.io/browse/QTBUG-57302">QTBUG-57302</a>,
+<a href="https://bugreports.qt.io/browse/QTBUG-57003">QTBUG-57003</a>, and also
+<a href="https://bugreports.qt.io/browse/QTBUG-58364">QTBUG-58364</a>.
+But the fix has not released till January 17th 2017! It will take another couple
+of years till it makes it way through official repositories of the common
+distributions (except for Arch Linux . Arch is crazy!) Currently the Qt version in
+latest Ubuntu release is still 5.6.1. Next release will contain 5.7.1
+apparently. Debian is even worse! RedHat is the worst regarding outdated
+packages! So a workaround is necessary for now.</p>
+<h2 id="unofficial-workarounds">Unofficial Workarounds</h2>
+<p>Telegram uses a patch for they own software which fixes part of the problem.
+They have resolved the problem with ZWNJ. We can use the same approach and add
+all characters we need. As far as I researched, no Linux distro has released any
+patches for this problem. So we need a patch on distro&rsquo;s package (not Qt
+itself). I already done this and got some partially satisfying results. It works
+well with widgets but not with, for example
+<a href="https://kate-editor.org/">Kate</a>, which apparently has migrated to KF5. QtQuick
+seems to be still problematic. My patch is based on Ubuntu, though it is also
+applicable for Debian-based distros. Similar steps must be followed to provide
+patches for other distributions as well.</p>
+<p>To fix this issue, we must patch Qt Core library in Ubuntu package repository.
+While patching, we must also comply to the Debian packaging rules so the final
+package can be replaced with the system&rsquo;s one. So let&rsquo;s first download source code of QtCore:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ‌‌apt <span class="nb">source</span> libqt5core5a</code></pre></div>
+<p>This command will download Qt Core library with all of the patches added by Ubuntu developers. That will be around 50~is megabytes. In the output of this command, the git repository location is also shown. We can use it later to submit our patch.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ Reading package lists... Done
+Picking <span class="s1">&#39;qtbase-opensource-src&#39;</span> as <span class="nb">source</span> package instead of <span class="s1">&#39;libqt5core5a&#39;</span>
+NOTICE: <span class="s1">&#39;qtbase-opensource-src&#39;</span> packaging is maintained in the <span class="s1">&#39;Git&#39;</span> version 
+control system at:
+https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
+Please use:
+git clone https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
+to retrieve the latest <span class="o">(</span>possibly unreleased<span class="o">)</span> updates to the package.
+Need to get 47.5 MB of <span class="nb">source</span> archives.
+Get:1 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-src 5.5.1+dfsg-16ubuntu7.2 <span class="o">(</span>dsc<span class="o">)</span> <span class="o">[</span>5,096 B<span class="o">]</span>
+Get:2 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-src 5.5.1+dfsg-16ubuntu7.2 <span class="o">(</span>tar<span class="o">)</span> <span class="o">[</span>47.2 MB<span class="o">]</span>
+...</code></pre></div>
+<p>So now we have the source code in path. There is no patches applied yet. At this
+time there are about 50 patches by Ubuntu devs. I happen to know that the
+infected source file is <code>qwidgettextcontrol.cpp</code> located at
+<code>src/widgets/widgets/</code>. So I am going to change it and add my codes. It is of
+grave importance that you do this the right way, or the final package will not
+be recognised by the dpkg (debian package management backend). It should be
+properly versioned and it also needs a ChangeLog entry as well.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> qtbase-opensource-src-5.5.1+dfsg/
+$ <span class="nb">export</span> <span class="nv">QUILT_PATCHES</span><span class="o">=</span>debian/patches
+$ quilt push -a
+File series fully applied, ends at patch debian/patches/fix-duplicate-qnam-finished.patch
+$ quilt new fix-non-printable-filters-for-persian-keyboard
+Patch debian/patches/fix-non-printable-filters-for-persian-keyboard is now on top
+$ quilt add src/widgets/widgets/qwidgettextcontrol.cpp 
+File src/widgets/widgets/qwidgettextcontrol.cpp added to patch debian/patches/fix-non-printable-filters-for-persian-keyboard
+$ quilt add src/widgets/widgets/qwidgetlinecontrol.cpp
+File src/widgets/widgets/qwidgetlinecontrol.cpp added to patch debian/patches/fix-non-printable-filters-for-persian-keyboard</code></pre></div>
+<p>Running these commands, I mark my files to be <strong>tracked for changes</strong>. That
+means when I am done, I can ask quilt system what have I done exactly. It
+will provide me an standard patch file, containing exact changes I have made. Now I
+can start modifying above-mentioned files. You can see what are those changes at
+the end of this post.</p>
+<p>Now, to generate the actual patch, I run these two commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ quilt refresh
+$ quilt pop -a</code></pre></div>
+<p>I&rsquo;ll also need a ChangeLog entry. ChangeLog has a mundane syntax which if not
+followed word-by-word can be a pain in the back. Fortunately, Debian provides a
+tool to add ChangeLog entries. Using <code>dch -i</code> any ChangeLog file can be modified
+properly with less effort. It will automatically add date and signature, and
+even will open the editor for you, so you can edit your entry.</p>
+<p>Our final change looks like below lines. Please note that the version is exactly
+one patch-number above the official version.</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">qtbase-opensource-src (5.5.1+dfsg-16ubuntu7.3) UNRELEASED; urgency=medium
+
+  * Add a temporary workaround for QTBUG-42074
+
+ -- Soroush Rabiei &lt;soroush@ametisco.ir&gt;  Tue, 09 May 2017 20:23:08 +0430
+...</code></pre></div>
+<p>Finally I am ready to compile and install the package. These commands will do so:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">DEB_BUILD_OPTIONS</span><span class="o">=</span>nocheck debuild -us -uc -b -j10</code></pre></div>
+<p>Note that I have disabled all of the automated tests by setting
+<code>DEB_BUILD_OPTIONS</code> environment variable. Not doing so, I would have to wait a
+long time for tests to finish. (It might be a good idea though!) I also set the
+parallel compile degree to 10. As a rule of thumb, I always use 2 + number of
+cores for parallel builds. After build is finished, I&rsquo;ll have your Debian
+packages ready to be installed. Following commands will do so:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> .. <span class="c1"># go up one level</span>
+$ sudo debi <span class="c1"># install everything</span></code></pre></div>
+<h2 id="reults">Reults</h2>
+<p>Now I can write proper Persian in my Qt applications:</p>
+<figure>
+    <img src="/en/static/images/QTBUG-42074.png"/> <figcaption>
+            <h4>Resolved Bug</h4>
+        </figcaption>
+</figure>
+
+<h2 id="ps-patches">PS: Patches</h2>
+<p>Well, the patch works like this: Provide a white-list of all characters that you need, and make exceptions for them while filtering. This way, the fix for 35724 will not be undone, while it&rsquo;s negative side effect will be resolved. The patch is this one. Hope this will help someone.</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">Index: 
+</span><span class="gh"></span>qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgetlinecontrol.cpp
+<span class="gh">===================================================================
+</span><span class="gh"></span><span class="gd">--- 
+</span><span class="gd"></span>qtbase-opensource-src-5.5.1+dfsg.orig/src/widgets/widgets/qwidgetlinecontrol.cpp
+<span class="gi">+++ qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgetlinecontrol.cpp 
+</span><span class="gi"></span> 
+                                                                            
+<span class="gu">@@ -1884,7 +1884,11 @@ void QWidgetLineControl::processKeyEvent                 
+</span><span class="gu"></span> 
+                                                                            
+         &amp;&amp; event-&gt;modifiers() != Qt::ControlModifier                           
+ 
+                                                                            
+         &amp;&amp; event-&gt;modifiers() != (Qt::ControlModifier | Qt::ShiftModifier)) {
+         QString t = event-&gt;text();
+<span class="gd">-        if (!t.isEmpty() &amp;&amp; t.at(0).isPrint()) {
+</span><span class="gd"></span><span class="gi">+        ushort code = 0;
+</span><span class="gi">+        if(!t.isEmpty())
+</span><span class="gi">+            code = t.at(0).unicode();
+</span><span class="gi">+        if (!t.isEmpty() &amp;&amp;
+</span><span class="gi">+            (t.at(0).isPrint() || (0x2000 &lt;= code &amp;&amp; code &lt;= 0x200F) || (0x2028 &lt;= code &amp;&amp; code &lt;= 0x202F))) {
+</span><span class="gi"></span>             insert(t);
+ #ifndef QT_NO_COMPLETER
+             complete(event-&gt;key());
+<span class="gh">Index: 
+</span><span class="gh"></span>qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgettextcontrol.cpp
+<span class="gh">===================================================================
+</span><span class="gh"></span><span class="gd">--- 
+</span><span class="gd"></span>qtbase-opensource-src-5.5.1+dfsg.orig/src/widgets/widgets/qwidgettextcontrol.cpp
+<span class="gi">+++ qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgettextcontrol.cpp
+</span><span class="gi"></span><span class="gu">@@ -1342,13 +1342,19 @@ void QWidgetTextControlPrivate::keyPress
+</span><span class="gu"></span> process:
+     {
+         // QTBUG-35734: ignore Ctrl/Ctrl+Shift; accept only AltGr (Alt+Ctrl) on German keyboards
+<span class="gd">-        if (e-&gt;modifiers() == Qt::ControlModifier
+</span><span class="gd"></span><span class="gi">+        /* if (e-&gt;modifiers() == Qt::ControlModifier
+</span><span class="gi"></span>             || e-&gt;modifiers() == (Qt::ShiftModifier | Qt::ControlModifier)) {
+             e-&gt;ignore();
+             return;
+         }
+<span class="gi">+        */
+</span><span class="gi"></span>         QString text = e-&gt;text();
+<span class="gd">-        if (!text.isEmpty() &amp;&amp; (text.at(0).isPrint() || text.at(0) == 
+</span><span class="gd"></span>QLatin1Char(&#39;\t&#39;))) {
+<span class="gi">+        ushort code = 0;
+</span><span class="gi">+        if(!text.isEmpty())
+</span><span class="gi">+            code = text.at(0).unicode();
+</span><span class="gi">+        if (!text.isEmpty()
+</span><span class="gi">+                &amp;&amp; (text.at(0).isPrint() || text.at(0) == QLatin1Char(&#39;\t&#39;)
+</span><span class="gi">+                    || (0x2000 &lt;= code &amp;&amp; code &lt;= 0x200F) || (0x2028 &lt;= code &amp;&amp; code &lt;= 0x202F))) {
+</span><span class="gi"></span>             if (overwriteMode // no need to call deleteChar() if we have a selection, insertText
+                 // does it already
+</code></pre></div>
+<h2 id="ps2-future-works">PS2: Future Works</h2>
+<p>Applying this patch, fixes the problem for all widgets. But there is a similar issue, most probably in QtQuick or KF5. I will find a fix for that too, and I might release both fixes in a PPA.</p>
+</div>
+
+<h2>دیدگاه‌ها</h2>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

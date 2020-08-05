@@ -5,10 +5,19 @@
     <link>https://soroush.github.io/en/categories/</link>
     <description>Recent content in Categories on The Bored Octopus</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://soroush.github.io/en/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>personal</title>
+      <link>https://soroush.github.io/en/categories/personal/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/categories/personal/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>qt, c&#43;&#43;, calendar</title>
@@ -16,6 +25,15 @@
       <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://soroush.github.io/en/categories/qt-c&#43;&#43;-calendar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qt,c&#43;&#43;,bug</title>
+      <link>https://soroush.github.io/en/categories/qtc&#43;&#43;bug/</link>
+      <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/categories/qtc&#43;&#43;bug/</guid>
       <description></description>
     </item>
     
