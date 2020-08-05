@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>c&#43;&#43;, templates, meta-programming, math,pi on The Bored Octopus</title>
+    <link>https://soroush.github.io/en/categories/c&#43;&#43;-templates-meta-programming-mathpi/</link>
+    <description>Recent content in c&#43;&#43;, templates, meta-programming, math,pi on The Bored Octopus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 13 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://soroush.github.io/en/categories/c++-templates-meta-programming-mathpi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mathematical Constants in C&#43;&#43;</title>
+      <link>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</link>
+      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</guid>
+      <description>None of C++ standards has defined π number. So every programmer who needs to do some math including, for example, trigonomerty or statistics, has to define π herself. Luckily header files have defined π (See M_PI in math.h). Though it is not ultimately safe and portable to use these constants. It might casue numeric errors in critical applications.
+Fortunately it is possible to calculate π number at compile time, having zero overhead in runtime, while complying to IEEE 754 completely.</description>
+    </item>
+    
+  </channel>
+</rss>

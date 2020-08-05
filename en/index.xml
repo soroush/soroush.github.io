@@ -54,6 +54,16 @@ the process of the work, and also the API itself.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Mathematical Constants in C&#43;&#43;</title>
+      <link>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</link>
+      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</guid>
+      <description>None of C++ standards has defined π number. So every programmer who needs to do some math including, for example, trigonomerty or statistics, has to define π herself. Luckily header files have defined π (See M_PI in math.h). Though it is not ultimately safe and portable to use these constants. It might casue numeric errors in critical applications.
+Fortunately it is possible to calculate π number at compile time, having zero overhead in runtime, while complying to IEEE 754 completely.</description>
+    </item>
+    
+    <item>
       <title>Worst Ever Qt Bug (for me!)</title>
       <link>https://soroush.github.io/en/2017/05/09/worst-ever-bug/</link>
       <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
