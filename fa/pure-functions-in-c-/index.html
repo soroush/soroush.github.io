@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>توابع سره در ‪C&#43;&#43;‬ &middot; اختاپوس خسته</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/fontello.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde-rtl.css"><link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole-rtl.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/fa//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/fa/"><h1>اختاپوس خسته</h1></a>
+      <p class="lead">
+       یادداشت‌هایی دربارهٔ برنامه‌نویسی و زندگی 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="icon-github-circled"></i>soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p><a href="https://soroush.github.io/fa/">[فارسی]</a> <a href="https://soroush.github.io/en/">[English]</a> </p>
+    <p>حق نشر محفوظ است.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post"><h1>توابع سره در ‪C&#43;&#43;‬</h1><time datetime="2020-08-06T00:00:00Z" class="post-date"> پنجشنبه، ۱۶ مرداد ۱۳۹۹ </time><p>یکی از امکانات بهینه‌سازی که بین برنامه‌نویس‌های سی کمتر شناخته شده؛ امکان تعریف
+توابع به‌صورت <strong>سره</strong> هست. این امکان دامنهٔ گسترده‌ای از بهینه‌سازی‌ها رو
+امکان‌پذیر می‌کنه و حتماً باید جایی که کارایی مهم هست از این ویژگی استفاده کنید.
+در این پست به معرفی و بررسی اثر توابع سره می‌پردازم.</p>
+<h2 id="اهمیت-اثر-جانبی">اهمیت اثر جانبی</h2>
+<p>زبان برنامه‌نویسی ‪C++‬ دقیقا مثل پدربزرگش C ؛ یک زبان دستوری است. بنابراین توابع این زبان میتونن
+<a href="https://fa.wikipedia.org/wiki/%D8%A7%D8%AB%D8%B1_%D8%AC%D8%A7%D9%86%D8%A8%DB%8C_(%D8%B9%D9%84%D9%88%D9%85_%D8%B1%D8%A7%DB%8C%D8%A7%D9%86%D9%87)">اثر جانبی</a>
+داشته باشند. اثر جانبی یک تابع یعنی اثری که اون تابع در حالت سیستم ایجاد می‌کنه؛
+البته مقدار برگشتی از تابع جزو اثر جانبی حساب نمیشه. زبان‌های برنامه‌نویسی
+تابعی، اثر جانبی رو محدود می‌کنند. یعنی هر تابع یا اثر جانبی نداره یا فقط محدود
+به IO هست.  برای مثال تغییر یک متغیر global یک اثر جانبی از اجرای یک تابع حساب
+میشه. به تابعی که اثر جانبی نداشته باشه تابع سره یا تابع محض گفته میشه. توابع
+محض ویژگی‌های بسیار جالبی دارند که یکی از این ویژگی‌ها یعنی «شفافیت ارجاع» کمک
+بسیار بزرگی به بهینه‌سازی کدها میکنه. به‌طور خلاصه اصل شفافیت مرجع میگه که اگر
+یک تابع، سره باشه، همیشه میشه نتیجهٔ اجرای اون تابع با آرگومان‌های یکسان رو با
+کد فراخوانیِ تابع جایگزین کرد.</p>
+<p>برای مثال تابع pow2 رو درنظر بگیرید. این تابع بسیار ساده
+است، صرفاً یک عدد میگیره و توان دوم اون رو برمیگردونه:</p>
+<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="n">retutn</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div>
+به‌طور مشخص این تابع یک تابع سره است. یعنی شما هر جای برنامه می‌تونید
+‪<code>pow2(5)</code>‬
+رو با نتیجه، یعنی <code>25</code>، جایگزین کنید. این ویژگی برای بهینه‌سازی بسیار مفید
+هست. به این صورت که کامپایلر، زمان کامپایل برنامه می‌تونه فراخوانی‌های تکراری رو
+حذف کنه.</p>
+<p>از آنجایی که ‪C++‬ یک زبان برنامه‌نویسی تابعی نیست؛ توابع سره نداره. در
+مورد تمام توابع، کامپایلر فرض می‌کنه اثر جانبی وجود داره. و هیچ بهینه‌سازی‌ای
+برمبنای شفافیت ارجاع انجام نمیده.</p>
+<h2 id="بررسی-شفافیت-ارجاع-در-c">بررسی شفافیت ارجاع در ‪C++‬</h2>
+<p>برای این که ببینیم شفافیت ارجاع در ‪C++‬ وجود نداره، نتیجهٔ خروجی کامپایل کد
+برای همین تابع سادهٔ توان دو رو بررسی می‌کنیم. خروجی اسمبلی کد پایین رو ملاحظه کنید:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">// ... 
+</span><span class="c1"></span><span class="kt">double</span> <span class="nf">caller</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>این کد با gcc نسخهٔ ۱۰ و با آخرین درجهٔ بهینه‌سازی (‪<code>-O3</code>‬) کامپایل شده.
+قبل از این که خودتون بخواهید این رو تست کنید باید اشاره کنم که حتما باید
+پیاده‌سازی تابع <code>pow2</code> خارج از برنامه باشه. مثلاً توی یک کتابخونه یا آبجکت
+متفاوت. در غیر این صورت کامپایلر طوری بهینه‌سازی می‌کنه که مثال سادهٔ ما بی‌ارزش
+میشه (: بنابراین ما فرض می‌کنیم در لحظهٔ کامپایل؛ کامپایلر ما اطلاعی از پیاده‌سازی تابع
+<code>pow2</code>
+نداره. خروجی اسمبلی تابع <code>caller</code> رو مشاهده کنید:</p>
+<div class="highlight"><pre class="chroma"><code class="language-tasm" data-lang="tasm"><span class="nf">caller</span><span class="p">():</span>
+  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm0</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">movsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="nv">xmm0</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm1</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nv">xmm0</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
+  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
+  <span class="nf">ret</span>
+<span class="nl">.LC0:</span>
+  <span class="nf">.long</span>   <span class="mi">0</span>
+  <span class="nf">.long</span>   <span class="mi">1075052544</span></code></pre></div>
+<p>همونطور که دیده میشه، <code>pow2</code> چهار بار فراخوانی شده. (خط‌هایی که علامت زده
+شده) در حالی که فقط یک بار کافی بود. خوشبختانه امکاناتی برای بهینه‌سازی این
+وضعیت وجود داره.</p>
+<h2 id="اعلان-توابع-سره">اعلان توابع سره</h2>
+<p>در ‪g++‬ و clang میشه تابع رو به روش زیر به‌صورت محض اعلان کرد:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="na">[[gnu::pure]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div>
+<p>اضافه کردن ویژگی <code>pure</code> به تابع، به کامپایلر اعلام می‌کنه که تابع قرار نیست
+وضعیت برنامه رو عوض کنه و تابع سره یا محض است. بنابراین با این کار به کامپایلر
+اجازه میدیم از بهینه‌سازی‌های مبنی‌بر شفافیت مرجع استفاده کنه. این کار توی
+برنامه‌نویسی سیستم‌های امبدد و میکروکنترلرها، و همچنین برنامه‌های محاسباتی موازی
+و سنگین خیلی می‌تونه مفید باشه. کد تغییر یافته و خروجی اسمبلی همین برنامه رو ببینیم:</p>
+<div class="highlight"><pre class="chroma"><code class="language-tasm" data-lang="tasm"><span class="nf">caller</span><span class="p">():</span>
+  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
+  <span class="nf">ret</span>
+<span class="nl">.LC0:</span>
+  <span class="nf">.long</span>   <span class="mi">0</span>
+  <span class="nf">.long</span>   <span class="mi">1075052544</span></code></pre></div>
+<p>همون‌طور که مشاهده می‌کنید؛ فقط یک فراخوانی از تابع <code>pow2</code> وجود داره. چون
+همهٔ آرگومان‌ها <code>5.0</code> بودند؛ کامپایلر سه فرخوانی رو حذف کرده. دقت داشته باشید که
+ترتیب فراخوانی و مکان فراخوانی هم هیچ اهمیتی نداره. یعنی اگر تابع <code>pow2</code> رو
+توی تابع دیگه‌ای هم با همین آرگومان فراخوانی کنید؛ کامپایلر باز می‌تونه
+بهینه‌سازی انجام بده.</p>
+<p>هرچند اعلان‌های pure و هم‌خانواده‌های اون هنوز استاندارد نیستند، ولی استفاده از
+آن‌ها نسبتاً ساده و ایمن هست. کامپایلرهای مدرن معمولاً سینتکس مشابهی رو برای این
+بهینه‌سازی استفاده می‌کنند. در مواردی که سینتکس متفاوت هست شما می‌تونید اعلان
+رو براساس پیش‌پردازنده‌های زمان کامپایل؛ به‌صورت اختصاصی کامپایل کنید.</p>
+<h2 id="اعلان-توابع-ثابت">اعلان توابع ثابت</h2>
+<p>توابع سره تضمین می‌کنند که فراخوانی آن‌ها تغییری در وضعیت برنامه ایجاد نمی‌کنه.
+یک سطح بالاتری از تضمین هم وجود داره که میگه وضعیت برنامه هم تغییری در مقدار
+محاسبه شدهٔ تابع ایجاد نمی‌کنه. این نوع توابع <strong>ثابت</strong> (const) هستند. دقت داشته
+باشید که این const با cv specifier فرض داره. اعلان یک تابع به‌صورت ثابت باعث
+میشه که خوندن وضعیت برنامه (مثلاً متغیرهای read-only)، به‌نحوی که بتونه توی
+خروجی تابع تأثیر بذاره نامعتبر بشه. در واقع تضمین قوی‌تری برای محض بودن تابع
+هست و بهینه‌سازی‌های بیشتری رو ممکن می‌کنه. برای تعریف تابع ثابت از این کد
+استفاده کنید:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="na">[[gnu::const]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="مقایسه-با-constexpr">مقایسه با <code>constexpr</code></h2>
+<p>ممکنه فکر کنید که توابع const و یا pure همون توابع constexpr هستند. این درست
+نیست. تفاوت‌های زیادی بین این سه تا وجود داره. مهم‌ترین‌ش این که تابع constexpr
+زمان کامپایل باید قابل ارزیابی باشه. بنابراین تمام ورودی‌ها باید از نوع لیترال
+باشند یا همون خود constexpr باشند. در حالی که توابع سره؛ توابع کاملاً معمولی
+هستند. هر نوع آرگومانی می‌تونید بهشون بدید و مهم نیست تابع و آرگومان‌های ورودی
+اون زمان کامپایل قابل ارزیابی باشه یا نه. صرفاً این تضمین وجود داره که <strong>فراخوانی
+با آرگومان‌های یکسان، اثر یکسان خواهد داشت</strong>.</p>
+<h2 id="استاندارد">استاندارد</h2>
+<p>همونطور که قبلاً اشاره کردم؛ این امکانات استاندارد نیستند. بحث‌هایی وجود داشت که
+توابع سره وارد استاندارد C++20 بشه اما این اتفاق نیفتاد. دلیلش اینه که بررسی سره
+بودن تابع بسیار سخت هست. اگر تابع سره نباشه ولی شما اون به شکل سره علامت‌گذاری
+کنید؛ صرفاً نتایج محاسباتی شما غلط از آب در میاد و کامپایلر راهی برای warning
+دادن یا خطا گرفتن (به شکل مؤثر) نداره. بنابراین این ویژگی فعلاً به‌صورت
+غیراستاندارد در دسترس قرار گرفته.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>
