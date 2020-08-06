@@ -8,3 +8,17 @@ body {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+blockquote {
+  padding: 1rem 0.5rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-right: .25rem solid #e5e5e5;
+  border-left: 0;
+}
+@media (min-width: 30em) {
+  blockquote {
+    padding-right: 1.25rem;
+    padding-left: 5rem;
+  }
+}
