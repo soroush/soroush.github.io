@@ -28,6 +28,10 @@
   font-weight: 500;
 }
 
+.sidebar {
+  text-align: left;
+}
+
 html {
   font-family: Samim;
   direction: rtl;
