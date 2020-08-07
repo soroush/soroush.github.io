@@ -16,13 +16,12 @@
       <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://soroush.github.io/en/2020/08/06/pure-functions-in-cpp/</guid>
-      <description>&lt;p&gt;One of the best optimisation features of C++, is declaring functions as
-&lt;strong&gt;pure&lt;/strong&gt;. This one is less known to developers, though it can be a very good
-optimisation hit for your software. Marking a function with &amp;ldquo;pure&amp;rdquo; attribute,
-enables a wide range of possible optimisations for the compiler. You must
-declare your pure functions as such, in all code that cares about performance.
-In this post I am going to show how to use this feature and it&amp;rsquo;s effects on
-generated code.&lt;/p&gt;</description>
+      <description>&lt;p&gt;One of the best optimisation features of C++ is declaring functions as &lt;strong&gt;pure&lt;/strong&gt;.
+This one is less known to developers, though it can be an excellent optimisation
+hit for your software. Marking a function with “pure” attribute enables a wide
+range of possible optimisations for the compiler. You must declare your pure
+functions as such, in all code that cares about performance. In this post, I am
+going to show how to use this feature and its effects on generated code.&lt;/p&gt;</description>
     </item>
     
     <item>
