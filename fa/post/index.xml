@@ -206,10 +206,10 @@ libdynamixel.
     
     <item>
       <title>توسعهٔ میان‌نسخه‌ای</title>
-      <link>https://soroush.github.io/fa/cross-qt-development/</link>
+      <link>https://soroush.github.io/fa/1393/07/02/cross-qt-development/</link>
       <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/fa/cross-qt-development/</guid>
+      <guid>https://soroush.github.io/fa/1393/07/02/cross-qt-development/</guid>
       <description>&lt;p&gt;سال گذشته توی
 &lt;a href=&#34;http://onealonebit.wordpress.com/2013/09/10/cross-qt-development&#34;&gt;وبلاگ انگلیسی‌م&lt;/a&gt;
 پستی در مورد توسعهٔ نرم‌افزار بین نسخه‌های مختلف کیوت
@@ -274,29 +274,29 @@ APIهای
     
     <item>
       <title>چطور پازل 8 را به روش ‪C&#43;&#43;‬ حل کنیم</title>
-      <link>https://soroush.github.io/fa/how-to-solve-8-8-puzzle/</link>
+      <link>https://soroush.github.io/fa/1393/01/01/how-to-solve-8-8-puzzle/</link>
       <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/fa/how-to-solve-8-8-puzzle/</guid>
+      <guid>https://soroush.github.io/fa/1393/01/01/how-to-solve-8-8-puzzle/</guid>
       <description>اولین روز سال ۱۳۹۳ و اولین پست همین سال :) برای شروع سال چه چیزی بهتر از یه پازل فکری می‌تونه باشه؟ امروز جمعه‌ست و اول سال با آخر هفته شروع شده. آخرهفته‌ها فرصت مناسبی برای پروژه‌های کوچیک و جالب هست. خوب زومیت زحمت کشیده و پازل شمارهٔ ۳۱ام رو روز اول فروردین منتشر کرده. توی این پست می‌خوام توضیح بدم که چطوری این پازل رو حل کردم. در واقع تقلب کردم.</description>
     </item>
     
     <item>
       <title>نصب آسان نرم‌افزار از طریق Qt Creator</title>
-      <link>https://soroush.github.io/fa/qt-creator-deploy/</link>
+      <link>https://soroush.github.io/fa/1392/12/09/qt-creator-deploy/</link>
       <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/fa/qt-creator-deploy/</guid>
+      <guid>https://soroush.github.io/fa/1392/12/09/qt-creator-deploy/</guid>
       <description>روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست. با این وجود ممکنه گاهی اوقات بعضی کارهای تکراری کسل‌کننده به‌نظر برسه. همگی می‌دونیم که کسل‌کنندگی بزرگترین دشمن گیک‌ها (و البته گیگتوپوس‌ها) هست. خوشبختانه توسعه‌دهنده‌های کیوت‌کریتور همگی گیک هستند و راه‌حل‌های مؤثری برای این کارها درنظر گرفته شده.
 اگر بخوایم یه کتابخانهٔ جدید رو با استفاده از کیوت بنویسیم، مسلماً بعد از یه مدتی دلمون می‌خواد که تست‌ش کنیم.</description>
     </item>
     
     <item>
       <title>بیت‌کوین فارسی</title>
-      <link>https://soroush.github.io/fa/bitcoin-i18n/</link>
+      <link>https://soroush.github.io/fa/1392/07/26/bitcoin-i18n/</link>
       <pubDate>Fri, 18 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/fa/bitcoin-i18n/</guid>
+      <guid>https://soroush.github.io/fa/1392/07/26/bitcoin-i18n/</guid>
       <description>حدود دو ماهه که دارم در مورد bitcoin تحقیق می‌کنم. به‌نظر من یکی از ایده‌هایی هست که دنیا رو متحول خواهد کرد. به هم زدن نظم اقتصادی دنیا با یک سیستم پولی کاملاً غیرمتمرکز چیزی‌یه که به زودی تبدیل به کابوس دولت‌ها خواهد شد.
 اما این پست در مورد خودِ بیت‌کوین و سیستم‌ش نیست. می‌خوام در مورد ترجمهٔ فارسی این پروژه بنویسم. متأسفانه این ترجمه به دست افراد ناشی و (البته با نیت خیر) انجام شده.</description>
     </item>

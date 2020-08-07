@@ -66,10 +66,10 @@
     
     <item>
       <title>توسعهٔ میان‌نسخه‌ای</title>
-      <link>https://soroush.github.io/fa/cross-qt-development/</link>
+      <link>https://soroush.github.io/fa/1393/07/02/cross-qt-development/</link>
       <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/fa/cross-qt-development/</guid>
+      <guid>https://soroush.github.io/fa/1393/07/02/cross-qt-development/</guid>
       <description>&lt;p&gt;سال گذشته توی
 &lt;a href=&#34;http://onealonebit.wordpress.com/2013/09/10/cross-qt-development&#34;&gt;وبلاگ انگلیسی‌م&lt;/a&gt;
 پستی در مورد توسعهٔ نرم‌افزار بین نسخه‌های مختلف کیوت
@@ -83,6 +83,16 @@
 تهیه بشه. بنابراین بهترین راه حل نوشتن کدی هست که با هر دو نسخه کامپایل بشه.
 برای ابزارهایی که کتابخانه نیستند هم همین صادق هست. مثلاً اسکریپتی که قراره با
 پایتون ۲ کار کنه اما باید با پایتون ۳ هم کار کنه.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>نصب آسان نرم‌افزار از طریق Qt Creator</title>
+      <link>https://soroush.github.io/fa/1392/12/09/qt-creator-deploy/</link>
+      <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/fa/1392/12/09/qt-creator-deploy/</guid>
+      <description>روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست. با این وجود ممکنه گاهی اوقات بعضی کارهای تکراری کسل‌کننده به‌نظر برسه. همگی می‌دونیم که کسل‌کنندگی بزرگترین دشمن گیک‌ها (و البته گیگتوپوس‌ها) هست. خوشبختانه توسعه‌دهنده‌های کیوت‌کریتور همگی گیک هستند و راه‌حل‌های مؤثری برای این کارها درنظر گرفته شده.
+اگر بخوایم یه کتابخانهٔ جدید رو با استفاده از کیوت بنویسیم، مسلماً بعد از یه مدتی دلمون می‌خواد که تست‌ش کنیم.</description>
     </item>
     
   </channel>
