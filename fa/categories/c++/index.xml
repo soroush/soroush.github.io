@@ -40,15 +40,6 @@
     </item>
     
     <item>
-      <title>محاسبهٔ ثابت‌های ریاضی</title>
-      <link>https://soroush.github.io/fa/1397/01/29/math-constants-in-cpp/</link>
-      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://soroush.github.io/fa/1397/01/29/math-constants-in-cpp/</guid>
-      <description>هیچ‌کدام از استانداردهای سی‌پلاس‌پلاس و یا سی عدد π را تعریف نکرده‌اند. بنابراین هر برنامه‌نویسی که قصد داشته باشه از توابع مثلثاتی یا آماری استفاده کنه مجبوره خودش π رو تعریف کنه. خوشبختانه فایل‌های سرآیند استاندارد عدد π رو تعریف کرده‌اند، (ثابت M_PI در هدر math.h رو ببینید) با این وجود استفاده از این ثابت و ثابت‌های دیگه بسیار خطرناک هست و برای کاربردهای دقیق باعث بروز خطاهای عددی خواهد شد.</description>
-    </item>
-    
-    <item>
       <title>مشکل نیم‌فاصله در KDE و روش حل آن</title>
       <link>https://soroush.github.io/fa/1396/09/27/kates-zwnj-bug/</link>
       <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>

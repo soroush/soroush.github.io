@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>metaprogramming on The Bored Octopus</title>
+    <link>https://soroush.github.io/en/categories/metaprogramming/</link>
+    <description>Recent content in metaprogramming on The Bored Octopus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 13 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://soroush.github.io/en/categories/metaprogramming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mathematical Constants in C&#43;&#43;</title>
+      <link>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</link>
+      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</guid>
+      <description>&lt;p&gt;None of C++ standards has defined π number. So every programmer who needs to do
+some math including, for example, trigonomerty or statistics, has to define π
+herself. Luckily header files have defined π (See &lt;code&gt;M_PI&lt;/code&gt; in &lt;code&gt;math.h&lt;/code&gt;). Though it
+is not ultimately safe and portable to use these constants. It might casue
+numeric errors in critical applications. In this blog post, I am going to show a
+better way to reach a safe π.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pure Function in C&#43;&#43;‬ &middot; The Bored Octopus</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/fontello.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/en//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/en/"><h1>The Bored Octopus</h1></a>
+      <p class="lead">
+       Notes on Life and Engineering 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="icon-github-circled"></i>soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p><a href="https://soroush.github.io/fa/">[فارسی]</a> <a href="https://soroush.github.io/en/">[English]</a> </p>
+    <p>All rights reserved.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post"><h1>Pure Function in C&#43;&#43;‬</h1><time datetime="2020-08-06T00:00:00Z" class="post-date">Thu, Aug 6, 2020</time><p>One of the best optimisation features of C++, is declaring functions as
+<strong>pure</strong>. This one is less known to developers, though it can be a very good
+optimisation hit for your software. Marking a function with &ldquo;pure&rdquo; attribute,
+enables a wide range of possible optimisations for the compiler. You must
+declare your pure functions as such, in all code that cares about performance.
+In this post I am going to show how to use this feature and it&rsquo;s effects on
+generated code.</p>
+<h2 id="side-effects-and-referential-transparency">Side Effects and Referential Transparency</h2>
+<p>C++, just like its predecessor, C, is an imperative programming language. It has
+very few to none functional programming features. Thus, functions in C++ can are
+allowed to contain
+<a href="https://en.wikipedia.org/wiki/Side_effect_(computer_science)">side effects</a>.
+A side effect of a function, is an observable change that calling it makes in
+the state of the system. Except for the return value of course. For example,
+changing a global or static variable in a C function, is considered as a side
+effect. Functional programming languages, largely limit site effects (even in
+some cases, prohibit them). Any function with no side effects is called a
+<strong>pure</strong> one. Pure functions have interesting properties, that enable very
+effective optimisations. One of them is
+<a href="https://en.wikipedia.org/wiki/Referential_transparency">Referential Transparency</a>.
+Briefly speaking, an expression (including a function) is called referentially transparent, if it
+can be replaced with its corresponding value without changing the program&rsquo;s
+behaviour. So if you have a pure function, it is referentially transparent and
+it can be replaced with its return value in all places that it&rsquo;s been called
+with the same set of arguments.</p>
+<p>As an example, consider the very simple function, <code>pow2</code> which takes a
+number and returns it&rsquo;s second power:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="n">retutn</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div>
+<p>Clearly, this is a pure function. It&rsquo;s value does not depend on any external
+source of information, and it always returns the same result for a specific
+input. So you can replace ‪<code>pow2(5)</code> with it&rsquo;s evaluation result, <code>25</code>,
+everywhere in your code. This information is very useful for optimisation
+purposes: Removing extra invocations by the compiler, can save your software a
+lot of calculations.</p>
+<h2 id="referential-transparency-in-c">Referential Transparency in C++</h2>
+<p>Since C++ has no notion of pure functions, all functions are supposed to have
+side effects by default. Hence, there are no optimisation based on referential
+transparency applied by default.</p>
+<p>To observe the lack of referential transparency, see the assembler output of the
+following code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">// ... 
+</span><span class="c1"></span><span class="kt">double</span> <span class="nf">caller</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This code has been compiled with gcc 10, with maximum optimisations enabled
+(<code>-O3</code>). Before you go ahead and test it by yourself, I should warn you to
+exclude implementation of <code>pow2</code> function (or hide it from your compiler).
+Failing to do so, the compiler will optimise your code so aggressively, that
+invalidates the point of this post completely! So, for the sake of this example,
+we will suppose the compiler is not aware of the implementation of the
+<code>pow2</code> function at the compile time. Below you can see the assembly output
+of the <code>caller</code> function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-tasm" data-lang="tasm"><span class="nf">caller</span><span class="p">():</span>
+  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm0</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">movsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="nv">xmm0</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm1</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nv">xmm0</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
+  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
+  <span class="nf">ret</span>
+<span class="nl">.LC0:</span>
+  <span class="nf">.long</span>   <span class="mi">0</span>
+  <span class="nf">.long</span>   <span class="mi">1075052544</span></code></pre></div>
+<p>As you can see, <code>pow2</code> has been called four times (highlighted lines), while
+it was only necessary to run it once. Fortunately, there are optimisation
+features for this situations.</p>
+<h2 id="declaring-functions-as-pure">Declaring Functions as &ldquo;Pure&rdquo;</h2>
+<p>In gcc and clang, you can mark a function as pure using this syntax:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="na">[[gnu::pure]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div>
+<p>Adding <code>pure</code> attribute to a function, tells the compiler that calling it is
+not going to modify program state. Doing so, we explicitly allow the compiler to
+perform optimisations, based on referential transparency. This can save a lot of
+unnecessary calculations, specially in embedded systems programming, and also in
+computationally intensive or highly parallel software.</p>
+<p>Let&rsquo;s take a look at it&rsquo;s effect on our example code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-tasm" data-lang="tasm"><span class="nf">caller</span><span class="p">():</span>
+  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
+  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span>  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
+  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
+  <span class="nf">ret</span>
+<span class="nl">.LC0:</span>
+  <span class="nf">.long</span>   <span class="mi">0</span>
+  <span class="nf">.long</span>   <span class="mi">1075052544</span></code></pre></div>
+<p>As you can see, there is only one invocation of the <code>pow2</code> function. The
+compiler caches it&rsquo;s return value, since all calls to it have the same set of
+arguments (<code>5.0</code>). The compiler, rightfully, has removed the other three
+invocations. Note that the order of execution and call point does not affect
+this kind of optimisations, for the same reasons explained in referential
+transparency property. So, if you were to call <code>pow2(5.0)</code> in another place
+or in a different order, it would still get optimised away.</p>
+<p>Although pure attribute and it&rsquo;s relatives are not standard yet, using them is
+fairly safe and simple. Modern compilers (except MSVC), provide a similar syntax
+for them.</p>
+<h1 id="declaring-functions-as-const">Declaring Functions as &ldquo;const&rdquo;</h1>
+<p>Pure functions are guaranteed not to change program state. But there is also a
+higher level of guarantee: That is not only keep program state intact, but not
+to read any observable external state as well. Such functions are called
+&ldquo;<strong>constant</strong>&quot;. Note that this kind of constness, differs from immutability
+defined by cv specifier. Marking a function as const, will enable even larger
+set of optimisations for the compiler. To do so, one can use this syntax:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="na">[[gnu::const]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="in-comparison-with-constexpr">In Comparison with <code>constexpr</code></h2>
+<p>You might think <code>const</code> or <code>pure</code> functions are the same as
+<code>constexpr</code>. That is not correct. There are fundamental differences between
+them. Most important one is that it must be possible to evaluate a function
+marked as <code>constexpr</code> at compile time. That requires all its arguments to be
+literal types, or <code>constexpr</code> functions and variables. In contrast, a pure
+or <code>const</code> function has no such requirement and can be fully evaluated at
+runtime. The only requirement is that calling the function with the same set of
+arguments, should always result in the same value.</p>
+<h2 id="standard-c">Standard C++</h2>
+<p>As I mentioned before, this feature is not standard. There were discussions in
+the community to push it through C++20, but it didn&rsquo;t make it. I can guess that
+it&rsquo;s because checking pureness of a function is virtually impossible. If
+programmer marks a function as <code>const</code> while it is infected with some sort
+of side effect; the compiler will have no means to warn you or report errors.
+Simply the calculations will be incorrect. Thus pure functions are provided as
+a non-standard extension for now. I would love to see them in the C++ standard one day&hellip;</p></div><h2>Comments</h2><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

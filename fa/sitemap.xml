@@ -45,6 +45,16 @@
   <url>
     <loc>https://soroush.github.io/fa/categories/c&#43;&#43;/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://soroush.github.io/en/categories/c&#43;&#43;/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fa"
+                href="https://soroush.github.io/fa/categories/c&#43;&#43;/"
+                />
   </url>
   
   <url>
@@ -83,17 +93,7 @@
   </url>
   
   <url>
-    <loc>https://soroush.github.io/fa/categories/%D8%AA%D9%85%D9%BE%D9%84%DB%8C%D8%AA/</loc>
-    <lastmod>2018-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://soroush.github.io/fa/categories/%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C/</loc>
-    <lastmod>2018-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://soroush.github.io/fa/categories/%D8%B9%D8%AF%D8%AF-%D9%BE%DB%8C/</loc>
+    <loc>https://soroush.github.io/fa/categories/%D9%85%D8%AA%D8%A7%D9%BE%D8%B1%D9%88%DA%AF%D8%B1%D9%85%D9%85%DB%8C%D9%86%DA%AF/</loc>
     <lastmod>2018-04-13T00:00:00+00:00</lastmod>
   </url>
   
@@ -140,16 +140,6 @@
   <url>
     <loc>https://soroush.github.io/fa/categories/qtc&#43;&#43;bug/</loc>
     <lastmod>2017-05-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://soroush.github.io/en/categories/qtc&#43;&#43;bug/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fa"
-                href="https://soroush.github.io/fa/categories/qtc&#43;&#43;bug/"
-                />
   </url>
   
   <url>
