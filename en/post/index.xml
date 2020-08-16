@@ -5,10 +5,27 @@
     <link>https://soroush.github.io/en/post/</link>
     <description>Recent content in Posts on The Bored Octopus</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://soroush.github.io/en/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PIMPL idiom in C&#43;&#43;</title>
+      <link>https://soroush.github.io/en/220/08/13/pimpl-idiom-in-cpp/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/en/220/08/13/pimpl-idiom-in-cpp/</guid>
+      <description>&lt;p&gt;Developers working on a &amp;ldquo;software library&amp;rdquo; in C++ (or any other
+native language) should follow a set of critically important rules, or
+their customers will soon be in trouble using their product. Some of
+these rules are for example
+&lt;strong&gt;&lt;a href=&#34;https://semver.org/&#34;&gt;Semantic Versioning&lt;/a&gt;&lt;/strong&gt;, &lt;strong&gt;Good API Design&lt;/strong&gt;
+and &lt;strong&gt;Keeping Backward Compatibility&lt;/strong&gt;. The later one has many aspects
+and requires its detailed post. In this post, I will discuss one of
+the vastly used techniques in C++ which helps developers to keep
+&lt;strong&gt;Backward Compatibility&lt;/strong&gt; in binary (ABI) level.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Pure Functions in C&#43;&#43;‬</title>

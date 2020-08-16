@@ -5,10 +5,26 @@
     <link>https://soroush.github.io/fa/post/</link>
     <description>Recent content in Posts on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://soroush.github.io/fa/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>حفظ سازگاری عقبگرد با تکنیک PIMPL</title>
+      <link>https://soroush.github.io/fa/1399/05/23/pimpl-idiom-in-cpp/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://soroush.github.io/fa/1399/05/23/pimpl-idiom-in-cpp/</guid>
+      <description>&lt;p&gt;اگر توسعه‌دهندهٔ یک کتابخانهٔ نرم‌افزاری به زبان ‪C++‬ (یا هر زبان native
+دیگری) هستید همیشه باید نکاتی رو مدنظر داشته باشید که کاربران کتابخانهٔ
+شما دچار مشکل نشوند. از جمله این اصول میشه به
+&lt;strong&gt;&lt;a href=&#34;https://semver.org/lang/fa/&#34;&gt;نسخه‌گذاری معنایی&lt;/a&gt;&lt;/strong&gt;،
+&lt;strong&gt;طراحی API اصولی&lt;/strong&gt; و &lt;strong&gt;حفظ سازگاری&lt;/strong&gt; اشاره کرد. سازگاری مبحث بزرگ و
+پیچیده‌ای هست که یک نوشتهٔ مفصل‌تر میخواد. در این پست میخوام در مورد یکی
+از تکنیک‌های پراستفاده در C و ‪C++‬ بنویسم که به حفظ سازگاری عقبگرد در
+&lt;strong&gt;در سطح باینری&lt;/strong&gt; کمک میکنه.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>توابع سره در ‪C&#43;&#43;‬</title>

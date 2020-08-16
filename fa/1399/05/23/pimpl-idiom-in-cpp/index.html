@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>حفظ سازگاری عقبگرد با تکنیک PIMPL &middot; اختاپوس خسته</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/fontello.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/hyde-rtl.css"><link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/poole-rtl.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" layout-reverse">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/fa//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/fa/"><h1>اختاپوس خسته</h1></a>
+      <p class="lead">
+       یادداشت‌هایی دربارهٔ برنامه‌نویسی و زندگی 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="icon-github-circled"></i>soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p><a href="https://soroush.github.io/fa/">[فارسی]</a> <a href="https://soroush.github.io/en/">[English]</a> </p>
+    <p>حق نشر محفوظ است.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post"><h1>حفظ سازگاری عقبگرد با تکنیک PIMPL</h1><time datetime="2020-08-13T00:00:00Z" class="post-date"> پنجشنبه، ۲۳ مرداد ۱۳۹۹ </time><p>اگر توسعه‌دهندهٔ یک کتابخانهٔ نرم‌افزاری به زبان ‪C++‬ (یا هر زبان native
+دیگری) هستید همیشه باید نکاتی رو مدنظر داشته باشید که کاربران کتابخانهٔ
+شما دچار مشکل نشوند. از جمله این اصول میشه به
+<strong><a href="https://semver.org/lang/fa/">نسخه‌گذاری معنایی</a></strong>،
+<strong>طراحی API اصولی</strong> و <strong>حفظ سازگاری</strong> اشاره کرد. سازگاری مبحث بزرگ و
+پیچیده‌ای هست که یک نوشتهٔ مفصل‌تر میخواد. در این پست میخوام در مورد یکی
+از تکنیک‌های پراستفاده در C و ‪C++‬ بنویسم که به حفظ سازگاری عقبگرد در
+<strong>در سطح باینری</strong> کمک میکنه.</p>
+<h2 id="سازگاری-عقبرو-چیست">سازگاری عقبرو چیست؟</h2>
+<p>به‌طور خلاصه حفظ سازگاری عقبگرد (یا همون عقب‌رو) توسط سازندهٔ یک رابط
+تضمین میکنه که نسخهٔ جدید این رابط برای تمام کاربران قبلی، و بدون نیاز
+به تغییر قابل استفاده است. این اصطلاح در جنبه‌های مختلف مخابرات،
+الکترونیک و برنامه‌نویسی به‌طور گسترده‌ای استفاده میشه. برای مثال USB
+نسخهٔ 3.0 از ابزارهای USB 2.0 و USB 1.1 هم پشتیبانی می‌کنه.</p>
+<p>در مورد کتابخانه‌های native جنبه‌های مختلفی از سازگاری عقبرو وجود
+داره. معمولاً در دو سطح کد و باینری در مورد سازگاری بررسی میشه. سازگاری
+عقبگرد کد (API) یعنی نسخهٔ جدید کتابخانه برای کاربران قدیمی قابل
+استفاده است. سازگاری عقبگرد باینری اما جزئیات بیشتری داره&hellip;</p>
+<p>در سطح سورس؛ سازگاری عقبرو معمولاً با رعایت قواعد نسخه‌گذاری معنایی تضمین
+میشه. یعنی نسخهٔ 1.2.3 از کتابخانه باید برای کدهای قدیمی که قبلاً از
+نسخه‌های 1.2.2 یا 1.1.0 استفاده می‌کردند، قابل استفاده باشه. (طبق قواعد
+نسخه‌گذاری معنایی مادامی که نسخهٔ MAJOR تغییر داده نشده، سازگاری با
+نسخه‌های قبلی وجود داره). اما این <strong>قابل استفاده بودن</strong> نظری در مورد
+کامپایل نداره. یعنی ممکنه کاربرِ نسخهٔ قبلی کتابخانه برای استفاده از
+نسخهٔ جدید، مجبور باشه دوباره برنامه‌ش رو کامپایل و لینک کنه. اما قطعاً
+نیازی نیست که کدهای برنامه‌ش رو تغییر بده. در این صورت میگیم سازگاری
+ABI شکسته شده.</p>
+<p>حفظ سازگاری در سطح باینری یعنی که نسخهٔ جدید کتابخانه برای برنامه‌هایی
+که قبلاً بهش لینک کردند، &ndash; بدون نیاز به کامپایل مجدد &ndash; قابل استفاده
+است. حفظ سازگاری در سطح باینری اهمیت زیادی داره! چون معمولاً این نیاز
+وجود داره که پیش‌نیازهای برنامهٔ مشتری آپدیت بشن. یکی از سناریوهایی که
+خیلی زیاد پیش میاد آپدیت‌های امنیتی هستند. فرض کنید یک آسیب‌پذیری امنیتی
+در کتابخانهٔ شما پیدا شده باشه. این آسیب‌پذیری رو فیکس می‌کنید و در اسرع
+وقت برای تمام مشتری‌ها دپلوی می‌کنید. در این حین هیچ تغییری هم در سطح
+API انجام ندادید. تمام توابع به همان شکل قبلی، با همان آرگومان‌ها
+همچنان وجود دارند. حالا اگر موقع انجام این فیکس <strong>سازگاری عقبگرد
+باینری</strong> را رعایت نکرده باشید؛ دچار دردسر بسیار بزرگی خواهید شد: شما
+مجبور هستید تمام کدهای مشتری‌های کتابخانه رو مجدد کامپایل کنید. قطعاً به
+تعدادی از این سورس‌ها اصلا دسترسی ندارید و باید از مالکین سورس بخواهید
+که صرفاً برای فیکس کردن آسیب‌پذیری کتابخانهٔ شما، برنامهٔ خودشون رو مجدداً
+کامپایل و لینک کنند! اما اگر سازگاری باینری در کتابخانهٔ شما حفظ شده
+باشه، فقط کافیه کتابخانه رو جایگزین کنند. (مثلاً در مورد ویندوز این به
+معنی جایگزینی یک DLL بدون نیاز به کامپایل برنامهٔ اصلی است)</p>
+<h2 id="روشهای-حفظ-سازگاری-عقبگرد-باینری">روش‌های حفظِ سازگاریِ عقبگردِ باینری</h2>
+<p>برای تسهیل در حفظ این نوع سازگاری، تمهیدات مختلفی در نظر گرفته شده. از
+همه مهمتر قابلیت تولید <strong>کد قابل حمل</strong> است. این کار با استفاده از
+lookup table ها در زمان اجرا و با صرف هزینهٔ بسیار کم قابل انجام
+هست. در مورد لینوکس این یعنی اگر کتابخانهٔ اشتراکی می‌سازید، حتماً از فلگ
+‪<code>-fPIC</code>‬ استفاده کنید. (تقریباً تمام پکیج‌های مخازن این کار رو می‌کنند.)
+این باعث میشه که کد مستقل از آدرس تولید بشه. به طور خلاصه، یک GOT به
+کد تولید شده اضافه میکنه که آدرس‌ها رو براساس نام ذخیره می‌کنه. در صورت
+استفاده از این فلگ، اگر شما ترتیب توابع یک کلاس رو تغییر بدید، یا
+توابع جدیدی اضافه کنید؛ با وجود این که آدرس‌ها رو عوض کردید؛ سازگاری
+باینری از بین نمیره.</p>
+<p>اما استفاده از ‪<code>-fPIC</code>‬ تمام ماجرا نیست. حالت‌هایی وجود داره که شما
+مجبور به تغییر چینش حافظه هستید. مثلاً اضافه کردن یک عضو جدید به
+کلاس. این کار آدرس تمام متغیرها رو میتونه تغییر بده (اگه به اول کلاس
+اضافه کرده باشید). در این صورت کد کاربر مجبور به کامپایل مجدد هست. حتی
+اگر API هیچ تغییری نکرده باشه!</p>
+<h3 id="تکنیک-pimpl">تکنیک pimpl</h3>
+<p>روش pimpl (‫اشاره‌گر به پیاده‌سازی - Pointer to Implementation)‬ برای حفظ
+سازگاری باینری بسیار مؤثر است. با استفاده از این تکنیک میشه سازگاری رو
+برای سناریوهای گسترده‌ای به‌طور کامل حفظ کرد. یعنی اگر متغیر جدیدی به
+کلاس اضافه کنید، هیچ مشکلی برای کد کاربر پیش نمیاد. به عنوان یک اصل
+کلی، اگر برنامه‌نویس احتمال میده کدش در آینده تغییر کنه، باید حتماً از
+pimpl استفاده کنه.</p>
+<p>روش استفاده از این تکنیک به این صورت هست که شما تمام اعضای یک رابط
+(یعنی یک کلاس در APIی عمومی) را در یک کلاس غیررابط قرار داده و یک
+اشاره‌گر (چه ساده چه هوشمند) به کلاس دوم رو در کلاس اصلی قرار میدید.</p>
+<h4 id="یک-مثال-کاربردی">یک مثال کاربردی</h4>
+<p>برای درک بهتر موضوع یک مثال خیلی خیلی ساده می‌زنم که اول مشکل سازگاری
+باینری رو نشون میده و بعد راه حل pimpl رو توضیح میده. برای این کار
+کلاس ساده و معروف <code>person</code> را در نظر بگیرید. این کلاس فقط نام و نام
+خانوادگی یک فرد رو نگهداری می‌کنه:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>این کلاس رو مثل هر کتابخانهٔ معمولی در لینوکس کامپایل می‌کنیم. فقط دقت
+داریم که ‪<code>-fPIC</code>‬ رو فراموش نکنیم:</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">g++ -DLIBFOO_EXPORT -shared -fPIC -fvisibility=hidden -o libfoo.so ./libfoo.cpp</code></pre></div>
+<p>حالا یک برنامهٔ خیلی ساده می‌نویسیم که از این کتابخانه استفاده می‌کنه:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;libfoo.hpp&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">person</span> <span class="n">people</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">{{</span><span class="s">&#34;Dexter&#34;</span><span class="p">,</span> <span class="s">&#34;Fortescue&#34;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s">&#34;Armando&#34;</span><span class="p">,</span> <span class="s">&#34;Dippet&#34;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s">&#34;Albus&#34;</span><span class="p">,</span> <span class="s">&#34;Dumbldore&#34;</span><span class="p">}};</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+      
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>برنامه‌ای که نوشتیم (کد مشتری) رو کامپایل کرده و به کتابخانهٔ اصلی لینک
+می‌کنیم:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">g++ -o program ./main.cpp -L. -lfoo</code></pre></div>
+<p>خروجی‌ای که انتظار داریم بعد از اجرای برنامه ببینیم:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./program 
+Hello Dexter!
+Hello Armando!
+Hello Albus!
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">0</span></code></pre></div>
+<p>تا اینجای کار همه‌چیز به خوبی و خوشی جلو رفته. فرض می‌کنیم این نسخهٔ
+<code>2.1.4</code> از کتابخانهٔ ما (libfoo) هست. در نسخهٔ بعدی ما باید تغییراتی رو
+در کلاس <code>person</code> ایجاد کنیم. این تغییر شامل اضافه کردن سن فرد به این
+کلاس هست. طبق قواعد نسخه‌گذاری، از آنجایی که تغییرات ما سازگاری APIی
+برنامه رو نقض نکرده؛ شمارهٔ نسخهٔ جدید میشه <code>2.2.0</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+<span class="hl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span>  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="hl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span>  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="hl">  <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
+</span>  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>حالا به همان منوال قبلی کتابخانه رو کامپایل می‌کنیم. برنامهٔ کاربر هیچ
+اطلاعی از وجود age نداره و ازش استفاده‌ای هم نکرده. بخشی از API که کد
+کاربر از اون اطلاع داشته هیچ تغییری نکرده. بنابراین انتظار داریم
+برنامهٔ مقصد بدون هیچ تغییری به درستی کار کنه. اما اگر برنامه رو اجرا
+کنیم مشاهده می‌کنیم که کرش میکنه:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">free<span class="o">()</span>: invalid pointer
+Aborted <span class="o">(</span>core dumped<span class="o">)</span>
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">134</span></code></pre></div>
+<p>برای فهمیدن دلیل این اتفاق باید نگاهی به لی‌آوت آدرس‌های کتابخانه
+بیندازیم. اول نسخهٔ ابتدایی رو می‌بینیم:</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
+ 0 |   class std::__cxx11::basic_string&lt;char&gt; m_name
+32 |   class std::__cxx11::basic_string&lt;char&gt; m_last
+   | [sizeof=64, dsize=64, align=8,
+   |  nvsize=64, nvalign=8]</code></pre></div>
+<p>بعد از اضافه کردن متغیر age اما ساختار حافظه طبیعتاً متفاوت
+هست. آدرس‌های متغیرهای قبلی، یعنی <code>m_name</code> و <code>m_last</code> عوض شده:</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
+ 0 |   uint16_t m_age
+ 8 |   class std::__cxx11::basic_string&lt;char&gt; m_name
+40 |   class std::__cxx11::basic_string&lt;char&gt; m_last
+   | [sizeof=72, dsize=72, align=8,
+   |  nvsize=72, nvalign=8]</code></pre></div>
+<p>اما چرا کرش اتفاق می‌افته؟ اون هم با وجود این که هیچ عضوی از کلاس در کد
+کاربر به طور مستقیم استفاده نشده؟ دلیلش اینه که سایز کل کلاس تغییر
+کرده. بنابراین کد آزادسازی حافظه برای اون کلاس دیگه به درستی فراخوانی
+نمیشه. مثال‌های دیگری هم وجود داره. مثلا وقتی به اعضای کلاس از طریق
+توابعی در هدر دسترسی پیدا می‌کنیم. در این حالت مستقیماً خطای
+Segmentation Fault دریافت می‌کنیم و کار به Destructor نمی‌کشه. حتی
+حالت‌هایی وجود داره که API اصلاً تغییری نمی‌کنه اما ABI تغییر ناسازگار
+داره. مثلاً فرض کنید تابع ‪<code>age()</code>‬ رو اصلاً نیاز نداشتیم و تغییر صرفاً
+شامل اضافه کردن چند عضو جدید به کلاس می‌بود.</p>
+<h3 id="حل-مشکل-سازگاری-با-pimpl">حل مشکل سازگاری با pimpl</h3>
+<p>برای پیاده کردن تکنیک pimpl تعریف کلاس <code>person</code> رو به شکل زیر تغییر
+میدیم.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
+      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>توجه داشته باشید که می‌تونید به جای اشاره‌گر معمولی از اشاره‌گر هوشمند
+مثل <code>std::unique_ptr</code> هم استفاده کنید. همچنین می‌تونید پیاده‌سازی
+<code>details</code> رو به یک فایل دیگه (خارج از API) منتقل کنید. البته از آنجایی
+که سطح دسترسی <code>private</code> داره همین الانش هم داخل API عمومی نیست؛ با این
+حال اگر دوست داشته باشید می‌تونید خیلی راحت ببریدش داخل کدهایی که دیده
+از دید کاربر پنهان هست. مثلاً یک هدر مجزا برای خودش و یا ابتدای فایل
+cpp جاهای مناسبی هستند. اگر این کارها رو هم انجام بدیم کلاس ما به این
+شکل در میاد:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">struct</span> <span class="nc">details</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">details</span><span class="o">&gt;</span> <span class="n">m_impl</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>طبق روال قبل کتابخانه رو کامپایل و لینک می‌کنم. برنامهٔ کاربر رو هم با
+کتابخانهٔ جدید کامپایل کرده و لینک می‌کنیم. حالا ما یک نسخه‌ای از
+کتابخانه رو داریم که تکنیک pimpl رو پیاده‌سازی کرده. اگر به لی‌آوت
+حافظه‌ش نگاه کنیم متوجه میشیم که اثری از اعضای پیاده‌سازی وجود نداره و
+طبیعتاً فقط یک <strong>اشاره‌گر به پیاده‌سازی</strong> وجود داره:</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
+ 0 |   struct person::details * m_impl
+   | [sizeof=8, dsize=8, align=8,
+   |  nvsize=8, nvalign=8]</code></pre></div>
+<p>و طبیعتاً باید پیاده‌سازی توابع کلاس رو هم عوض کنیم طوری که به جای
+فراخوانی اعضای کلاس، اعضای اشاره‌گر رو استفاده کنه. یعنی مثلاً تابع
+‪<code>name()</code>‬ به این صورت در میاد:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">person</span><span class="o">::</span><span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_impl</span><span class="o">-&gt;</span><span class="n">m_name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>برنامهٔ کاربر با این نسخه کامپایل و لینک میشه.</p>
+<p>در ادامه میخواهیم نسخهٔ جدید رو دپلوی کنیم. طبق روال قبلی متغیر age رو
+&ndash; این بار به کلاس <code>details</code> &ndash; اضافه می‌کنیم. توابع عضو مثل قبل به
+کلاس اصلی‌مون اضافه میشه. در نهایت همچین چیزی خواهیم داشت (تغییرات
+علامت‌گذاری شده‌اند):</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="c1">// New members
+</span><span class="hl"><span class="c1"></span>  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span><span class="hl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span><span class="k">private</span><span class="o">:</span>
+  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
+<span class="hl">      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span><span class="hl">              <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span><span class="hl">              <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span><span class="hl">      <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
+</span>      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>همونطور که می‌بینید، دیگه نیازی نیست API سازندهٔ کلاس <code>details</code> رو حفظ
+کنیم (یعنی تابع سازندهٔ جدید اضافه کنیم) چون اصلا <code>details</code> بخشی از API
+کلاس ما محسوب نمیشه. حالا اگر لی‌آوت حافظهٔ کلاس جدید رو ببینیم، متوجه
+میشیم که هیچ تفاوتی نسبت به حالت قبلی نداره! بنابراین کاربر ما (صاحب
+برنامهٔ اصلی) می‌تونه به راحتی کتابخانه رو جایگزین کنه و بدون نیاز به
+کامپایل دوباره، برنامه‌ش بدون هیچ مشکلی اجرا میشه.</p>
+<h3 id="مزایا-و-معایب">مزایا و معایب</h3>
+<p>در مورد مزیت اصلی استفاده از pimpl توضیح دادم. اما باید به خاطر داشته
+باشیم که تکنیک pimpl علاوه‌بر مورد مذکور برای کاربردهای دیگری هم استفاده میشه.</p>
+<p>از جمله مزایای اصلی این روش میشه به این موارد اشاره کرد:</p>
+<ul>
+<li>
+<p><strong>تفکیک پیاده‌سازی:</strong> از جزئیات. این تکنیک سطح عمیق‌تری از مخفی‌سازی
+جزئیات برای طراحی ما فراهم می‌کنه. در مواردی میشه حتی پیش‌نیازهای
+داخلی رو با این روش مخفی کرد که البته از دید کاربر نهایی کتابخانه
+بسیار مطلوب هست.</p>
+</li>
+<li>
+<p><strong>بهبود زمان کامپایل:</strong> از اونجایی که کلاس اصلی جزئیاتش رو مخفی
+کرده، نیازی نداره اون‌ها رو ‪<code>#include</code>‬ بکنه. بنابراین مشتری‌های این
+کلاس هم نیازی به دانستن جزئیات تایپ‌های عضو ندارند. در حالت کلی حجم
+کلاس پیش‌پردازش شده با استفاده از pimpl و forward declare کردن کلاس
+جزئیات میتونه کمتر بشه.</p>
+</li>
+</ul>
+<p>معایب خاصی هم برای روش pimpl ذکر شده که مختصر اشاره می‌کنم:</p>
+<ul>
+<li>
+<p><strong>پیچیدگی پیاده‌سازی:</strong> زمانی که از pimpl استفاده می‌کنید احتمالاً نیاز
+هست که copy constructor و move constructor و البته سازنده و مخرب
+غیرپیش‌فرض را هم پیاده‌سازی بکنید. اپراتورهای انتساب (انواع =) رو هم
+نباید فراموش کرد! از منظر پیاده‌سازی، اضافه کردن pimpl دردسرهایی این
+شکلی برای برنامه‌نویس ایجاد می‌کنه و کد رو پیچیده‌تر می‌کنه.</p>
+</li>
+<li>
+<p><strong>کارایی:</strong> با استفاده از این تکنیک، برای دسترسی به اعضای داخلی کلاس
+یک لایهٔ اضافی در ارجاع به وجود میاد. لازم به ذکر هست که این مرحلهٔ
+اضافی با توجه به ثابت بودن اشاره‌گر در طول اجرا، توسط کامپایلرهای
+امروزی تقریباً به طور کامل بهینه‌سازی میشه و حتی اگر بهینه نشه، پردازش
+قابل توجهی از برنامه نمیگیره.</p>
+</li>
+</ul>
+<h3 id="چند-نکته">چند نکته!</h3>
+<p>باید حتماً توجه داشته باشید که تکنیک اضافه کردن pimpl به‌صورت جادویی
+مشکلات کتابخانهٔ شما رو حل نمی‌کنه. در خیلی از موارد اگر طراحی ابتدایی
+کلاس مشکل داشته باشه، باید API و یا ABI رو عوض کنید. همیشه باید هزینهٔ
+اضافه کردن pimpl رو هم درنظر بگیرید. اگر کد شما تعداد کاربران خیلی
+زیادی نداره، هزینهٔ اضافه کردن pimpl ممکنه بیشتر از سود حفظ ABI
+باشه. این رو باید همیشه محاسبه کنید.</p>
+<p>همیشه باید موقع طراحی این اصل رو به خاطر داشته باشید که طراحی شما
+ممکنه در آینده عوض بشه. اگر تعداد کاربران زیادی دارید این قضیه می‌تونه
+مشکل جدی ایجاد کنه. در این مواقع pimpl میتونه خیلی کمک بزرگی باشه.</p>
+<p>برنامه‌نویس‌های حرفه‌ای گاهی بدون این که نیازی وجود داشته باشه یک اشاره‌گر
+خالی رو داخل کلاس قرار میدن. (مثلا به‌صورت یک اشاره‌گر به کلاس
+forward-declared) این کار صرفاً به این دلیل هست که احتمال میدن در آینده
+طراحی کلاس و ساختار حافظه‌ش عوض بشه.</p>
+<p>نکتهٔ بعدی این که دلیلی وجود نداره که تمام اعضای کلاس رو داخل پیاده‌سازی
+پنهان کنید. شما می‌تونید یک تعدادی عضو (که می‌دونید هیچوقت تغییر
+نمی‌کنند) رو به‌شکل مستقیم داخل کلاس قرار بدید، و در ادامه یک اشاره‌گر به
+پیاده‌سازی هم قرار بدهید.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

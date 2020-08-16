@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PIMPL idiom in C&#43;&#43; &middot; The Bored Octopus</title>
+
+    
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/hyde.css">
+  <link type="text/css" rel="stylesheet" href="https://soroush.github.io/en/css/fontello.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG">
+</script> 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+    }
+    }
+});
+</script> 
+
+
+
+
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky-top">
+    <div class="sidebar-about">
+       <img style="border-radius:50%; background:#fafafa" src="https://soroush.github.io/en//static/images/octo.svg" alt="Avatar">
+    </div>
+  </div>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://soroush.github.io/en/"><h1>The Bored Octopus</h1></a>
+      <p class="lead">
+       Notes on Life and Engineering 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://github.com/soroush/">&#x202d;<i class="icon-github-circled"></i>soroush&#x202c;</a></li>
+        
+      </ul>
+    </nav>
+
+    <p><a href="https://soroush.github.io/fa/">[فارسی]</a> <a href="https://soroush.github.io/en/">[English]</a> </p>
+    <p>All rights reserved.</p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post"><h1>PIMPL idiom in C&#43;&#43;</h1><time datetime="2020-08-13T00:00:00Z" class="post-date">Thu, Aug 13, 2020</time><p>Developers working on a &ldquo;software library&rdquo; in C++ (or any other
+native language) should follow a set of critically important rules, or
+their customers will soon be in trouble using their product. Some of
+these rules are for example
+<strong><a href="https://semver.org/">Semantic Versioning</a></strong>, <strong>Good API Design</strong>
+and <strong>Keeping Backward Compatibility</strong>. The later one has many aspects
+and requires its detailed post. In this post, I will discuss one of
+the vastly used techniques in C++ which helps developers to keep
+<strong>Backward Compatibility</strong> in binary (ABI) level.</p>
+<h2 id="what-is-backward-compatibility">What is Backward Compatibility?</h2>
+<p>Backward Compatibility is a promise made by the creator of an
+interface. Briefly speaking, it means that the newer version of a
+product (which expose and interface) is still applicable for all users
+of the older versions. The term has been widely used to describe
+properties of various systems, especially in telecommunications and
+computing. As an example, consider the
+<strong><a href="https://en.wikipedia.org/wiki/USB">Universal Serial Bus</a></strong>
+protocol. A host that implements USB 3.0 will work properly with older
+gadgets that implement USB 2.0 or 1.1.</p>
+<p>Speaking of native libraries written in C++, there are several aspects
+of backward compatibility. Most commonly source compatibility (in API
+level) and binary compatibility (ABI) are considered.</p>
+<p>On the source level, BC usually means to follow proper versioning
+rules. That is, for example, a software that links against version
+1.2.3 of a library, should be able to link as well to version 1.2.4 or
+1.3.0 of it. According to the semantic versioning rules, as long as
+the MAJOR version number (first digit) is not changed, backward
+compatibility is present. API compatibility guarantees that the client
+source does not need any modification to use the compatible new
+version. Though it does not mean that the binary artefacts are
+interchangeable. One may be or be not able to use the new library as a
+drop-in replacement for the older version. That points us to the ABI
+compatibility. If ABI compatibility is broken, then the client needs
+to re-compile and link against the new version, even though they have
+not changed a single line of their code.</p>
+<p>Binary compatibility promise guarantees that a newer version of a
+library is a drop-in replacement for the older one, and the client
+code does not need to re-compile. This kind of BC is of grave
+importance! Because there are many scenarios in which the lack of ABI
+BC will cause great trouble. Consider for example security
+updates. Let&rsquo;s assume a vulnerability is found in your
+library. Naturally, you fix the bug as soon as possible &ndash;while
+keeping API intact&ndash; then deploy your changes. If you fail to keep ABI
+compatible with the previous version, you&rsquo;ll be in big trouble. You
+will have to re-compile the entire code base that links against your
+library. Most probably, you don&rsquo;t own all of the client codes, so you
+will have to ask them to re-compile their code, just to adapt your
+tiny little fix! But if you keep ABI intact, then the update is merely
+replacing a binary in the customer site. (That is to replace a DLL
+file in Windows for example)</p>
+<h3 id="methods-of-keeping-abi-backwards-compatible">Methods of Keeping ABI Backwards Compatible</h3>
+<p>There are several ways to make it easier to keep BC promises on ABI
+level. Most important one is to produce Position Independent
+Code. This could be done by adding a lookup table (GOT) and calculate
+function addresses at runtime before calling them. This way if one
+re-orders member functions of a class or add new ones, they can keep
+backward compatibility (despite the fact that the actual addresses
+have been changed already). In Linux-like systems, adding <code>-fPIC</code> flag
+to compiler produces position independent code. That is useful
+especially when building shared libraries. In fact, almost all shared
+libraries in common repositories do this.</p>
+<p>Though using <code>-fPIC</code> is not the whole story. There exists situations
+in which you will have to modify memory layout of an existing
+class. One for example is to add a new member variable. That will
+change all addresses if you add it to the beginning of the members
+list.</p>
+<h3 id="pimpl-idiom">PIMPL Idiom</h3>
+<p><strong>Pointer to Implementation</strong> (pimpl) is a programming technique that
+helps developers to preserve ABI across versions. Using pimpl enables
+developers to keep ABI BC in a vast variety of scenarios. That means
+using this method, you may add as many new members you need the ABI
+will remain intact.</p>
+<p>In order to use pimpl idiom, you must put all of the member variables
+of the class, that could be subject to change in the future versions,
+inside a non-API class / struct; then point to an instance of it on
+the heap (using either a raw or smart pointer). Let&rsquo;s have a look at
+an example (:</p>
+<h4 id="a-simple-example">A Simple Example</h4>
+<p>Let&rsquo;s have a look at a simple example to see how the pimpl can help to
+preserve BC. This example shows what the problem is with breaking BC
+and how to fix it using the pimpl idiom. To do so, I will introduce a
+very simple class named <code>person</code> which keeps name and last name for an
+individual, and does nothing else. For the sake of simplicity I have
+removed many details like symbol exporter <code>#define</code>, modifiers,
+etc. So our little class looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Like any common shared library in Linux, I am going to compile it with
+gcc, adding <code>-fPIC</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">g++ -DLIBFOO_EXPORT -shared -fPIC -fvisibility=hidden -o libfoo.so ./libfoo.cpp</code></pre></div>
+<p>To demonstrate how BC works, I am also going to need a simple program
+that uses this library. Let me write it like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;libfoo.hpp&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">person</span> <span class="n">people</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">{{</span><span class="s">&#34;Dexter&#34;</span><span class="p">,</span> <span class="s">&#34;Fortescue&#34;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s">&#34;Armando&#34;</span><span class="p">,</span> <span class="s">&#34;Dippet&#34;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s">&#34;Albus&#34;</span><span class="p">,</span> <span class="s">&#34;Dumbldore&#34;</span><span class="p">}};</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+      
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This program can be considered as <strong>client&rsquo;s code</strong>, which uses our
+library. To compile and link it the customer may invoke this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">g++ -o program ./main.cpp -L. -lfoo</code></pre></div>
+<p>So the output user expects from the program is like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./program 
+Hello Dexter!
+Hello Armando!
+Hello Albus!
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">0</span></code></pre></div>
+<p>Everything looks fine. Let&rsquo;s assume this is the version <code>2.1.4</code> of the
+libfoo and in the next version, we are required to keep age of the
+individuals. So we are going to modify <code>person</code> class and add member
+variables accordingly. This change is not a breaking change in API
+level. So the new version number will be <code>2.2.0</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+<span class="hl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span>  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="hl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span>  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="hl">  <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
+</span>  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>So I am going to compile the library as before. The client code has no
+information about the change and has no way to know about <code>age</code>
+variable. The part of API that client has been aware of, has not
+changed at all. All functions, the constructor and members, from an
+API point of view is the same as before. So we would expect the code
+to run properly with no change. Sadly that&rsquo;s not the case. Now if I
+try to run client&rsquo;s software, it will crash:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">free<span class="o">()</span>: invalid pointer
+Aborted <span class="o">(</span>core dumped<span class="o">)</span>
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">134</span></code></pre></div>
+<p>To see why this happens, we must take a look at the memory layout of
+objects in use. First let&rsquo;s see initial version of the library
+(<code>2.1.4</code>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
+ 0 |   class std::__cxx11::basic_string&lt;char&gt; m_name
+32 |   class std::__cxx11::basic_string&lt;char&gt; m_last
+   | [sizeof=64, dsize=64, align=8,
+   |  nvsize=64, nvalign=8]</code></pre></div>
+<p>After adding <code>age</code>, we can observe how memory layout has changed. The
+address of <code>m_name</code> and <code>m_last</code> now differ:</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
+ 0 |   uint16_t m_age
+ 8 |   class std::__cxx11::basic_string&lt;char&gt; m_name
+40 |   class std::__cxx11::basic_string&lt;char&gt; m_last
+   | [sizeof=72, dsize=72, align=8,
+   |  nvsize=72, nvalign=8]</code></pre></div>
+<p>But why crash happens? Although no member variable has been used
+directly by the client code, and the fact that the library is a
+position-independent code, one may expect the client code to work with
+the new version. The reason for this behaviour is the ABI break caused
+by different sizes of the class. The stack on the client-side is now
+corrupted and destructor call for <code>people</code> will corrupt memory. There
+are other examples we can demonstrate that clients code will directly
+segfault instead. There exist even more complicated situations in
+which there is absolutely no change on the API but the ABI breaks.</p>
+<h3 id="fix-abi-breaks-using-pimpl">Fix ABI breaks using PIMPL</h3>
+<p>In order to implement PIMPL idiom, we&rsquo;ll need to change the <code>person</code>
+class like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
+      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>You can use smart pointers like <code>std::uniqur_ptr</code> instead of raw
+pointers. Also, you may move the definition of <code>details</code> to another
+domain, like a non-API header or the beginning of the source file as
+well. That would provide a stronger level of encapsulation and
+separation of implementation. Note that <code>details</code> already is out of
+public API since it has private access level. If you do apply both
+aforementioned changes, the final class would look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">struct</span> <span class="nc">details</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">details</span><span class="o">&gt;</span> <span class="n">m_impl</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Let&rsquo;s go ahead and compile our new PIMPL-ready library and also the
+client&rsquo;s code. Now we have a version of the library which provides an
+ABI, resilient to changes. The memory layout now looks like the below
+code. We can observe that the layout includes only a <strong>pointer to
+implementation</strong>. There is no trace of any data whatsoever.</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
+ 0 |   struct person::details * m_impl
+   | [sizeof=8, dsize=8, align=8,
+   |  nvsize=8, nvalign=8]</code></pre></div>
+<p>Obviously, we must also modify the implementation details. Now all
+functions need to pass an extra level of indirection to access
+underlying data. For example <code>name()</code> would look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">person</span><span class="o">::</span><span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_impl</span><span class="o">-&gt;</span><span class="n">m_name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then client codes compiles and links against libfoo just like before.</p>
+<p>Now, let&rsquo;s say we need to deploy a new version of libfoo containing
+<code>age</code>. We will need to add a variable to <code>details</code> class, then update
+our API accordingly. The code for new version of <code>person</code> class will
+look like this (changes are highlighted):</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="c1">// New members
+</span><span class="hl"><span class="c1"></span>  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span><span class="hl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span><span class="hl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span><span class="k">private</span><span class="o">:</span>
+  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
+<span class="hl">      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span><span class="hl">              <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span><span class="hl">              <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span><span class="hl">      <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
+</span>      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Note that there is no need to keep API of <code>details</code> compatible,
+meaning no new constructor is needed. That is because <code>details</code> is not
+part of libfoo&rsquo;s public API, so we can break things as we like. Now if
+we look at the memory layout of new version, we can observe that it is
+exactly same as the previous one. So the client&rsquo;s program, can use
+this new library without a re-compile. They just need to replace
+libfoo&rsquo;s binary artefact with its predecessor. We already did exactly
+that by re-compiling the library (which replaces <code>libfoo.so</code>).</p>
+<h3 id="pros-and-cons">Pros and Cons</h3>
+<p>Besides easing BC of ABI, using PIMPL idiom is beneficial in some
+other ways. Amongst pros of PIMPL-enabled classes are:</p>
+<ul>
+<li>
+<p><strong>Interface Segregation:</strong> PIMPL provides a better encapsulation of
+data, since it hides entire implementation details from public
+API. Using PIMPL one can even hide some dependencies, which is
+useful for the client.</p>
+</li>
+<li>
+<p><strong>Compile Time Improvement:</strong> Since the main class hides its
+implementation details, it does not need to <code>#include</code> their
+details. Therefore client&rsquo;s code can be spared of having some
+unnecessary details in its domain. Size of a PIMPL-enabled header
+file after pre-processing can be significantly reduced with forward
+declaring type information; resulting in better compile time.</p>
+</li>
+</ul>
+<p>As a fundamental rule of Theory of Information, there exist no
+cost-free abstraction, right? PIMPL adds another layer of
+indirection. So let&rsquo;s see what is the cost:</p>
+<ul>
+<li>
+<p><strong>Development Effort:</strong> Using PIMPL in most cases requires
+a non-default deconstructor, copy and move constructors and their
+corresponding assignment operators. In terms of development effort,
+PIMPL adds a cost.</p>
+</li>
+<li>
+<p><strong>Performance:</strong> As mentioned before, PIMPL adds a level of
+indirection. However, since the pointer to details has a lifetime
+bound to the actual instance&rsquo;s lifetime, most compilers can optimise
+away de-reference cost to it. Using PIMPL also moves data away from
+it&rsquo;s creation point (onto heap memory actually) probably resulting
+in less cache-friendly code.</p>
+</li>
+</ul>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>You must note that adding PIMPL does not resolve your library&rsquo;s
+problems automagically! You can not apply PIMPL to a non-PIMPL class
+without actually breaking ABI. Also, there are situations in which you
+have no other way than breaking ABI to provide a feature or fix a bug.</p>
+<p>If your library has a huge user base, then PIMPL can be a
+saviour. Otherwise, it may even not worth the effort, for example, to
+keep ABI intact for an in-house tool or a very specific library for
+your teammates in your company. Some developers add an empty raw
+pointer (a <code>void*</code> or a pointer to a forward-declared, non-existing
+type) just in case. That&rsquo;s considered good practice.</p>
+<p>Final point is that there is no reason to have all members be hidden
+in implementation details. You can always have members which are not
+subject to change, alongside with a pointer to implementation details.</p></div><h2>Comments</h2><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "khtpws-khsth" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+  </body>
+</html>

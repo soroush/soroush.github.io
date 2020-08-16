@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://soroush.github.io/en/220/08/13/pimpl-idiom-in-cpp/</loc>
+    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://soroush.github.io/en/post/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fa"
@@ -18,13 +23,8 @@
   </url>
   
   <url>
-    <loc>https://soroush.github.io/en/2020/08/06/pure-functions-in-cpp/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://soroush.github.io/en/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fa"
@@ -35,6 +35,11 @@
                 hreflang="en"
                 href="https://soroush.github.io/en/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://soroush.github.io/en/2020/08/06/pure-functions-in-cpp/</loc>
+    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
