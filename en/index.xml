@@ -12,10 +12,10 @@
     
     <item>
       <title>PIMPL idiom in C&#43;&#43;</title>
-      <link>https://soroush.github.io/en/220/08/13/pimpl-idiom-in-cpp/</link>
+      <link>https://soroush.github.io/en/2020/08/13/pimpl-idiom-in-cpp/</link>
       <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://soroush.github.io/en/220/08/13/pimpl-idiom-in-cpp/</guid>
+      <guid>https://soroush.github.io/en/2020/08/13/pimpl-idiom-in-cpp/</guid>
       <description>&lt;p&gt;Developers working on a &amp;ldquo;software library&amp;rdquo; in C++ (or any other
 native language) should follow a set of critically important rules, or
 their customers will soon be in trouble using their product. Some of
