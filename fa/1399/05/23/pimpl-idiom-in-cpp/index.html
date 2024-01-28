@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,89 +145,86 @@ pimpl استفاده کنه.</p>
 باینری رو نشون میده و بعد راه حل pimpl رو توضیح میده. برای این کار
 کلاس ساده و معروف <code>person</code> را در نظر بگیرید. این کلاس فقط نام و نام
 خانوادگی یک فرد رو نگهداری می‌کنه:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
-  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="k">private</span><span class="o">:</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div>
 <p>این کلاس رو مثل هر کتابخانهٔ معمولی در لینوکس کامپایل می‌کنیم. فقط دقت
 داریم که ‪<code>-fPIC</code>‬ رو فراموش نکنیم:</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">g++ -DLIBFOO_EXPORT -shared -fPIC -fvisibility=hidden -o libfoo.so ./libfoo.cpp</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">g++ -DLIBFOO_EXPORT -shared -fPIC -fvisibility=hidden -o libfoo.so ./libfoo.cpp</span></span></code></pre></div>
 <p>حالا یک برنامهٔ خیلی ساده می‌نویسیم که از این کتابخانه استفاده می‌کنه:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;libfoo.hpp&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="n">person</span> <span class="n">people</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">{{</span><span class="s">&#34;Dexter&#34;</span><span class="p">,</span> <span class="s">&#34;Fortescue&#34;</span><span class="p">},</span>
-                    <span class="p">{</span><span class="s">&#34;Armando&#34;</span><span class="p">,</span> <span class="s">&#34;Dippet&#34;</span><span class="p">},</span>
-                    <span class="p">{</span><span class="s">&#34;Albus&#34;</span><span class="p">,</span> <span class="s">&#34;Dumbldore&#34;</span><span class="p">}};</span>
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
-      
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;libfoo.hpp&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">person</span> <span class="n">people</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">{{</span><span class="s">&#34;Dexter&#34;</span><span class="p">,</span> <span class="s">&#34;Fortescue&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span><span class="s">&#34;Armando&#34;</span><span class="p">,</span> <span class="s">&#34;Dippet&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span><span class="s">&#34;Albus&#34;</span><span class="p">,</span> <span class="s">&#34;Dumbldore&#34;</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 <p>برنامه‌ای که نوشتیم (کد مشتری) رو کامپایل کرده و به کتابخانهٔ اصلی لینک
 می‌کنیم:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">g++ -o program ./main.cpp -L. -lfoo</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">g++ -o program ./main.cpp -L. -lfoo</span></span></code></pre></div>
 <p>خروجی‌ای که انتظار داریم بعد از اجرای برنامه ببینیم:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./program 
-Hello Dexter!
-Hello Armando!
-Hello Albus!
-$ <span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">0</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ./program 
+</span></span><span class="line"><span class="cl">Hello Dexter!
+</span></span><span class="line"><span class="cl">Hello Armando!
+</span></span><span class="line"><span class="cl">Hello Albus!
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="m">0</span></span></span></code></pre></div>
 <p>تا اینجای کار همه‌چیز به خوبی و خوشی جلو رفته. فرض می‌کنیم این نسخهٔ
 <code>2.1.4</code> از کتابخانهٔ ما (libfoo) هست. در نسخهٔ بعدی ما باید تغییراتی رو
 در کلاس <code>person</code> ایجاد کنیم. این تغییر شامل اضافه کردن سن فرد به این
 کلاس هست. طبق قواعد نسخه‌گذاری، از آنجایی که تغییرات ما سازگاری APIی
 برنامه رو نقض نکرده؛ شمارهٔ نسخهٔ جدید میشه <code>2.2.0</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
-<span class="hl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
-</span><span class="hl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
-</span><span class="hl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
-</span>  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-<span class="hl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-</span>  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="k">private</span><span class="o">:</span>
-<span class="hl">  <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
-</span>  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span></span><span class="line hl"><span class="cl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span></span><span class="line hl"><span class="cl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line hl"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div>
 <p>حالا به همان منوال قبلی کتابخانه رو کامپایل می‌کنیم. برنامهٔ کاربر هیچ
 اطلاعی از وجود age نداره و ازش استفاده‌ای هم نکرده. بخشی از API که کد
 کاربر از اون اطلاع داشته هیچ تغییری نکرده. بنابراین انتظار داریم
 برنامهٔ مقصد بدون هیچ تغییری به درستی کار کنه. اما اگر برنامه رو اجرا
 کنیم مشاهده می‌کنیم که کرش میکنه:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">free<span class="o">()</span>: invalid pointer
-Aborted <span class="o">(</span>core dumped<span class="o">)</span>
-$ <span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">134</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">free<span class="o">()</span>: invalid pointer
+</span></span><span class="line"><span class="cl">Aborted <span class="o">(</span>core dumped<span class="o">)</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="m">134</span></span></span></code></pre></div>
 <p>برای فهمیدن دلیل این اتفاق باید نگاهی به لی‌آوت آدرس‌های کتابخانه
 بیندازیم. اول نسخهٔ ابتدایی رو می‌بینیم:</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
- 0 |   class std::__cxx11::basic_string&lt;char&gt; m_name
-32 |   class std::__cxx11::basic_string&lt;char&gt; m_last
-   | [sizeof=64, dsize=64, align=8,
-   |  nvsize=64, nvalign=8]</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl"> 0 | class person
+</span></span><span class="line"><span class="cl"> 0 |   class std::__cxx11::basic_string&lt;char&gt; m_name
+</span></span><span class="line"><span class="cl">32 |   class std::__cxx11::basic_string&lt;char&gt; m_last
+</span></span><span class="line"><span class="cl">   | [sizeof=64, dsize=64, align=8,
+</span></span><span class="line"><span class="cl">   |  nvsize=64, nvalign=8]</span></span></code></pre></div>
 <p>بعد از اضافه کردن متغیر age اما ساختار حافظه طبیعتاً متفاوت
 هست. آدرس‌های متغیرهای قبلی، یعنی <code>m_name</code> و <code>m_last</code> عوض شده:</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
- 0 |   uint16_t m_age
- 8 |   class std::__cxx11::basic_string&lt;char&gt; m_name
-40 |   class std::__cxx11::basic_string&lt;char&gt; m_last
-   | [sizeof=72, dsize=72, align=8,
-   |  nvsize=72, nvalign=8]</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl"> 0 | class person
+</span></span><span class="line"><span class="cl"> 0 |   uint16_t m_age
+</span></span><span class="line"><span class="cl"> 8 |   class std::__cxx11::basic_string&lt;char&gt; m_name
+</span></span><span class="line"><span class="cl">40 |   class std::__cxx11::basic_string&lt;char&gt; m_last
+</span></span><span class="line"><span class="cl">   | [sizeof=72, dsize=72, align=8,
+</span></span><span class="line"><span class="cl">   |  nvsize=72, nvalign=8]</span></span></code></pre></div>
 <p>اما چرا کرش اتفاق می‌افته؟ اون هم با وجود این که هیچ عضوی از کلاس در کد
 کاربر به طور مستقیم استفاده نشده؟ دلیلش اینه که سایز کل کلاس تغییر
 کرده. بنابراین کد آزادسازی حافظه برای اون کلاس دیگه به درستی فراخوانی
@@ -240,21 +237,20 @@ Segmentation Fault دریافت می‌کنیم و کار به Destructor نمی
 <h3 id="حل-مشکل-سازگاری-با-pimpl">حل مشکل سازگاری با pimpl</h3>
 <p>برای پیاده کردن تکنیک pimpl تعریف کلاس <code>person</code> رو به شکل زیر تغییر
 میدیم.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
-  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="k">private</span><span class="o">:</span>
-  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
-      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
-  <span class="p">};</span>
-  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div>
 <p>توجه داشته باشید که می‌تونید به جای اشاره‌گر معمولی از اشاره‌گر هوشمند
 مثل <code>std::unique_ptr</code> هم استفاده کنید. همچنین می‌تونید پیاده‌سازی
 <code>details</code> رو به یک فایل دیگه (خارج از API) منتقل کنید. البته از آنجایی
@@ -263,61 +259,58 @@ Segmentation Fault دریافت می‌کنیم و کار به Destructor نمی
 از دید کاربر پنهان هست. مثلاً یک هدر مجزا برای خودش و یا ابتدای فایل
 cpp جاهای مناسبی هستند. اگر این کارها رو هم انجام بدیم کلاس ما به این
 شکل در میاد:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
-  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="k">private</span><span class="o">:</span>
-  <span class="k">struct</span> <span class="nc">details</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">details</span><span class="o">&gt;</span> <span class="n">m_impl</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="nc">details</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">details</span><span class="o">&gt;</span> <span class="n">m_impl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div>
 <p>طبق روال قبل کتابخانه رو کامپایل و لینک می‌کنم. برنامهٔ کاربر رو هم با
 کتابخانهٔ جدید کامپایل کرده و لینک می‌کنیم. حالا ما یک نسخه‌ای از
 کتابخانه رو داریم که تکنیک pimpl رو پیاده‌سازی کرده. اگر به لی‌آوت
 حافظه‌ش نگاه کنیم متوجه میشیم که اثری از اعضای پیاده‌سازی وجود نداره و
 طبیعتاً فقط یک <strong>اشاره‌گر به پیاده‌سازی</strong> وجود داره:</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain"> 0 | class person
- 0 |   struct person::details * m_impl
-   | [sizeof=8, dsize=8, align=8,
-   |  nvsize=8, nvalign=8]</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl"> 0 | class person
+</span></span><span class="line"><span class="cl"> 0 |   struct person::details * m_impl
+</span></span><span class="line"><span class="cl">   | [sizeof=8, dsize=8, align=8,
+</span></span><span class="line"><span class="cl">   |  nvsize=8, nvalign=8]</span></span></code></pre></div>
 <p>و طبیعتاً باید پیاده‌سازی توابع کلاس رو هم عوض کنیم طوری که به جای
 فراخوانی اعضای کلاس، اعضای اشاره‌گر رو استفاده کنه. یعنی مثلاً تابع
 ‪<code>name()</code>‬ به این صورت در میاد:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">person</span><span class="o">::</span><span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">m_impl</span><span class="o">-&gt;</span><span class="n">m_name</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">person</span><span class="o">::</span><span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">m_impl</span><span class="o">-&gt;</span><span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 <p>برنامهٔ کاربر با این نسخه کامپایل و لینک میشه.</p>
 <p>در ادامه میخواهیم نسخهٔ جدید رو دپلوی کنیم. طبق روال قبلی متغیر age رو
 &ndash; این بار به کلاس <code>details</code> &ndash; اضافه می‌کنیم. توابع عضو مثل قبل به
 کلاس اصلی‌مون اضافه میشه. در نهایت همچین چیزی خواهیم داشت (تغییرات
 علامت‌گذاری شده‌اند):</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
-  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-  <span class="c1">// New members
-</span><span class="hl"><span class="c1"></span>  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
-</span><span class="hl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
-</span><span class="hl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
-</span><span class="hl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-</span><span class="k">private</span><span class="o">:</span>
-  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
-<span class="hl">      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
-</span><span class="hl">              <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
-</span><span class="hl">              <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
-</span><span class="hl">      <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
-</span>      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
-  <span class="p">};</span>
-  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LIBFOO_API</span> <span class="n">person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">last</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// New members
+</span></span></span><span class="line hl"><span class="cl"><span class="c1"></span>  <span class="n">person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span></span><span class="line hl"><span class="cl">         <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span></span><span class="line hl"><span class="cl">         <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="kt">uint16_t</span> <span class="nf">age</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="nc">details</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">      <span class="n">details</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> 
+</span></span><span class="line hl"><span class="cl">              <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">last</span><span class="p">,</span> 
+</span></span><span class="line hl"><span class="cl">              <span class="k">const</span> <span class="kt">uint16_t</span> <span class="n">age</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">      <span class="kt">uint16_t</span> <span class="n">m_age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="n">details</span><span class="o">*</span> <span class="n">m_impl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div>
 <p>همونطور که می‌بینید، دیگه نیازی نیست API سازندهٔ کلاس <code>details</code> رو حفظ
 کنیم (یعنی تابع سازندهٔ جدید اضافه کنیم) چون اصلا <code>details</code> بخشی از API
 کلاس ما محسوب نمیشه. حالا اگر لی‌آوت حافظهٔ کلاس جدید رو ببینیم، متوجه
@@ -379,7 +372,7 @@ forward-declared) این کار صرفاً به این دلیل هست که اح
 نمی‌کنند) رو به‌شکل مستقیم داخل کلاس قرار بدید، و در ادامه یک اشاره‌گر به
 پیاده‌سازی هم قرار بدهید.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

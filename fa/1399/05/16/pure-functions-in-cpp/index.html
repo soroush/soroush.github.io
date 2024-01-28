@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,10 +89,9 @@ MathJax.Hub.Config({
 کد فراخوانیِ تابع جایگزین کرد.</p>
 <p>برای مثال تابع pow2 رو درنظر بگیرید. این تابع بسیار ساده
 است، صرفاً یک عدد میگیره و توان دوم اون رو برمیگردونه:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> 
-    <span class="n">retutn</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> 
-<span class="p">}</span>
-</code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">retutn</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 به‌طور مشخص این تابع یک تابع سره است. یعنی شما هر جای برنامه می‌تونید
 ‪<code>pow2(5)</code>‬
 رو با نتیجه، یعنی <code>25</code>، جایگزین کنید. این ویژگی برای بهینه‌سازی بسیار مفید
@@ -104,14 +103,13 @@ MathJax.Hub.Config({
 <h2 id="بررسی-شفافیت-ارجاع-در-c">بررسی شفافیت ارجاع در ‪C++‬</h2>
 <p>برای این که ببینیم شفافیت ارجاع در ‪C++‬ وجود نداره، نتیجهٔ خروجی کامپایل کد
 برای همین تابع سادهٔ توان دو رو بررسی می‌کنیم. خروجی اسمبلی کد پایین رو ملاحظه کنید:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
-<span class="c1">// ... 
-</span><span class="c1"></span><span class="kt">double</span> <span class="nf">caller</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">const</span> <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
-    <span class="k">const</span> <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ... 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">caller</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 <p>این کد با gcc نسخهٔ ۱۰ و با آخرین درجهٔ بهینه‌سازی (‪<code>-O3</code>‬) کامپایل شده.
 قبل از این که خودتون بخواهید این رو تست کنید باید اشاره کنم که حتما باید
 پیاده‌سازی تابع <code>pow2</code> خارج از برنامه باشه. مثلاً توی یک کتابخونه یا آبجکت
@@ -119,51 +117,50 @@ MathJax.Hub.Config({
 میشه (: بنابراین ما فرض می‌کنیم در لحظهٔ کامپایل؛ کامپایلر ما اطلاعی از پیاده‌سازی تابع
 <code>pow2</code>
 نداره. خروجی اسمبلی تابع <code>caller</code> رو مشاهده کنید:</p>
-<div class="highlight"><pre class="chroma"><code class="language-tasm" data-lang="tasm"><span class="nf">caller</span><span class="p">():</span>
-  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
-  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
-<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
-</span>  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm0</span>
-  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
-<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
-</span>  <span class="nf">movsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
-  <span class="nf">addsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="nv">xmm0</span>
-  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
-  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm1</span>
-<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
-</span>  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nv">xmm0</span>
-  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
-<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
-</span>  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span>
-  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
-  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
-  <span class="nf">ret</span>
-<span class="nl">.LC0:</span>
-  <span class="nf">.long</span>   <span class="mi">0</span>
-  <span class="nf">.long</span>   <span class="mi">1075052544</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tasm" data-lang="tasm"><span class="line"><span class="cl"><span class="nf">caller</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">addsd</span>   <span class="nv">xmm1</span><span class="p">,</span> <span class="nv">xmm0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">],</span> <span class="nv">xmm1</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nv">xmm0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">24</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ret</span>
+</span></span><span class="line"><span class="cl"><span class="nl">.LC0:</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">.long</span>   <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">.long</span>   <span class="mi">1075052544</span></span></span></code></pre></div>
 <p>همونطور که دیده میشه، <code>pow2</code> چهار بار فراخوانی شده. (خط‌هایی که علامت زده
 شده) در حالی که فقط یک بار کافی بود. خوشبختانه امکاناتی برای بهینه‌سازی این
 وضعیت وجود داره.</p>
 <h2 id="اعلان-توابع-سره">اعلان توابع سره</h2>
 <p>در ‪g++‬ و clang میشه تابع رو به روش زیر به‌صورت محض اعلان کرد:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="na">[[gnu::pure]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="na">[[gnu::pure]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span></span></span></code></pre></div>
 <p>اضافه کردن ویژگی <code>pure</code> به تابع، به کامپایلر اعلام می‌کنه که تابع قرار نیست
 وضعیت برنامه رو عوض کنه و تابع سره یا محض است. بنابراین با این کار به کامپایلر
 اجازه میدیم از بهینه‌سازی‌های مبنی‌بر شفافیت مرجع استفاده کنه. این کار توی
 برنامه‌نویسی سیستم‌های امبدد و میکروکنترلرها، و همچنین برنامه‌های محاسباتی موازی
 و سنگین خیلی می‌تونه مفید باشه. کد تغییر یافته و خروجی اسمبلی همین برنامه رو ببینیم:</p>
-<div class="highlight"><pre class="chroma"><code class="language-tasm" data-lang="tasm"><span class="nf">caller</span><span class="p">():</span>
-  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
-  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
-<span class="hl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
-</span>  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
-  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
-  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
-  <span class="nf">ret</span>
-<span class="nl">.LC0:</span>
-  <span class="nf">.long</span>   <span class="mi">0</span>
-  <span class="nf">.long</span>   <span class="mi">1075052544</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tasm" data-lang="tasm"><span class="line"><span class="cl"><span class="nf">caller</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sub</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">movsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="kt">QWORD</span> <span class="nv">PTR</span> <span class="nv">.LC0</span><span class="p">[</span><span class="nv">rip</span><span class="p">]</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">call</span>    <span class="nv">pow2</span><span class="p">(</span><span class="nv">double</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">add</span>     <span class="nb">rsp</span><span class="p">,</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">addsd</span>   <span class="nv">xmm0</span><span class="p">,</span> <span class="nv">xmm0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ret</span>
+</span></span><span class="line"><span class="cl"><span class="nl">.LC0:</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">.long</span>   <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">.long</span>   <span class="mi">1075052544</span></span></span></code></pre></div>
 <p>همون‌طور که مشاهده می‌کنید؛ فقط یک فراخوانی از تابع <code>pow2</code> وجود داره. چون
 همهٔ آرگومان‌ها <code>5.0</code> بودند؛ کامپایلر سه فرخوانی رو حذف کرده. دقت داشته باشید که
 ترتیب فراخوانی و مکان فراخوانی هم هیچ اهمیتی نداره. یعنی اگر تابع <code>pow2</code> رو
@@ -182,8 +179,7 @@ MathJax.Hub.Config({
 خروجی تابع تأثیر بذاره نامعتبر بشه. در واقع تضمین قوی‌تری برای محض بودن تابع
 هست و بهینه‌سازی‌های بیشتری رو ممکن می‌کنه. برای تعریف تابع ثابت از این کد
 استفاده کنید:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="na">[[gnu::const]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="na">[[gnu::const]]</span> <span class="kt">double</span> <span class="n">pow2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span></span></span></code></pre></div>
 <h2 id="مقایسه-با-constexpr">مقایسه با <code>constexpr</code></h2>
 <p>ممکنه فکر کنید که توابع const و یا pure همون توابع constexpr هستند. این درست
 نیست. تفاوت‌های زیادی بین این سه تا وجود داره. مهم‌ترین‌ش این که تابع constexpr
@@ -200,7 +196,7 @@ MathJax.Hub.Config({
 دادن یا خطا گرفتن (به شکل مؤثر) نداره. بنابراین این ویژگی فعلاً به‌صورت
 غیراستاندارد در دسترس قرار گرفته.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

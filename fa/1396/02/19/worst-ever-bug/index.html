@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,23 +139,23 @@ MathJax.Hub.Config({
 کار رو کاملاً در چهارچوب طراحی و استانداردهای مخازن اوبونتو (و دبیان) انجام
 خواهیم داد. برای این کار اول باید بسته‌های سورس کتابخانهٔ مورد نظر رو دانلود
 کنیم:
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ‌‌apt <span class="nb">source</span> libqt5core5a</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ‌‌apt <span class="nb">source</span> libqt5core5a</span></span></code></pre></div>
 این دستور بستهٔ نرم‌افزار حامل سورس کتابخانهٔ Qt Core رو به همراه تمام وصله‌های
 مربوط به اوبونتو برای ما دانلود خواهد کرد. در مجموع چیزی حدود پنجاه مگابایت.
 اگر به خروجی دقت کنید می‌بینید که آدرس رپوزیتوی گیت هم داده شده که بعداً
 می‌تونیم از اون برای ارسال وصله برای ریلیز توی مخازن اوبونتو استفاده کنیم:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ Reading package lists... Done
-Picking <span class="s1">&#39;qtbase-opensource-src&#39;</span> as <span class="nb">source</span> package instead of <span class="s1">&#39;libqt5core5a&#39;</span>
-NOTICE: <span class="s1">&#39;qtbase-opensource-src&#39;</span> packaging is maintained in the <span class="s1">&#39;Git&#39;</span> version 
-control system at:
-https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
-Please use:
-git clone https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
-to retrieve the latest <span class="o">(</span>possibly unreleased<span class="o">)</span> updates to the package.
-Need to get 47.5 MB of <span class="nb">source</span> archives.
-Get:1 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-src 5.5.1+dfsg-16ubuntu7.2 <span class="o">(</span>dsc<span class="o">)</span> <span class="o">[</span>5,096 B<span class="o">]</span>
-Get:2 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-src 5.5.1+dfsg-16ubuntu7.2 <span class="o">(</span>tar<span class="o">)</span> <span class="o">[</span>47.2 MB<span class="o">]</span>
-...</code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ Reading package lists... Done
+</span></span><span class="line"><span class="cl">Picking <span class="s1">&#39;qtbase-opensource-src&#39;</span> as <span class="nb">source</span> package instead of <span class="s1">&#39;libqt5core5a&#39;</span>
+</span></span><span class="line"><span class="cl">NOTICE: <span class="s1">&#39;qtbase-opensource-src&#39;</span> packaging is maintained in the <span class="s1">&#39;Git&#39;</span> version 
+</span></span><span class="line"><span class="cl">control system at:
+</span></span><span class="line"><span class="cl">https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
+</span></span><span class="line"><span class="cl">Please use:
+</span></span><span class="line"><span class="cl">git clone https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
+</span></span><span class="line"><span class="cl">to retrieve the latest <span class="o">(</span>possibly unreleased<span class="o">)</span> updates to the package.
+</span></span><span class="line"><span class="cl">Need to get 47.5 MB of <span class="nb">source</span> archives.
+</span></span><span class="line"><span class="cl">Get:1 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-src 5.5.1+dfsg-16ubuntu7.2 <span class="o">(</span>dsc<span class="o">)</span> <span class="o">[</span>5,096 B<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Get:2 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-src 5.5.1+dfsg-16ubuntu7.2 <span class="o">(</span>tar<span class="o">)</span> <span class="o">[</span>47.2 MB<span class="o">]</span>
+</span></span><span class="line"><span class="cl">...</span></span></code></pre></div>
 خوب حالا سورس اصلی رو (بدون اعمال وصله‌ها) توی مسیر مربوطه داریم. الان باید
 وصلهٔ خودمون رو اعمال کنیم. خوب من می‌دونم که مشکل مربوطه توی فایلی به اسم
 <code>qwidgettextcontrol.cpp</code>
@@ -163,16 +163,16 @@ Get:2 http://gb.archive.ubuntu.com/ubuntu xenial-updates/main/qtbase-opensource-
 <code>src/widgets/widgets/</code>
 هست. خوب به اون مسیر میرم و قسمت‌هایی که میخوام رو تغییر میدم. روش انجام این
 تغییر مهم هست و باید به شکل اصولی انجام بشه تا قابل اشتراک گذاری با دیگران باشه:
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> qtbase-opensource-src-5.5.1+dfsg/
-$ <span class="nb">export</span> <span class="nv">QUILT_PATCHES</span><span class="o">=</span>debian/patches
-$ quilt push -a
-File series fully applied, ends at patch debian/patches/fix-duplicate-qnam-finished.patch
-$ quilt new fix-non-printable-filters-for-persian-keyboard
-Patch debian/patches/fix-non-printable-filters-for-persian-keyboard is now on top
-$ quilt add src/widgets/widgets/qwidgettextcontrol.cpp 
-File src/widgets/widgets/qwidgettextcontrol.cpp added to patch debian/patches/fix-non-printable-filters-for-persian-keyboard
-$ quilt add src/widgets/widgets/qwidgetlinecontrol.cpp
-File src/widgets/widgets/qwidgetlinecontrol.cpp added to patch debian/patches/fix-non-printable-filters-for-persian-keyboard</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> qtbase-opensource-src-5.5.1+dfsg/
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">QUILT_PATCHES</span><span class="o">=</span>debian/patches
+</span></span><span class="line"><span class="cl">$ quilt push -a
+</span></span><span class="line"><span class="cl">File series fully applied, ends at patch debian/patches/fix-duplicate-qnam-finished.patch
+</span></span><span class="line"><span class="cl">$ quilt new fix-non-printable-filters-for-persian-keyboard
+</span></span><span class="line"><span class="cl">Patch debian/patches/fix-non-printable-filters-for-persian-keyboard is now on top
+</span></span><span class="line"><span class="cl">$ quilt add src/widgets/widgets/qwidgettextcontrol.cpp 
+</span></span><span class="line"><span class="cl">File src/widgets/widgets/qwidgettextcontrol.cpp added to patch debian/patches/fix-non-printable-filters-for-persian-keyboard
+</span></span><span class="line"><span class="cl">$ quilt add src/widgets/widgets/qwidgetlinecontrol.cpp
+</span></span><span class="line"><span class="cl">File src/widgets/widgets/qwidgetlinecontrol.cpp added to patch debian/patches/fix-non-printable-filters-for-persian-keyboard</span></span></code></pre></div>
 با این اجرای دستورات؛ فایل‌ها رو برای <strong>تعقیب تغییرات</strong> نشان‌گذاری می‌کنیم.
 تعقیب تغییرات یعنی این که به سیستم میگیم که: حواست باشه کدوم قسمت از فایل رو به
 چه شکلی تغییر میدم و در نهایت وقتی ازت پرسیدم چه کاری انجام شد، در فرمت
@@ -182,8 +182,8 @@ File src/widgets/widgets/qwidgetlinecontrol.cpp added to patch debian/patches/fi
 تشکیل بدیم و کدها رو کامپایل کنیم. برای درست کردن وصله باید دستورات زیر رو وارد
 کنیم. با اجرای دستور اول وصله ساخته میشه و با اجرای دستور دوم تغییراتی که برای
 ساخت وصله انجام داده بودیم، به حالت اول برگردانده میشه.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ quilt refresh
-$ quilt pop -a</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ quilt refresh
+</span></span><span class="line"><span class="cl">$ quilt pop -a</span></span></code></pre></div>
 خوب حالا طبق استاندارد باید یک واردهٔ جدید به فایل ChangeLog اضافه کنیم که
 توضیحات مختصری در مورد وصله‌ای که ارائه دادیم رو داشته باشه. برای این کار
 می‌تونیم به شکل دستی فایل مورد نظر رو ویرایش کنیم و یا از دستور <code>dch -i</code>
@@ -191,15 +191,15 @@ $ quilt pop -a</code></pre></div>
 موردعلاقه‌مون چیه و بعد با استفاده از اون ادیتور یک واردهٔ استاندارد به ابتدای
 فایل ChangeLog اضافه می‌کنه. محتویات فایل ChangeLog در نهایت به‌صورت زیر خواهد
 بود. (دقت کنید که نسخهٔ پکیج‌های ساخته شده دقیقاً یکی بیشتر از نسخهٔ پکیج اصلی)</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">qtbase-opensource-src (5.5.1+dfsg-16ubuntu7.3) UNRELEASED; urgency=medium
-
-  * Add a temporary workaround for QTBUG-42074
-
- -- Soroush Rabiei &lt;soroush@ametisco.ir&gt;  Tue, 09 May 2017 20:23:08 +0430
-...</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">qtbase-opensource-src (5.5.1+dfsg-16ubuntu7.3) UNRELEASED; urgency=medium
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  * Add a temporary workaround for QTBUG-42074
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> -- Soroush Rabiei &lt;soroush@ametisco.ir&gt;  Tue, 09 May 2017 20:23:08 +0430
+</span></span><span class="line"><span class="cl">...</span></span></code></pre></div>
 <p>بعد از این کار آمادهٔ کامپایل و نصب بسته هستیم. دستورات زیر این کار رو برای ما
 انجام میدن:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">DEB_BUILD_OPTIONS</span><span class="o">=</span>nocheck debuild -us -uc -b -j10</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">DEB_BUILD_OPTIONS</span><span class="o">=</span>nocheck debuild -us -uc -b -j10</span></span></code></pre></div>
 <p>من اینجا تست‌های اتوماتیک رو با متغیر محیطی <code>DEB_BUILD_OPTIONS</code> غیرفعال کردم
 چون نمی‌خوام بعد از کامپایل پکیج‌ها کلی وقت صرف تست اون‌ها بکنم. روال کامپایل
 رو هم ده‌هسته‌ای تعریف کردم (قانون دو+تعداد هسته‌های پردازنده). بعد از حدود ده
@@ -208,8 +208,8 @@ $ quilt pop -a</code></pre></div>
 دایرکتوری بالاتر ایجاد میشن نه کنار سورس‌ها. من این‌ها رو میذارم توی یک
 رپوزیتوری شخصی که از پکیج‌هام درست کردم که بعداً هم بتونم نصبشون کنم. البته
 می‌تونم مستقیماً با این دستور پکیج‌های ساخته شده رو نصب کنم:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> .. <span class="c1"># برای رفتن به دایرکتوری بالاتر</span>
-$ sudo debi <span class="c1"># برای نصب پکیج‌های تولید شده</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> .. <span class="c1"># برای رفتن به دایرکتوری بالاتر</span>
+</span></span><span class="line"><span class="cl">$ sudo debi <span class="c1"># برای نصب پکیج‌های تولید شده</span></span></span></code></pre></div>
 <h2 id="نتایج">نتایج</h2>
 <p>خوب حالا با خیال راحت توی برنامه‌های ویجتی کیوت می‌تونم از نیم‌فاصله و کاراکترهای کنترلی
 استفاده کنم:</p>
@@ -219,60 +219,60 @@ $ sudo debi <span class="c1"># برای نصب پکیج‌های تولید شد
 نویسه‌هایی که نباید توی شرط مربوط به فیکس 35724 فیلتر بشن رو اضافه می‌کنم و هر
 سری که چیزی توی متن نوشته شد بررسی میشه که اگر شرط 35724 صدق کنه <strong>یا</strong> کاراکتر
 توی لیست سفید باشه؛ در این‌صورت اون رو می‌نویسه. وصلهٔ مربوطه این هست:</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">Index: 
-</span><span class="gh"></span>qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgetlinecontrol.cpp
-<span class="gh">===================================================================
-</span><span class="gh"></span><span class="gd">--- 
-</span><span class="gd"></span>qtbase-opensource-src-5.5.1+dfsg.orig/src/widgets/widgets/qwidgetlinecontrol.cpp
-<span class="gi">+++ qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgetlinecontrol.cpp 
-</span><span class="gi"></span> 
-                                                                            
-<span class="gu">@@ -1884,7 +1884,11 @@ void QWidgetLineControl::processKeyEvent                 
-</span><span class="gu"></span> 
-                                                                            
-         &amp;&amp; event-&gt;modifiers() != Qt::ControlModifier                           
- 
-                                                                            
-         &amp;&amp; event-&gt;modifiers() != (Qt::ControlModifier | Qt::ShiftModifier)) {
-         QString t = event-&gt;text();
-<span class="gd">-        if (!t.isEmpty() &amp;&amp; t.at(0).isPrint()) {
-</span><span class="gd"></span><span class="gi">+        ushort code = 0;
-</span><span class="gi">+        if(!t.isEmpty())
-</span><span class="gi">+            code = t.at(0).unicode();
-</span><span class="gi">+        if (!t.isEmpty() &amp;&amp;
-</span><span class="gi">+            (t.at(0).isPrint() || (0x2000 &lt;= code &amp;&amp; code &lt;= 0x200F) || (0x2028 &lt;= code &amp;&amp; code &lt;= 0x202F))) {
-</span><span class="gi"></span>             insert(t);
- #ifndef QT_NO_COMPLETER
-             complete(event-&gt;key());
-<span class="gh">Index: 
-</span><span class="gh"></span>qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgettextcontrol.cpp
-<span class="gh">===================================================================
-</span><span class="gh"></span><span class="gd">--- 
-</span><span class="gd"></span>qtbase-opensource-src-5.5.1+dfsg.orig/src/widgets/widgets/qwidgettextcontrol.cpp
-<span class="gi">+++ qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgettextcontrol.cpp
-</span><span class="gi"></span><span class="gu">@@ -1342,13 +1342,19 @@ void QWidgetTextControlPrivate::keyPress
-</span><span class="gu"></span> process:
-     {
-         // QTBUG-35734: ignore Ctrl/Ctrl+Shift; accept only AltGr (Alt+Ctrl) on German keyboards
-<span class="gd">-        if (e-&gt;modifiers() == Qt::ControlModifier
-</span><span class="gd"></span><span class="gi">+        /* if (e-&gt;modifiers() == Qt::ControlModifier
-</span><span class="gi"></span>             || e-&gt;modifiers() == (Qt::ShiftModifier | Qt::ControlModifier)) {
-             e-&gt;ignore();
-             return;
-         }
-<span class="gi">+        */
-</span><span class="gi"></span>         QString text = e-&gt;text();
-<span class="gd">-        if (!text.isEmpty() &amp;&amp; (text.at(0).isPrint() || text.at(0) == 
-</span><span class="gd"></span>QLatin1Char(&#39;\t&#39;))) {
-<span class="gi">+        ushort code = 0;
-</span><span class="gi">+        if(!text.isEmpty())
-</span><span class="gi">+            code = text.at(0).unicode();
-</span><span class="gi">+        if (!text.isEmpty()
-</span><span class="gi">+                &amp;&amp; (text.at(0).isPrint() || text.at(0) == QLatin1Char(&#39;\t&#39;)
-</span><span class="gi">+                    || (0x2000 &lt;= code &amp;&amp; code &lt;= 0x200F) || (0x2028 &lt;= code &amp;&amp; code &lt;= 0x202F))) {
-</span><span class="gi"></span>             if (overwriteMode // no need to call deleteChar() if we have a selection, insertText
-                 // does it already
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gh">Index: 
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgetlinecontrol.cpp
+</span></span><span class="line"><span class="cl"><span class="gh">===================================================================
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- 
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>qtbase-opensource-src-5.5.1+dfsg.orig/src/widgets/widgets/qwidgetlinecontrol.cpp
+</span></span><span class="line"><span class="cl"><span class="gi">+++ qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgetlinecontrol.cpp 
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span><span class="line"><span class="cl">                                                                            
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -1884,7 +1884,11 @@ void QWidgetLineControl::processKeyEvent                 
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl">                                                                            
+</span></span><span class="line"><span class="cl">         &amp;&amp; event-&gt;modifiers() != Qt::ControlModifier                           
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">                                                                            
+</span></span><span class="line"><span class="cl">         &amp;&amp; event-&gt;modifiers() != (Qt::ControlModifier | Qt::ShiftModifier)) {
+</span></span><span class="line"><span class="cl">         QString t = event-&gt;text();
+</span></span><span class="line"><span class="cl"><span class="gd">-        if (!t.isEmpty() &amp;&amp; t.at(0).isPrint()) {
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+        ushort code = 0;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+        if(!t.isEmpty())
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            code = t.at(0).unicode();
+</span></span></span><span class="line"><span class="cl"><span class="gi">+        if (!t.isEmpty() &amp;&amp;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            (t.at(0).isPrint() || (0x2000 &lt;= code &amp;&amp; code &lt;= 0x200F) || (0x2028 &lt;= code &amp;&amp; code &lt;= 0x202F))) {
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>             insert(t);
+</span></span><span class="line"><span class="cl"> #ifndef QT_NO_COMPLETER
+</span></span><span class="line"><span class="cl">             complete(event-&gt;key());
+</span></span><span class="line"><span class="cl"><span class="gh">Index: 
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgettextcontrol.cpp
+</span></span><span class="line"><span class="cl"><span class="gh">===================================================================
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- 
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>qtbase-opensource-src-5.5.1+dfsg.orig/src/widgets/widgets/qwidgettextcontrol.cpp
+</span></span><span class="line"><span class="cl"><span class="gi">+++ qtbase-opensource-src-5.5.1+dfsg/src/widgets/widgets/qwidgettextcontrol.cpp
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1342,13 +1342,19 @@ void QWidgetTextControlPrivate::keyPress
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> process:
+</span></span><span class="line"><span class="cl">     {
+</span></span><span class="line"><span class="cl">         // QTBUG-35734: ignore Ctrl/Ctrl+Shift; accept only AltGr (Alt+Ctrl) on German keyboards
+</span></span><span class="line"><span class="cl"><span class="gd">-        if (e-&gt;modifiers() == Qt::ControlModifier
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+        /* if (e-&gt;modifiers() == Qt::ControlModifier
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>             || e-&gt;modifiers() == (Qt::ShiftModifier | Qt::ControlModifier)) {
+</span></span><span class="line"><span class="cl">             e-&gt;ignore();
+</span></span><span class="line"><span class="cl">             return;
+</span></span><span class="line"><span class="cl">         }
+</span></span><span class="line"><span class="cl"><span class="gi">+        */
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>         QString text = e-&gt;text();
+</span></span><span class="line"><span class="cl"><span class="gd">-        if (!text.isEmpty() &amp;&amp; (text.at(0).isPrint() || text.at(0) == 
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>QLatin1Char(&#39;\t&#39;))) {
+</span></span><span class="line"><span class="cl"><span class="gi">+        ushort code = 0;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+        if(!text.isEmpty())
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            code = text.at(0).unicode();
+</span></span></span><span class="line"><span class="cl"><span class="gi">+        if (!text.isEmpty()
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                &amp;&amp; (text.at(0).isPrint() || text.at(0) == QLatin1Char(&#39;\t&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                    || (0x2000 &lt;= code &amp;&amp; code &lt;= 0x200F) || (0x2028 &lt;= code &amp;&amp; code &lt;= 0x202F))) {
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>             if (overwriteMode // no need to call deleteChar() if we have a selection, insertText
+</span></span><span class="line"><span class="cl">                 // does it already
+</span></span></code></pre></div>
 <h2 id="پینوشت-۲-کارهای-باقیمانده">پی‌نوشت ۲: کارهای باقی‌مانده</h2>
 <p>با اِعمال این وصله، باگ مربوطه در زمینهٔ ویجت‌ها برطرف شده؛ اما باگ مشابهی هنوز
 توی Qt Quick وجود داره. این باگ باعث میشه اون دسته از برنامه‌های KDE که به سیستم
@@ -282,7 +282,7 @@ $ sudo debi <span class="c1"># برای نصب پکیج‌های تولید شد
 PPA
 منتشر می‌کنم.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

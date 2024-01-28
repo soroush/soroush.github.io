@@ -5,11 +5,8 @@
     <link>https://soroush.github.io/fa/categories/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://soroush.github.io/fa/categories/c++/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>fa</language>
+    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/categories/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>تقویم هجری خورشیدی در کیوت</title>
       <link>https://soroush.github.io/fa/1399/05/12/persian-calendar-in-qt/</link>
@@ -31,8 +28,7 @@
 سال و فراموش شدن موضوع تونستم تقویم هجری خورشیدی رو برای کیوت ۵٫۱۰ پیاده‌سازی
 کنم. نسخهٔ نهایی همراه با کیوت ۵٫۱۴ در تاریخ ۲۱ آذر سال ۱۳۹۸ منتشر شد. این پست
 به چالش‌ها و روال توسعهٔ تقویم و نحوهٔ استفاده از API اختصاص داده شده.
-&lt;figure&gt;
-    &lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
+&lt;figure&gt;&lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/jalali.gif&#34;/&gt;&lt;figcaption&gt;
             &lt;h4&gt;نمونهٔ اجرا&lt;/h4&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;

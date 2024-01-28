@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://soroush.github.io/en/2020/08/13/pimpl-idiom-in-cpp/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/post/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -20,9 +17,7 @@
                 hreflang="en"
                 href="https://soroush.github.io/en/post/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -35,14 +30,10 @@
                 hreflang="en"
                 href="https://soroush.github.io/en/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/2020/08/06/pure-functions-in-cpp/</loc>
     <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -55,19 +46,13 @@
                 hreflang="en"
                 href="https://soroush.github.io/en/categories/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/2020/08/05/translating-blog/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/personal/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/c&#43;&#43;/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -80,44 +65,28 @@
                 hreflang="en"
                 href="https://soroush.github.io/en/categories/c&#43;&#43;/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/calendars/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/2020/08/02/persian-calendar-in-qt/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/programming/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/qt/</loc>
     <lastmod>2020-08-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/2018/04/13/math-constants-in-cpp/</loc>
     <lastmod>2018-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/categories/metaprogramming/</loc>
     <lastmod>2018-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/2017/05/09/worst-ever-bug/</loc>
     <lastmod>2017-05-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://soroush.github.io/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -130,5 +99,4 @@
                 href="https://soroush.github.io/en/tags/"
                 />
   </url>
-  
 </urlset>

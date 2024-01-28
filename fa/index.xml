@@ -5,11 +5,8 @@
     <link>https://soroush.github.io/fa/</link>
     <description>Recent content on اختاپوس خسته</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://soroush.github.io/fa/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>fa</language>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>حفظ سازگاری عقبگرد با تکنیک PIMPL</title>
       <link>https://soroush.github.io/fa/1399/05/23/pimpl-idiom-in-cpp/</link>
@@ -59,8 +56,7 @@
 سال و فراموش شدن موضوع تونستم تقویم هجری خورشیدی رو برای کیوت ۵٫۱۰ پیاده‌سازی
 کنم. نسخهٔ نهایی همراه با کیوت ۵٫۱۴ در تاریخ ۲۱ آذر سال ۱۳۹۸ منتشر شد. این پست
 به چالش‌ها و روال توسعهٔ تقویم و نحوهٔ استفاده از API اختصاص داده شده.
-&lt;figure&gt;
-    &lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
+&lt;figure&gt;&lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/jalali.gif&#34;/&gt;&lt;figcaption&gt;
             &lt;h4&gt;نمونهٔ اجرا&lt;/h4&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -156,8 +152,7 @@
 این پست توضیحاتی در مورد طرز کار و بیشتر توضیح معایب این بورده. امیدوارم در
 آینده برای کسایی که می‌خوان باهاش کار کنن مفید باشه یا لااقل باعث باشه از خریدش
 منصرف بشن (:
-&lt;figure&gt;
-    &lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/smart210.jpg&#34;/&gt; &lt;figcaption&gt;
+&lt;figure&gt;&lt;img src=&#34;https://soroush.github.io/fa/fa/static/images/smart210.jpg&#34;/&gt;&lt;figcaption&gt;
             &lt;h4&gt;بورد اصلی و پردازندهٔ Smart 210&lt;/h4&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -215,9 +210,9 @@ libdynamixel.
       
       <guid>https://soroush.github.io/fa/1393/07/10/the-king-and-the-grandmaster/</guid>
       <description>روزی پادشاهی استادِ بزرگ را نزد خویش فراخواند و به او گفت:
- ای حکیم دانا!‌ به من چیزی بیاموز که در غمگینی مراخوشحال کرده و دوران خوشی مرا غمگین کند.
- استادِ بزرگ به وی گفت:
- ای پادشاه کبیر! هرگاه در چنگال غم و اندوه گرفتار شدی، به‌خاطر بیاور که غمِ دنیا می‌گذرد؛ آن‌گاه شاد خواهی شد. و هرگاه در روزگار بر وفق مراد بود به‌خاطر بیاور که این خوشی پایدار نیست و آنگاه اندوهگین خواهی شد.</description>
+ای حکیم دانا!‌ به من چیزی بیاموز که در غمگینی مراخوشحال کرده و دوران خوشی مرا غمگین کند.
+استادِ بزرگ به وی گفت:
+ای پادشاه کبیر! هرگاه در چنگال غم و اندوه گرفتار شدی، به‌خاطر بیاور که غمِ دنیا می‌گذرد؛ آن‌گاه شاد خواهی شد. و هرگاه در روزگار بر وفق مراد بود به‌خاطر بیاور که این خوشی پایدار نیست و آنگاه اندوهگین خواهی شد.</description>
     </item>
     
     <item>

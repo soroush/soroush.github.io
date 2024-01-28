@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +83,7 @@ overhead in runtime, while complying to
 part requires your compile flags to be set properly, but that&rsquo;s not the point.
 Using this method your π will always be the same on all architectures that
 implement IEEE 754.</p>
-<p>This implementation, uses C++'s meta-programming features (that&rsquo;s a fancy word for
+<p>This implementation, uses C++&rsquo;s meta-programming features (that&rsquo;s a fancy word for
 templates. Not really, but almost). There are many ways to converge a value
 towards π. One of them is this nice serie called
 <a href="http://crd-legacy.lbl.gov/~dhbailey/dhbpapers/pi-quest.pdf">Bailey–Borwein–Plouffe formula</a>,
@@ -92,7 +92,7 @@ discovered in 1995 by, David H. Bailey, Peter Borwein, and Simon Plouffe. It has
 <p>Thus one can calculate π number, to whatever precision she wants.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -129,49 +129,48 @@ discovered in 1995 by, David H. Bailey, Peter Borwein, and Simon Plouffe. It has
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;limits&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">uint64_t</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">e</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">pow</span> <span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">uint64_t</span> <span class="n">result</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">pow</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;::</span><span class="n">result</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">uint64_t</span> <span class="n">b</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">pow</span><span class="o">&lt;</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">uint64_t</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">uint64_t</span> <span class="n">n</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">bbp</span> <span class="p">{</span>
-    <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span>
-            <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">pow</span><span class="o">&lt;</span><span class="mi">16</span><span class="p">,</span> <span class="n">n</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">)</span>
-            <span class="o">*</span> <span class="p">(</span>   <span class="mf">4.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">4.0</span><span class="p">)</span>
-                <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">5.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">6.0</span><span class="p">))</span>
-            <span class="o">+</span> <span class="n">bbp</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;::</span><span class="n">pi</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="k">struct</span> <span class="nc">bbp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="p">{</span>
-    <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="p">[])</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">digits10</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;pi = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;pi = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;pi = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;limits&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="kt">uint64_t</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">e</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">pow</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">const</span> <span class="kt">uint64_t</span> <span class="n">result</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">pow</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;::</span><span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="kt">uint64_t</span> <span class="n">b</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">pow</span><span class="o">&lt;</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">const</span> <span class="kt">uint64_t</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="kt">uint64_t</span> <span class="n">n</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">bbp</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span>
+</span></span><span class="line"><span class="cl">            <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">pow</span><span class="o">&lt;</span><span class="mi">16</span><span class="p">,</span> <span class="n">n</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">*</span> <span class="p">(</span>   <span class="mf">4.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">4.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">5.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mf">6.0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="o">+</span> <span class="n">bbp</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;::</span><span class="n">pi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">bbp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">digits10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;pi = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;pi = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;pi = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bbp</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;::</span><span class="n">pi</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>Results:</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">pi: 3.14142246642247
-pi: 3.14159265322809
-pi: 3.14159265358979
-pi: 3.14159265358979</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">pi: 3.14142246642247
+</span></span><span class="line"><span class="cl">pi: 3.14159265322809
+</span></span><span class="line"><span class="cl">pi: 3.14159265358979
+</span></span><span class="line"><span class="cl">pi: 3.14159265358979</span></span></code></pre></div>
 <h2 id="a-note-on-other-series">A Note on Other Series</h2>
 <p>There are many series that converge towards π. For example Newton&rsquo;s method,
 approximates π using it&rsquo;s geometrical properties with this formula:</p>
@@ -190,7 +189,7 @@ implement with less errors. Leave a comment if you know about a better method (:
 <p>$$e=\sum \limits _{n=0}^{\infty }{\frac {1}{n!}}={\frac {1}{1}}+{\frac {1}{1}}+{\frac {1}{1\cdot 2}}+{\frac {1}{1\cdot 2\cdot 3}}+\cdots$$</p>
 <p>But there&rsquo;s no need to implement this one. e is already defined in C and C++ standards, via <code>exp</code> function.</p></div><h2>Comments</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

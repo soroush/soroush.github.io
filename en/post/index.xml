@@ -5,11 +5,8 @@
     <link>https://soroush.github.io/en/post/</link>
     <description>Recent content in Posts on The Bored Octopus</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://soroush.github.io/en/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/en/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PIMPL idiom in C&#43;&#43;</title>
       <link>https://soroush.github.io/en/2020/08/13/pimpl-idiom-in-cpp/</link>
@@ -77,8 +74,7 @@ Though finally, after 6 years and forgetting all about calendars, I had the
 chance to implement the solar Hijri calendar for Qt 5.10. The final version has been
 released with Qt 5.14 on December 12, 2019. This post describes challenges, and
 the process of the work, and also the API itself.&lt;/p&gt;
-&lt;figure&gt;
-    &lt;img src=&#34;https://soroush.github.io/en/en/static/images/jalali.gif&#34;/&gt; &lt;figcaption&gt;
+&lt;figure&gt;&lt;img src=&#34;https://soroush.github.io/en/en/static/images/jalali.gif&#34;/&gt;&lt;figcaption&gt;
             &lt;h4&gt;Running Example&lt;/h4&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;</description>

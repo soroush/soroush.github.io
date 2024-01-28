@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -119,8 +119,7 @@ ABI
 این دو زبان یکی باشن (که نیستند)، من چطور باید یک رابط برنامه‌نویسی برای جاوا
 فراهم کنم؟</p>
 <p>در واقع باید یک همچین ساختاری وجود داشته باشه:
-<figure>
-    <img src="/static/images/interfaces.svg"/> 
+<figure><img src="/static/images/interfaces.svg"/>
 </figure>
 </p>
 <p>که در اون <strong>The Magic</strong> یک رابط باینری جهانی و استاندارد هست که تمام زبان‌های
@@ -132,8 +131,7 @@ ABI
 تمام زبان‌ها می‌تونن wrapperهایی به‌شکل بومی و با استفاده از رابط Cی
 کتابخونه‌ای
 که ساختم استفاده کنن. در واقع میشه این:
-<figure>
-    <img src="/static/images/c-interface.svg"/> 
+<figure><img src="/static/images/c-interface.svg"/>
 </figure>
 </p>
 <p>خوب برای پورت کردن کد سی++ به سی لازمه که تمام کلاس‌ها و namespaceها رو از بین
@@ -143,94 +141,90 @@ ABI
 استفاده از این ایده برای طراحی رابط C میگن C wrapper for C++ API یک مثال
 می‌تونه
 خیلی مفید باشه. این کلاس ‪C++‬‬ رو در نظر بگیرید:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// foo.hpp
-</span><span class="c1"></span><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-  <span class="k">public</span><span class="o">:</span>
-    <span class="k">explicit</span> <span class="n">Foo</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">);</span>
-    <span class="o">~</span><span class="n">Foo</span><span class="p">();</span>
-    <span class="kt">int</span> <span class="nf">bar</span><span class="p">(</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">);</span>
-  <span class="k">private</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">notYourBusiness</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// foo.hpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">explicit</span> <span class="n">Foo</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Foo</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">bar</span><span class="p">(</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">notYourBusiness</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 برای این کلاس رابط C داخل یک هدر مجزا برای زبان C به این شکل پیاده‌سازی میشه:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// foo.h
-</span><span class="c1"></span><span class="cp">#ifdef __cplusplus
-</span><span class="cp"></span><span class="k">extern</span> <span class="s">&#34;C&#34;</span>
-<span class="p">{</span>
-<span class="cp">#endif
-</span><span class="cp"></span><span class="k">struct</span> <span class="n">Foo_Type</span><span class="p">;</span> <span class="c1">// An opaque type
-</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Foo_Type</span> <span class="n">Foo_Type</span><span class="p">;</span>
-<span class="n">Foo_Type</span><span class="o">*</span> <span class="nf">Foo_create</span><span class="p">(</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span> <span class="p">);</span>
-<span class="kt">void</span> <span class="nf">Foo_destroy</span><span class="p">(</span> <span class="n">Foo_Type</span> <span class="o">*</span> <span class="n">v</span> <span class="p">);</span>
-<span class="kt">int</span> <span class="nf">Foo_bar</span><span class="p">(</span> <span class="n">Foo_Type</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span> <span class="p">);</span>
-<span class="cp">#ifdef __cplusplus
-</span><span class="cp"></span><span class="p">}</span>
-<span class="cp">#endif</span></code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// foo.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#ifdef __cplusplus
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">extern</span> <span class="s">&#34;C&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="n">Foo_Type</span><span class="p">;</span> <span class="c1">// An opaque type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Foo_Type</span> <span class="n">Foo_Type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Foo_Type</span><span class="o">*</span> <span class="nf">Foo_create</span><span class="p">(</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Foo_destroy</span><span class="p">(</span> <span class="n">Foo_Type</span> <span class="o">*</span> <span class="n">v</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Foo_bar</span><span class="p">(</span> <span class="n">Foo_Type</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef __cplusplus
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div>
 و پیاده‌سازی این رابط، داخل سورس ‪C++‬ همون کلاس (یا هر جای دیگه‌ای) به این شکل
 انجام میشه:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// foo.cpp (or foo_c.cpp)
-</span><span class="c1"></span><span class="n">Foo_Type</span><span class="o">*</span> <span class="nf">Foo_create</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Foo_Type</span><span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">try</span> <span class="p">{</span> <span class="cm">/* ممکنه سازندهٔ رشته استثنا صادر کنه*/</span>
-        <span class="n">ms</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{}</span>
-    <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">ms</span> <span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">Foo_destroy</span><span class="p">(</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Foo</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="k">delete</span> <span class="n">ms</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">Foo_bar</span><span class="p">(</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Foo</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">ret_value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="cm">/* با فرض این که منفی به معنی خطا باشه */</span>
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="n">ret_value</span> <span class="o">=</span> <span class="n">ms</span><span class="o">-&gt;</span><span class="n">bar</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{}</span>
-    <span class="k">return</span> <span class="n">ret_value</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// foo.cpp (or foo_c.cpp)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Foo_Type</span><span class="o">*</span> <span class="nf">Foo_create</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Foo_Type</span><span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="p">{</span> <span class="cm">/* ممکنه سازندهٔ رشته استثنا صادر کنه*/</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ms</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">ms</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Foo_destroy</span><span class="p">(</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Foo</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">ms</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Foo_bar</span><span class="p">(</span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Foo</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ret_value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="cm">/* با فرض این که منفی به معنی خطا باشه */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret_value</span> <span class="o">=</span> <span class="n">ms</span><span class="o">-&gt;</span><span class="n">bar</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ret_value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
 خوب حالا یک برنامهٔ سی می‌تونه به‌راحتی با لینک کردن به این کتابخونه و
 ‪<code>#include &lt;foo.h&gt;</code>‬
 به‌راحتی از تمام ویژگی‌های کلاس Foo استفاده کنه:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;foo.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo_create</span><span class="p">(</span><span class="s">&#34;my foo&#34;</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Foo_bar</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
-<span class="c1">// Thins happen
-</span><span class="c1"></span><span class="n">Foo_destroy</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
-</code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;foo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">Foo_Type</span><span class="o">*</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo_create</span><span class="p">(</span><span class="s">&#34;my foo&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Foo_bar</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thins happen
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Foo_destroy</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span></span></span></code></pre></div>
 فقط برنامه‌نویس C باید حواسش باشه که هدرهای ‪C++‬ رو (که هیچ ربطی به اون ندارن)
 وارد برنامه‌ش نکنه. برای این که از این اتفاق جلوگیری کنیم، داخل هدرهای ‪C++‬
 مطمئن میشیم که کامپایلر ‪C++‬ در حال اجراست. در غیر این صورت یک خطای زمان
 کامپایل صادر می‌کنیم. این‌طوری:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// foo.hpp
-</span><span class="c1"></span><span class="cp">#ifndef __cplusplus
-</span><span class="cp">#error &#34;This header is a C++ header and it cannot be used via a C compiler.
-</span><span class="cp">#endif
-</span></code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// foo.hpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#ifndef __cplusplus
+</span></span></span><span class="line"><span class="cl"><span class="cp">#error &#34;This header is a C++ header and it cannot be used via a C compiler.
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div>
 از طرف دیگه یه برنامه‌نویس پایتون (یا هر زبان دیگه‌ای) می‌تونه یک رابط برای این
 کد بنویسه، طوری که کاربر نهایی (منظورم برنامه‌نویس پایتون نهایی هست) اصلا متوجه
 نشه که برنامه با ‪C++‬ نوشته شده و پایتون داره از رابط Cی اون استفاده می‌کنه:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ctypes.util</span>
-
-<span class="n">loadName</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="c1"># ‮ ‫مثلاً ‪‬‪libfoo.so.1.0.0‬‬ رو برمی‌گردونه‬‬</span>
-<span class="n">lib</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="n">loadName</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">Foo_create</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">lib</span><span class="o">.</span><span class="n">Foo_destroy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">Foo_bar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span></code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ctypes.util</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">loadName</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="c1"># ‮ ‫مثلاً ‪‬‪libfoo.so.1.0.0‬‬ رو برمی‌گردونه‬‬</span>
+</span></span><span class="line"><span class="cl"><span class="n">lib</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cdll</span><span class="o">.</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="n">loadName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">Foo_create</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lib</span><span class="o">.</span><span class="n">Foo_destroy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">Foo_bar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span></span></span></code></pre></div>
 و البته کمی حرفه‌ای‌تر از اینی که من مثال زدم ‪:P‬ نکتهٔ اصلی اینه که تمام این
 کارها بدون کوچکترین سرباری انجام میشه و کدهای فراخوانی شده کدهای ماشین هستند.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,8 +86,7 @@ MathJax.Hub.Config({
 سال و فراموش شدن موضوع تونستم تقویم هجری خورشیدی رو برای کیوت ۵٫۱۰ پیاده‌سازی
 کنم. نسخهٔ نهایی همراه با کیوت ۵٫۱۴ در تاریخ ۲۱ آذر سال ۱۳۹۸ منتشر شد. این پست
 به چالش‌ها و روال توسعهٔ تقویم و نحوهٔ استفاده از API اختصاص داده شده.
-<figure>
-    <img src="/fa/static/images/jalali.gif"/> <figcaption>
+<figure><img src="/fa/static/images/jalali.gif"/><figcaption>
             <h4>نمونهٔ اجرا</h4>
         </figcaption>
 </figure>
@@ -120,21 +119,21 @@ Drop-in Replacement.
 داشته باشه. اما با این روش تقویم داخل اشیایی از نوع تاریخ قرار نمی‌گرفت. با یه
 مثال توضیح میدم.</p>
 <p>من دوست داشتم این‌طوری بشه:
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
-<span class="n">d</span><span class="p">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">);</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 5 Mordad 1396
-</span><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="p">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 5 Mordad 1396
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
+</span></span></span></code></pre></div>
 ولی در آخر این API استفاده شد:
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 27 July 2017
-</span><span class="c1"></span><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span> 
-<span class="c1">// Thursday 5 Mordad 1396
-</span><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span>
- <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 27 July 2017
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// Thursday 5 Mordad 1396
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
+</span></span></span></code></pre></div>
 ناگفته نماند ایرادات زیادی توی طراحی QDate وجود داره که در اثر بدهی فنی بیست و
 چند ساله روی هم انباشته شدن! برای نسخهٔ ۶ کیوت برنامه‌هایی دارم در مورد این که
 کل کلاس‌های مربوط به تاریخ و زمان رو اصلاح کنم. (بخش بعدی بیشتر توضیح میدم که
@@ -259,7 +258,7 @@ QML
 جایگزین بشه. QML المان‌های تقویم رو داره. توسعهٔ اون قسمت برعهدهٔ کس دیگری بود و
 متأسفانه تقویم فارسی (و بقیهٔ تقویم‌ها) برای QML نرسید. امیدوار هستیم همراه ۵٬۱۶ منتشر کنیم.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

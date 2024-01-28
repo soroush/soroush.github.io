@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,61 +117,59 @@ KDE
 دبیان یا خود دبیان استفاده می‌کنید مراحل کار تقریباً مشابه خواهد بود.</p>
 <p>اول باید پکیج‌های زیر رو نصب کنید. این‌ها اسکریپت‌های کمکی برای ایجاد و تغییر
 محتوای پکیج‌های deb هستند.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt install quilt devscripts </code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt install quilt devscripts </span></span></code></pre></div></p>
 <p>تعداد زیادی از پکیج‌های توسعهٔ KDE و کیوت رو هم نیاز خواهید داشت. من لیست
 معقولی از این پکیج‌ها رو پایین آوردم، اما خوب کامپایلر و باقی پیش‌نیازهای بدیهی
 رو فرض کردم که از قبل نصب کرده‌اید:</p>
-<p><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt install debhelper extra-cmake-modules libeditorconfig-dev 
-libgit2-dev libkf5archive-dev libkf5config-dev libkf5guiaddons-dev 
-libkf5i18n-dev libkf5iconthemes-dev libkf5kio-dev libkf5parts-dev 
-libkf5sonnet-dev libkf5syntaxhighlighting-dev libqt5xmlpatterns5-dev 
-pkg-kde-tools qtdeclarative5-dev qtscript5-dev </code></pre></div>
+<p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt install debhelper extra-cmake-modules libeditorconfig-dev 
+</span></span><span class="line"><span class="cl">libgit2-dev libkf5archive-dev libkf5config-dev libkf5guiaddons-dev 
+</span></span><span class="line"><span class="cl">libkf5i18n-dev libkf5iconthemes-dev libkf5kio-dev libkf5parts-dev 
+</span></span><span class="line"><span class="cl">libkf5sonnet-dev libkf5syntaxhighlighting-dev libqt5xmlpatterns5-dev 
+</span></span><span class="line"><span class="cl">pkg-kde-tools qtdeclarative5-dev qtscript5-dev </span></span></code></pre></div>
 در مرحلهٔ بعد شما باید پکیج سورس کتابخانه‌ای رو دانلود کنید که شامل ادیتورهای
 متنی فریم‌ورک KDE هست. برای این کار:
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ apt <span class="nb">source</span> ktexteditor</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ apt <span class="nb">source</span> ktexteditor</span></span></code></pre></div>
 بعد محیط رو برای ایجاد تغییرات (مثل قبل) آماده می‌کنیم:
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ktexteditor-5.38.0/
-$ <span class="nb">export</span> <span class="nv">QUILT_PATCHES</span><span class="o">=</span>debian/patches
-$ quilt push -a
-$ quilt add ./src/document/katedocument.cpp</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> ktexteditor-5.38.0/
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">QUILT_PATCHES</span><span class="o">=</span>debian/patches
+</span></span><span class="line"><span class="cl">$ quilt push -a
+</span></span><span class="line"><span class="cl">$ quilt add ./src/document/katedocument.cpp</span></span></code></pre></div>
 بعد فایل <code>‪./src/document/katedocument.cpp‬</code> رو تغییر میدیم و فیلترهای مربوطه
 رو اضافه می‌کنیم. و یا می‌تونید از پچی که پایین نوشتم استفاده کنید.</p>
 <p>در نهایت (بازم مثل قبل) کامپایل و نصب پکیج رو انجام میدیم:
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ quilt refresh
-$ quilt pop -a
-$ <span class="nv">DEB_BUILD_OPTIONS</span><span class="o">=</span>nocheck debuild -us -uc -b -j10
-$ sudo debi </code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ quilt refresh
+</span></span><span class="line"><span class="cl">$ quilt pop -a
+</span></span><span class="line"><span class="cl">$ <span class="nv">DEB_BUILD_OPTIONS</span><span class="o">=</span>nocheck debuild -us -uc -b -j10
+</span></span><span class="line"><span class="cl">$ sudo debi </span></span></code></pre></div>
 در ادامه شما می‌تونید از تایپ فارسی در محیط متنی KDE و هر برنامه‌ای که از اون
 استفاده می‌کنه (مثل kate) لذت ببرید (:
-<figure>
-    <img src="/fa/static/images/wiki.png"/> <figcaption>
+<figure><img src="/fa/static/images/wiki.png"/><figcaption>
             <h4>باگ برطرف شده</h4>
         </figcaption>
 </figure>
 
-<figure>
-    <img src="/fa/static/images/kate.png"/> <figcaption>
+<figure><img src="/fa/static/images/kate.png"/><figcaption>
             <h4>باگ برطرف شده</h4>
         </figcaption>
 </figure>
 </p>
 <h2 id="وصله">وصله</h2>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">----	2017-12-18 16:53:03.435719378 +0330
-</span><span class="gd"></span><span class="gi">+++ 
-</span><span class="gi"></span>/home/soroush/workspace/kate-bugfix/ktexteditor-5.38.0/src/document/katedocument
-.cpp	2017-12-18 16:50:09.000000000 +0330
-<span class="gu">@@ -2904,8 +2904,7 @@
-</span><span class="gu"></span>     const auto realUcs4Chars = realChars.toUcs4();
-     QVector&lt;uint&gt; ucs4Chars;
-     Q_FOREACH (auto c, realUcs4Chars)
-<span class="gd">-        if (QChar::isPrint(c) || c == QChar::fromLatin1(&#39;\t&#39;) || c == 
-</span><span class="gd"></span>QChar::fromLatin1(&#39;\n&#39;) || c == QChar::fromLatin1(&#39;\r&#39;)
-<span class="gd">-            || (0x2000 &lt;= c &amp;&amp; c &lt;= 0x200F) || (0x2028 &lt;= c &amp;&amp; c &lt;= 0x202F) ) {
-</span><span class="gd"></span><span class="gi">+        if (QChar::isPrint(c) || c == QChar::fromLatin1(&#39;\t&#39;) || c == 
-</span><span class="gi"></span>QChar::fromLatin1(&#39;\n&#39;) || c == QChar::fromLatin1(&#39;\r&#39;)) {
-             ucs4Chars.append(c);
-         }
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">----	2017-12-18 16:53:03.435719378 +0330
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ 
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>/home/soroush/workspace/kate-bugfix/ktexteditor-5.38.0/src/document/katedocument
+</span></span><span class="line"><span class="cl">.cpp	2017-12-18 16:50:09.000000000 +0330
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -2904,8 +2904,7 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>     const auto realUcs4Chars = realChars.toUcs4();
+</span></span><span class="line"><span class="cl">     QVector&lt;uint&gt; ucs4Chars;
+</span></span><span class="line"><span class="cl">     Q_FOREACH (auto c, realUcs4Chars)
+</span></span><span class="line"><span class="cl"><span class="gd">-        if (QChar::isPrint(c) || c == QChar::fromLatin1(&#39;\t&#39;) || c == 
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>QChar::fromLatin1(&#39;\n&#39;) || c == QChar::fromLatin1(&#39;\r&#39;)
+</span></span><span class="line"><span class="cl"><span class="gd">-            || (0x2000 &lt;= c &amp;&amp; c &lt;= 0x200F) || (0x2028 &lt;= c &amp;&amp; c &lt;= 0x202F) ) {
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+        if (QChar::isPrint(c) || c == QChar::fromLatin1(&#39;\t&#39;) || c == 
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>QChar::fromLatin1(&#39;\n&#39;) || c == QChar::fromLatin1(&#39;\r&#39;)) {
+</span></span><span class="line"><span class="cl">             ucs4Chars.append(c);
+</span></span><span class="line"><span class="cl">         }
+</span></span></code></pre></div>
 <h2 id="مشکلات-باقیمانده">مشکلات باقی‌مانده</h2>
 <p>چند تا مشکل کوچیک هنوز هست که باید برطرف بشه. یکی این که تمام نویسه‌های فیلتر
 شده، شمرده نخواهند شد. یعنی اگر شما مثلا بنویسید «ل» بعد یک نیم‌فاصله بزنید، و
@@ -180,7 +178,7 @@ Backspace
 بزنید، هم نیم‌فاصله و هم «ل» پاک میشن. خیلی باگ بدی نیست. این هفته سعی خواهم
 کرد این رو هم درست کنم.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

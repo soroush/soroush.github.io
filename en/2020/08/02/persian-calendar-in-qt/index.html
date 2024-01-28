@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,8 +92,7 @@ Though finally, after 6 years and forgetting all about calendars, I had the
 chance to implement the solar Hijri calendar for Qt 5.10. The final version has been
 released with Qt 5.14 on December 12, 2019. This post describes challenges, and
 the process of the work, and also the API itself.</p>
-<figure>
-    <img src="/en/static/images/jalali.gif"/> <figcaption>
+<figure><img src="/en/static/images/jalali.gif"/><figcaption>
             <h4>Running Example</h4>
         </figcaption>
 </figure>
@@ -125,21 +124,21 @@ Though then they suggested a few changes, and it looked generally acceptable!
 They agreed to have an initial implementation. I was so excited to finally have
 the Persian calendar in Qt!</p>
 <p>I would love to have an API like this one:
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
-<span class="n">d</span><span class="p">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">);</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 5 Mordad 1396
-</span><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
-</span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="p">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 5 Mordad 1396
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
+</span></span></span></code></pre></div></p>
 <p>But the final proposal looked like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 27 July 2017
-</span><span class="c1"></span><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span> 
-<span class="c1">// Thursday 5 Mordad 1396
-</span><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
-<span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span>
- <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">QDate</span> <span class="n">d</span> <span class="o">=</span> <span class="n">QDate</span><span class="o">::</span><span class="n">currentDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">);</span> <span class="c1">// Thursday 27 July 2017
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// Thursday 5 Mordad 1396
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">QLocale</span><span class="o">::</span><span class="n">setDefault</span><span class="p">(</span><span class="s">&#34;fa_IR&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">toString</span><span class="p">(</span><span class="s">&#34;ddddd d MMMM yyyy&#34;</span><span class="p">,</span> <span class="n">QCalendar</span><span class="p">{</span><span class="n">QCalendar</span><span class="o">::</span><span class="n">Jalali</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// پنجشنبه ۵ مرداد ۱۳۹۶
+</span></span></span></code></pre></div>
 <p>I have to say that I believe there are many serious design issues with <code>QDate</code>
 class! These problems seems to be accumulated technical debt over a period of
 two decades, and cannot be resolved for the same reasons explained above. I
@@ -222,7 +221,7 @@ Excel file, containing carefully reviewed Gregorian and Solar dates for the past
 three centuries. My algorithm matches for all past dates and future years,
 again, with the exception of 1432 and 1433 years.</p></div><h2>Comments</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

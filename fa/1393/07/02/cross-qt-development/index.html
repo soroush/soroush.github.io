@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,16 +112,15 @@ MathJax.Hub.Config({
 <p>اگر روشی مثل (W) برای انجام وظیفه‌ای مثل (T) وجود داشته باشد، به‌طوری که هم با نسخهٔ ۴ و هم با نسخهٔ ۵ سازگار باشد، در این صورت از آن استفاده کنید؛ مگر این که پیچیدگی آن روش، بیشتر از مجموع پیچیدگی پیاده‌سازی روش ویژهٔ نسخهٔ چهارم و روش ویژهٔ نسخهٔ پنجم باشد.</p>
 </blockquote>
 <p>به بیان ریاضی:
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">if</span><span class="p">(</span> <span class="n">W</span> <span class="o">&lt;</span> <span class="n">W4</span><span class="o">+</span> <span class="n">W5</span><span class="p">)</span> <span class="p">{</span>
-     <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W</span><span class="p">);</span>
-<span class="p">}</span> 
-<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">&gt;</span> <span class="n">W4</span> <span class="o">+</span> <span class="n">W5</span><span class="p">)</span> <span class="p">{</span>
-     <span class="k">if</span><span class="p">(</span><span class="n">Qt5</span><span class="p">)</span>
-         <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W5</span><span class="p">);</span>
-     <span class="k">else</span>
-         <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W4</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span> <span class="n">W</span> <span class="o">&lt;</span> <span class="n">W4</span><span class="o">+</span> <span class="n">W5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">W</span> <span class="o">&gt;</span> <span class="n">W4</span> <span class="o">+</span> <span class="n">W5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">Qt5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">else</span>
+</span></span><span class="line"><span class="cl">         <span class="n">T</span><span class="p">.</span><span class="k">do</span><span class="p">(</span><span class="n">W4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></p>
 <p>و قانون دوم هم نتیجهٔ بدیهی قانون اول خواهد بود:</p>
 <blockquote>
 <p>اگر روش مشترکی برای اجرای کیوت پنج و چهار وجود ندارد، هر دو روش را پیاده‌سازی کرده و زمان کامپایل تصمیم بگیرید که کدام پیاده‌سازی کامپایل شود.</p>
@@ -130,23 +129,22 @@ MathJax.Hub.Config({
 تغییرات
 در سیستم ماژول‌ها باشم. خوشبختانه ماکروهایی برای تشخیص نسخهٔ کیوت وجود دارند.
 حتا بهتر از آن متغیرهای شرطی برای اندازه‌گیری عدد نسخه.</p>
-<pre><code class="language-qmake" data-lang="qmake">QT += core gui sql
+<pre tabindex="0"><code class="language-qmake" data-lang="qmake">QT += core gui sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4): CONFIG   += C++11
 lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=c++11</code></pre>
 <p>و همین قاعده روی کدها هم تأثیر می‌ذاره:
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">CandleGraphicsItem</span><span class="o">::</span><span class="n">CandleGraphicsItem</span><span class="p">(</span><span class="k">const</span> <span class="n">Candle</span><span class="o">&amp;</span> <span class="n">candle</span><span class="p">,</span> <span class="n">QGraphicsItem</span> 
-<span class="o">*</span><span class="n">parent</span><span class="p">)</span> 
-    <span class="o">:</span><span class="n">QGraphicsItem</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span> <span class="n">candle_</span><span class="p">(</span><span class="n">candle</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="cp">#if QT_VERSION &gt;= 0x050000
-</span><span class="cp"></span>    <span class="n">setAcceptHoverEvents</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
-<span class="cp">#else
-</span><span class="cp"></span>    <span class="n">setAcceptsHoverEvents</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
-<span class="cp">#endif
-</span><span class="cp"></span>    <span class="k">this</span><span class="o">-&gt;</span><span class="n">setY</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">candle</span><span class="p">.</span><span class="n">low_</span><span class="o">+</span><span class="n">candle</span><span class="p">.</span><span class="n">high_</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">CandleGraphicsItem</span><span class="o">::</span><span class="n">CandleGraphicsItem</span><span class="p">(</span><span class="k">const</span> <span class="n">Candle</span><span class="o">&amp;</span> <span class="n">candle</span><span class="p">,</span> <span class="n">QGraphicsItem</span> 
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">parent</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="o">:</span><span class="n">QGraphicsItem</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span> <span class="n">candle_</span><span class="p">(</span><span class="n">candle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if QT_VERSION &gt;= 0x050000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">setAcceptHoverEvents</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">setAcceptsHoverEvents</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="k">this</span><span class="o">-&gt;</span><span class="n">setY</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">candle</span><span class="p">.</span><span class="n">low_</span><span class="o">+</span><span class="n">candle</span><span class="p">.</span><span class="n">high_</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></p>
 <p>با استفاده از ماکروی
 <a href="http://qt-project.org/doc/qt-5/qtglobal.html#QT_VERSION">QT_VERSION</a>
 از هدر <!-- raw HTML omitted --> می‌تونید به‌راحتی نسخهٔ کیوت رو تشخیص بدید که این خیلی خوبه
@@ -158,7 +156,7 @@ lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=c++11</code></pre>
 <a href="http://www.kdab.com/automated-porting-from-qt-4-to-qt-5/">اسکریپت</a> برای تبدیل
 اتوماتیک کدها از کیوت ۴ به کیوت ۵ نوشتن.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,8 +80,7 @@ MathJax.Hub.Config({
 این پست توضیحاتی در مورد طرز کار و بیشتر توضیح معایب این بورده. امیدوارم در
 آینده برای کسایی که می‌خوان باهاش کار کنن مفید باشه یا لااقل باعث باشه از خریدش
 منصرف بشن (:
-<figure>
-    <img src="/fa/static/images/smart210.jpg"/> <figcaption>
+<figure><img src="/fa/static/images/smart210.jpg"/><figcaption>
             <h4>بورد اصلی و پردازندهٔ Smart 210</h4>
         </figcaption>
 </figure>
@@ -132,8 +131,7 @@ Texas Instruments
 کرنل؟ بعد از اکسترکت کردن تاربال متوجه شدم که حضرات باینری‌هایی که کامپایل کردن
 رو هم گذاشتن بمونه. کلی فایل آبجکت به همراه خود کرنل کامپایل شده[!!] کنار
 سورس‌ها بود&hellip;
-<figure>
-    <img src="/static/images/dropbox.png"/> <figcaption>
+<figure><img src="/static/images/dropbox.png"/><figcaption>
             <h4>این مثلاً کرنل هست...</h4>
         </figcaption>
 </figure>
@@ -145,40 +143,40 @@ Texas Instruments
 اومدن یه اسکریپت داغون بش گذاشتن بغل سورس‌ها که یه سری فایل رو به‌جای
 ‪<code>.config</code>
 کپی می‌کنه! این‌جوری:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">DESTDIR</span><span class="o">=</span>/tmp/FriendlyARM/mini210
-<span class="nv">ADSTDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/android
-<span class="nv">LDSTDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/linux
-
-mkdir -p <span class="si">${</span><span class="nv">ADSTDIR</span><span class="si">}</span> <span class="si">${</span><span class="nv">LDSTDIR</span><span class="si">}</span>
-
-<span class="nv">CPU_JOB_NUM</span><span class="o">=</span><span class="k">$(</span>grep processor /proc/cpuinfo <span class="p">|</span> awk <span class="s1">&#39;{field=$NF};END{print 
-</span><span class="s1">field+1}&#39;</span><span class="k">)</span>
-
-make distclean
-touch .scmversion
-
-<span class="c1"># build zImage for android</span>
-cp mini210_android_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>   make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
-   cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">ADSTDIR</span><span class="si">}</span>/zImage <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
-
-cp mini210-tvp5150_android_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>	make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
-	cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">ADSTDIR</span><span class="si">}</span>/zImage_tvp5150 <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
-
-make distclean
-touch .scmversion
-
-<span class="c1"># build zImage for linux</span>
-cp mini210_linux_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>	make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
-	cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">LDSTDIR</span><span class="si">}</span>/zImage <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
-
-cp mini210-tvp5150_linux_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>	make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
-	cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">LDSTDIR</span><span class="si">}</span>/zImage_tvp5150 <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">DESTDIR</span><span class="o">=</span>/tmp/FriendlyARM/mini210
+</span></span><span class="line"><span class="cl"><span class="nv">ADSTDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/android
+</span></span><span class="line"><span class="cl"><span class="nv">LDSTDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/linux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -p <span class="si">${</span><span class="nv">ADSTDIR</span><span class="si">}</span> <span class="si">${</span><span class="nv">LDSTDIR</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">CPU_JOB_NUM</span><span class="o">=</span><span class="k">$(</span>grep processor /proc/cpuinfo <span class="p">|</span> awk <span class="s1">&#39;{field=$NF};END{print 
+</span></span></span><span class="line"><span class="cl"><span class="s1">field+1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">make distclean
+</span></span><span class="line"><span class="cl">touch .scmversion
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build zImage for android</span>
+</span></span><span class="line"><span class="cl">cp mini210_android_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>   make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">   cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">ADSTDIR</span><span class="si">}</span>/zImage <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cp mini210-tvp5150_android_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">	cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">ADSTDIR</span><span class="si">}</span>/zImage_tvp5150 <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">make distclean
+</span></span><span class="line"><span class="cl">touch .scmversion
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build zImage for linux</span>
+</span></span><span class="line"><span class="cl">cp mini210_linux_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">	cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">LDSTDIR</span><span class="si">}</span>/zImage <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cp mini210-tvp5150_linux_defconfig .config <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	make -j<span class="si">${</span><span class="nv">CPU_JOB_NUM</span><span class="si">}</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">	cp -vf arch/arm/boot/zImage <span class="si">${</span><span class="nv">LDSTDIR</span><span class="si">}</span>/zImage_tvp5150 <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span></span></span></code></pre></div>
 <p>باید این فایل رو باز کنیم، براساس کاری که می‌خوایم انجام بدیم (کرنل لینوکس یا
 اندرویید) قسمت‌هایی از سورس رو حذف کنیم، و بعد بزنیم اجراش کنیم تا بره از
 مسیرهای موردنظر فایل‌های موردنظر رو به‌جای فایل کانفیگ کپی کنه. بماند که انجام
@@ -235,129 +233,129 @@ FriendlyARMای‌ها نوشته بودن) بالأخره کرنل کامپای
 البته. خیلی کم پیش میاد کرنلی بار اول کار کنه. لاگ سریال رو نگاه کردم که ببینم
 کدوم ماژول نتونسته بالا بیاد یا کجا پنیک داده یا چی. ولی چیزی که دیدم خیلی عجیب
 بود:
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">Freeing init memory: 1408K
-/init: line 103: can&#39;t open /r/dev/console: no such file
-Kernel panic - not syncing: Attempted to kill init!</code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">Freeing init memory: 1408K
+</span></span><span class="line"><span class="cl">/init: line 103: can&#39;t open /r/dev/console: no such file
+</span></span><span class="line"><span class="cl">Kernel panic - not syncing: Attempted to kill init!</span></span></code></pre></div></p>
 <p>وات د فاک؟ ‪<code>/r/dev/console</code>‬ دیگه چه کوفتیه؟ اصلا تا حالا همچین چیزی به گوش کسی
 نخورده بود. یه سرچ ساده نشون میده که این مشکل فقط مختص این بورد هست. کاشف به عمل
 آمد که این احمق‌ها کرنل‌شون بالا نمی‌اومده (ظاهراً به دلیل نبود initramfs یا
 اشکالی مشابه) بعد عوض این که بشینن مثل آدم یه دونه cpio تنظیم کنن که با کرنل
 کامپایل بشه و در نهایت بچسبه به کرنل، برداشتن یه cpio درست کردن باینری‌شو
 گذاشتن. و داخل این cpio هم یه اسکریپت احمقانه هست که معلوم نیست چه قلطی می‌کنه:
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#! /bin/sh
-</span><span class="cp"></span>
-<span class="nv">PATH</span><span class="o">=</span>/sbin:/bin:/usr/sbin:/usr/bin
-<span class="nv">runlevel</span><span class="o">=</span>S
-<span class="nv">prevlevel</span><span class="o">=</span>N
-<span class="nb">umask</span> <span class="m">022</span>
-<span class="nb">export</span> PATH runlevel prevlevel
-
-#
-<span class="c1">#	Trap CTRL-C &amp;c only in this shell so we can interrupt subprocesses.</span>
-#
-<span class="nb">trap</span> <span class="s2">&#34;:&#34;</span> INT QUIT TSTP
-/bin/hostname FriendlyARM
-/bin/mount -n -t proc proc /proc
-
-<span class="nv">cmdline</span><span class="o">=</span><span class="sb">`</span>cat /proc/cmdline<span class="sb">`</span>
-
-<span class="nv">ROOT</span><span class="o">=</span>none
-<span class="nv">ROOTFLAGS</span><span class="o">=</span>
-<span class="nv">ROOTFSTYPE</span><span class="o">=</span>
-<span class="nv">NFSROOT</span><span class="o">=</span>
-<span class="nv">IP</span><span class="o">=</span>
-<span class="nv">INIT</span><span class="o">=</span>/sbin/init
-
-<span class="k">for</span> x in <span class="nv">$cmdline</span> <span class="p">;</span> <span class="k">do</span>
-	<span class="k">case</span> <span class="nv">$x</span> in
-	<span class="nv">root</span><span class="o">=</span>*<span class="o">)</span>
-		<span class="nv">ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#root=</span><span class="si">}</span>
-		<span class="p">;;</span>
-	<span class="nv">rootfstype</span><span class="o">=</span>*<span class="o">)</span>
-		<span class="nv">ROOTFSTYPE</span><span class="o">=</span><span class="s2">&#34;-t </span><span class="si">${</span><span class="nv">x</span><span class="p">#rootfstype=</span><span class="si">}</span><span class="s2">&#34;</span>
-		<span class="p">;;</span>
-	<span class="nv">rootflags</span><span class="o">=</span>*<span class="o">)</span>
-		<span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">&#34;-o </span><span class="si">${</span><span class="nv">x</span><span class="p">#rootflags=</span><span class="si">}</span><span class="s2">&#34;</span>
-		<span class="p">;;</span>
-	<span class="nv">init</span><span class="o">=</span>*<span class="o">)</span>
-		<span class="nv">INIT</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#init=</span><span class="si">}</span>
-		<span class="p">;;</span>
-	<span class="nv">nfsroot</span><span class="o">=</span>*<span class="o">)</span>
-		<span class="nv">NFSROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#nfsroot=</span><span class="si">}</span>
-		<span class="p">;;</span>
-	<span class="nv">ip</span><span class="o">=</span>*<span class="o">)</span>
-		<span class="nv">IP</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#ip=</span><span class="si">}</span>
-		<span class="p">;;</span>
-
-	<span class="k">esac</span>
-<span class="k">done</span>
-
-<span class="k">if</span> <span class="o">[</span> ! -z <span class="nv">$NFSROOT</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-	<span class="nb">echo</span> <span class="nv">$NFSROOT</span> <span class="p">|</span> sed s/:/<span class="se">\ </span>/g  &gt; /dev/x <span class="p">;</span>  <span class="nb">read</span> sip dir &lt; /dev/x
-	<span class="nb">echo</span> <span class="nv">$IP</span> <span class="p">|</span> sed s/:/<span class="se">\ </span>/g &gt; /dev/x<span class="p">;</span>  <span class="nb">read</span> cip sip2 gip netmask hostname 
-device autoconf &lt; /dev/x
-	rm /dev/x
-	<span class="nb">echo</span> <span class="nv">$sip</span> <span class="nv">$dir</span> <span class="nv">$cip</span> <span class="nv">$sip2</span> <span class="nv">$gip</span> <span class="nv">$netmask</span> <span class="nv">$hostname</span> <span class="nv">$device</span> <span class="nv">$autoconf</span>
-	mount -t nfs <span class="nv">$NFSROOT</span> /r -o nolock,proto<span class="o">=</span>tcp
-	<span class="c1">#[ -e /r/dev/console ] || exec /bin/sh</span>
-
-<span class="k">elif</span> <span class="o">[</span> ! -z <span class="nv">$run_fs_image</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-	<span class="nv">ROOTFSTYPE</span><span class="o">=</span><span class="s2">&#34;-t ext3&#34;</span>
-	<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="p">;</span> <span class="k">do</span>
-	/bin/mount -n -o sync -o noatime -o nodiratime -t vfat /dev/mmcblk0p1 
-/sdcard <span class="o">&amp;&amp;</span> <span class="nb">break</span>
-	<span class="nb">echo</span> Waiting <span class="k">for</span> SD Card...
-	sleep <span class="m">1</span>
-	<span class="k">done</span>
-	/sbin/losetup /dev/loop0 /sdcard/<span class="nv">$run_fs_image</span>
-	/bin/mount <span class="nv">$ROOTFSTYPE</span> /dev/loop0 /r
-	mount -o move /sdcard /r/sdcard
-	<span class="c1">#/sbin/losetup /dev/loop1 /r/sdcard/swap</span>
-	<span class="c1">#/sbin/swapon /dev/loop1</span>
-
-<span class="k">elif</span> <span class="o">[</span> x<span class="si">${</span><span class="nv">ROOT</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">13</span><span class="si">}</span> <span class="o">=</span> <span class="s2">&#34;x/dev/mmcblk0p&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-	<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="p">;</span> <span class="k">do</span>
-	/bin/mount -n <span class="nv">$ROOTFLAGS</span> <span class="nv">$ROOTFSTYPE</span> <span class="nv">$ROOT</span> /r <span class="o">&amp;&amp;</span> <span class="nb">break</span>
-	<span class="nb">echo</span> Waiting <span class="k">for</span> SD Card...
-	sleep <span class="m">1</span>
-	<span class="k">done</span>
-<span class="k">else</span>
-	/bin/mount -n <span class="nv">$ROOTFLAGS</span> <span class="nv">$ROOTFSTYPE</span> <span class="nv">$ROOT</span> /r
-<span class="k">fi</span>
-
-<span class="nv">ONE_WIRE_PROC</span><span class="o">=</span>/proc/driver/one-wire-info
-<span class="nv">ETC_BASE</span><span class="o">=</span>/r/etc
-<span class="o">[</span> -d /r/system/etc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">ETC_BASE</span><span class="o">=</span>/r/system/etc
-<span class="o">[</span> -e <span class="nv">$ETC_BASE</span>/ts.detected <span class="o">]</span> <span class="o">&amp;&amp;</span> . <span class="nv">$ETC_BASE</span>/ts.detected
-<span class="o">[</span> -z <span class="nv">$CHECK_1WIRE</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">CHECK_1WIRE</span><span class="o">=</span>Y
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$CHECK_1WIRE</span> <span class="o">=</span> <span class="s2">&#34;Y&#34;</span> -a -e <span class="nv">$ONE_WIRE_PROC</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-	<span class="k">if</span> <span class="nb">read</span> lcd_type fw_ver tail &lt; <span class="nv">$ONE_WIRE_PROC</span> <span class="p">;</span> <span class="k">then</span>
-		<span class="k">if</span> <span class="o">[</span> x<span class="nv">$lcd_type</span> <span class="o">=</span> <span class="s2">&#34;x0&#34;</span> -a x<span class="nv">$fw_ver</span> <span class="o">=</span> <span class="s2">&#34;x0&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-			<span class="nv">TS_DEV</span><span class="o">=</span>/dev/touchscreen
-		<span class="k">else</span>
-			<span class="nv">TS_DEV</span><span class="o">=</span>/dev/touchscreen-1wire
-			<span class="nb">echo</span> <span class="s2">&#34;1Wire touchscreen OK&#34;</span>
-		<span class="k">fi</span>
-		<span class="k">if</span> <span class="o">[</span> -e <span class="nv">$ETC_BASE</span>/friendlyarm-ts-input.conf <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-			sed <span class="s2">&#34;s:^\(TSLIB_TSDEVICE=\).*:\1</span><span class="nv">$TS_DEV</span><span class="s2">:g&#34;</span> 
-<span class="nv">$ETC_BASE</span>/friendlyarm-ts-input.conf &gt; <span class="nv">$ETC_BASE</span>/ts-autodetect.conf
-			mv <span class="nv">$ETC_BASE</span>/ts-autodetect.conf 
-<span class="nv">$ETC_BASE</span>/friendlyarm-ts-input.conf -f
-			<span class="nb">echo</span> <span class="s2">&#34;CHECK_1WIRE=N&#34;</span> &gt; <span class="nv">$ETC_BASE</span>/ts.detected
-			sync
-		<span class="k">fi</span>
-	<span class="k">fi</span>
-<span class="k">fi</span>
-
-<span class="o">[</span> -e /r/etc/friendlyarm-ts-input.conf <span class="o">]</span> <span class="o">&amp;&amp;</span> . /r/etc/friendlyarm-ts-input.conf
-<span class="o">[</span> -e /r/system/etc/friendlyarm-ts-input.conf <span class="o">]</span> <span class="o">&amp;&amp;</span> . 
-/r/system/etc/friendlyarm-ts-input.conf
-<span class="nb">export</span> TSLIB_TSDEVICE
-
-<span class="c1">#exec /bin/sh</span>
-
-umount /proc
-<span class="nb">exec</span> switch_root /r <span class="nv">$INIT</span> &lt;/r/dev/console &gt;/r/dev/console 2&gt;<span class="p">&amp;</span><span class="m">1</span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#! /bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">PATH</span><span class="o">=</span>/sbin:/bin:/usr/sbin:/usr/bin
+</span></span><span class="line"><span class="cl"><span class="nv">runlevel</span><span class="o">=</span>S
+</span></span><span class="line"><span class="cl"><span class="nv">prevlevel</span><span class="o">=</span>N
+</span></span><span class="line"><span class="cl"><span class="nb">umask</span> <span class="m">022</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> PATH runlevel prevlevel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#	Trap CTRL-C &amp;c only in this shell so we can interrupt subprocesses.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="nb">trap</span> <span class="s2">&#34;:&#34;</span> INT QUIT TSTP
+</span></span><span class="line"><span class="cl">/bin/hostname FriendlyARM
+</span></span><span class="line"><span class="cl">/bin/mount -n -t proc proc /proc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">cmdline</span><span class="o">=</span><span class="sb">`</span>cat /proc/cmdline<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">ROOT</span><span class="o">=</span>none
+</span></span><span class="line"><span class="cl"><span class="nv">ROOTFLAGS</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ROOTFSTYPE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NFSROOT</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IP</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">INIT</span><span class="o">=</span>/sbin/init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> x in <span class="nv">$cmdline</span> <span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nv">$x</span> in
+</span></span><span class="line"><span class="cl">	<span class="nv">root</span><span class="o">=</span>*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#root=</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">rootfstype</span><span class="o">=</span>*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">ROOTFSTYPE</span><span class="o">=</span><span class="s2">&#34;-t </span><span class="si">${</span><span class="nv">x</span><span class="p">#rootfstype=</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">rootflags</span><span class="o">=</span>*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">ROOTFLAGS</span><span class="o">=</span><span class="s2">&#34;-o </span><span class="si">${</span><span class="nv">x</span><span class="p">#rootflags=</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">init</span><span class="o">=</span>*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">INIT</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#init=</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">nfsroot</span><span class="o">=</span>*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">NFSROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#nfsroot=</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">ip</span><span class="o">=</span>*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">IP</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">#ip=</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> ! -z <span class="nv">$NFSROOT</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="nv">$NFSROOT</span> <span class="p">|</span> sed s/:/<span class="se">\ </span>/g  &gt; /dev/x <span class="p">;</span>  <span class="nb">read</span> sip dir &lt; /dev/x
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="nv">$IP</span> <span class="p">|</span> sed s/:/<span class="se">\ </span>/g &gt; /dev/x<span class="p">;</span>  <span class="nb">read</span> cip sip2 gip netmask hostname 
+</span></span><span class="line"><span class="cl">device autoconf &lt; /dev/x
+</span></span><span class="line"><span class="cl">	rm /dev/x
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="nv">$sip</span> <span class="nv">$dir</span> <span class="nv">$cip</span> <span class="nv">$sip2</span> <span class="nv">$gip</span> <span class="nv">$netmask</span> <span class="nv">$hostname</span> <span class="nv">$device</span> <span class="nv">$autoconf</span>
+</span></span><span class="line"><span class="cl">	mount -t nfs <span class="nv">$NFSROOT</span> /r -o nolock,proto<span class="o">=</span>tcp
+</span></span><span class="line"><span class="cl">	<span class="c1">#[ -e /r/dev/console ] || exec /bin/sh</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[</span> ! -z <span class="nv">$run_fs_image</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">ROOTFSTYPE</span><span class="o">=</span><span class="s2">&#34;-t ext3&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">	/bin/mount -n -o sync -o noatime -o nodiratime -t vfat /dev/mmcblk0p1 
+</span></span><span class="line"><span class="cl">/sdcard <span class="o">&amp;&amp;</span> <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> Waiting <span class="k">for</span> SD Card...
+</span></span><span class="line"><span class="cl">	sleep <span class="m">1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span><span class="line"><span class="cl">	/sbin/losetup /dev/loop0 /sdcard/<span class="nv">$run_fs_image</span>
+</span></span><span class="line"><span class="cl">	/bin/mount <span class="nv">$ROOTFSTYPE</span> /dev/loop0 /r
+</span></span><span class="line"><span class="cl">	mount -o move /sdcard /r/sdcard
+</span></span><span class="line"><span class="cl">	<span class="c1">#/sbin/losetup /dev/loop1 /r/sdcard/swap</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">#/sbin/swapon /dev/loop1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[</span> x<span class="si">${</span><span class="nv">ROOT</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">13</span><span class="si">}</span> <span class="o">=</span> <span class="s2">&#34;x/dev/mmcblk0p&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">	/bin/mount -n <span class="nv">$ROOTFLAGS</span> <span class="nv">$ROOTFSTYPE</span> <span class="nv">$ROOT</span> /r <span class="o">&amp;&amp;</span> <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> Waiting <span class="k">for</span> SD Card...
+</span></span><span class="line"><span class="cl">	sleep <span class="m">1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	/bin/mount -n <span class="nv">$ROOTFLAGS</span> <span class="nv">$ROOTFSTYPE</span> <span class="nv">$ROOT</span> /r
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">ONE_WIRE_PROC</span><span class="o">=</span>/proc/driver/one-wire-info
+</span></span><span class="line"><span class="cl"><span class="nv">ETC_BASE</span><span class="o">=</span>/r/etc
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -d /r/system/etc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">ETC_BASE</span><span class="o">=</span>/r/system/etc
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -e <span class="nv">$ETC_BASE</span>/ts.detected <span class="o">]</span> <span class="o">&amp;&amp;</span> . <span class="nv">$ETC_BASE</span>/ts.detected
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -z <span class="nv">$CHECK_1WIRE</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">CHECK_1WIRE</span><span class="o">=</span>Y
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$CHECK_1WIRE</span> <span class="o">=</span> <span class="s2">&#34;Y&#34;</span> -a -e <span class="nv">$ONE_WIRE_PROC</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">read</span> lcd_type fw_ver tail &lt; <span class="nv">$ONE_WIRE_PROC</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="o">[</span> x<span class="nv">$lcd_type</span> <span class="o">=</span> <span class="s2">&#34;x0&#34;</span> -a x<span class="nv">$fw_ver</span> <span class="o">=</span> <span class="s2">&#34;x0&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">			<span class="nv">TS_DEV</span><span class="o">=</span>/dev/touchscreen
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="nv">TS_DEV</span><span class="o">=</span>/dev/touchscreen-1wire
+</span></span><span class="line"><span class="cl">			<span class="nb">echo</span> <span class="s2">&#34;1Wire touchscreen OK&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">fi</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="o">[</span> -e <span class="nv">$ETC_BASE</span>/friendlyarm-ts-input.conf <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">			sed <span class="s2">&#34;s:^\(TSLIB_TSDEVICE=\).*:\1</span><span class="nv">$TS_DEV</span><span class="s2">:g&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">$ETC_BASE</span>/friendlyarm-ts-input.conf &gt; <span class="nv">$ETC_BASE</span>/ts-autodetect.conf
+</span></span><span class="line"><span class="cl">			mv <span class="nv">$ETC_BASE</span>/ts-autodetect.conf 
+</span></span><span class="line"><span class="cl"><span class="nv">$ETC_BASE</span>/friendlyarm-ts-input.conf -f
+</span></span><span class="line"><span class="cl">			<span class="nb">echo</span> <span class="s2">&#34;CHECK_1WIRE=N&#34;</span> &gt; <span class="nv">$ETC_BASE</span>/ts.detected
+</span></span><span class="line"><span class="cl">			sync
+</span></span><span class="line"><span class="cl">		<span class="k">fi</span>
+</span></span><span class="line"><span class="cl">	<span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -e /r/etc/friendlyarm-ts-input.conf <span class="o">]</span> <span class="o">&amp;&amp;</span> . /r/etc/friendlyarm-ts-input.conf
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -e /r/system/etc/friendlyarm-ts-input.conf <span class="o">]</span> <span class="o">&amp;&amp;</span> . 
+</span></span><span class="line"><span class="cl">/r/system/etc/friendlyarm-ts-input.conf
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> TSLIB_TSDEVICE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#exec /bin/sh</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">umount /proc
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> switch_root /r <span class="nv">$INIT</span> &lt;/r/dev/console &gt;/r/dev/console 2&gt;<span class="p">&amp;</span><span class="m">1</span></span></span></code></pre></div></p>
 <p>آخرین خط این اسکریپت یه کار احمقانه انجام داده. با یه سرچ ساده می‌تونیم ببینیم که اصلا عبارت
 <code>/r/dev</code>
 ما رو مستقیم می‌بره به فروم‌های فرندلی‌آرم و هیچ نتیجهٔ دیگه‌ای از جستجو عایدمون نمی‌شه. پس این
@@ -376,7 +374,7 @@ diffگیری از سورس کرنل فرندلی آرم و سورس اصلی ک�
 مشکلات کیفیت و پایداری پایین‌ش رو تحمل کرد. اما اگه چینی‌ها طراحی‌ش کردن و نرم‌افزارهاش رو ارائه دادن
 سمتش نرید.</p></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

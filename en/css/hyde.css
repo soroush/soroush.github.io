@@ -31,12 +31,120 @@
  * Update the foundational and global aspects of the page.
  */
 
+ @font-face {
+  font-family: 'CMU Serif';
+  src: url('../webfonts/cmu/cmunrm.eot');
+  src: url('../webfonts/cmu/cmunrm.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunrm.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunrm.woff') format('woff'),
+       url('../webfonts/cmu/cmunrm.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('../webfonts/cmu/cmunbx.eot');
+  src: url('../webfonts/cmu/cmunbx.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunbx.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunbx.woff') format('woff'),
+       url('../webfonts/cmu/cmunbx.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'CMU Concrete';
+  src: url('../webfonts/cmu/cmunorm.eot');
+  src: url('../webfonts/cmu/cmunorm.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunorm.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunorm.woff') format('woff'),
+       url('../webfonts/cmu/cmunorm.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CMU Concrete';
+  src: url('../webfonts/cmu/cmunobx.eot');
+  src: url('../webfonts/cmu/cmunobx.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunobx.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunobx.woff') format('woff'),
+       url('../webfonts/cmu/cmunobx.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CMU Concrete';
+  src: url('../webfonts/cmu/cmunoti.eot');
+  src: url('../webfonts/cmu/cmunoti.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunoti.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunoti.woff') format('woff'),
+       url('../webfonts/cmu/cmunoti.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CMU Concrete';
+  src: url('../webfonts/cmu/cmunobi.eot');
+  src: url('../webfonts/cmu/cmunobi.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunobi.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunobi.woff') format('woff'),
+       url('../webfonts/cmu/cmunobi.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CMU Typewriter';
+  src: url('../webfonts/cmu/cmuntt.eot');
+  src: url('../webfonts/cmu/cmuntt.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmuntt.woff2') format('woff2'),
+       url('../webfonts/cmu/cmuntt.woff') format('woff'),
+       url('../webfonts/cmu/cmuntt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CMU Typewriter';
+  src: url('../webfonts/cmu/cmuntb.eot');
+  src: url('../webfonts/cmu/cmuntb.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmuntb.woff2') format('woff2'),
+       url('../webfonts/cmu/cmuntb.woff') format('woff'),
+       url('../webfonts/cmu/cmuntb.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CMU Typewriter';
+  src: url('../webfonts/cmu/cmunit.eot');
+  src: url('../webfonts/cmu/cmunit.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmunit.woff2') format('woff2'),
+       url('../webfonts/cmu/cmunit.woff') format('woff'),
+       url('../webfonts/cmu/cmunit.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CMU Typewriter';
+  src: url('../webfonts/cmu/cmuntx.eot');
+  src: url('../webfonts/cmu/cmuntx.woff?#iefix') format('embedded-opentype'),
+       url('../webfonts/cmu/cmuntx.woff2') format('woff2'),
+       url('../webfonts/cmu/cmuntx.woff') format('woff'),
+       url('../webfonts/cmu/cmuntx.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: "CMU Concrete", "PT Sans", Helvetica, Arial, sans-serif;
 }
 @media (min-width: 48em) {
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 @media (min-width: 58em) {
@@ -78,7 +186,7 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "PT Sans", serif;
+  font-family: "CMU Serif", serif;
   font-size: 2.5rem;
 }
 

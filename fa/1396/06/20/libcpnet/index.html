@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
   <link href="//gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.113.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -132,73 +132,73 @@ POSIX
 <h2 id="کد">کد</h2>
 <p>هیچ چیز بهتر از کد نمی‌تونه توضیح بده (: کد سمت کلاینت برای اتصال از نوع TCP یه
 همچین چیزی میشه:
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Client-side sample code */</span>
-<span class="cm">/* Initialize networking API (Only needed in Windows) */</span>
-<span class="n">net_init</span><span class="p">();</span>
-<span class="cm">/* Start a client */</span>
-<span class="n">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
-<span class="cm">/* Connect to port 50001 */</span>
-<span class="k">if</span><span class="p">(</span><span class="n">net_connect</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="mi">50001</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> 
-<span class="p">{</span>
-    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to connect: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
-<span class="cm">/* Write to socket */</span>
-<span class="n">ssizet</span> <span class="n">io_size</span> <span class="o">=</span> <span class="n">net_write</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="n">io_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to write: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">io_size</span> <span class="o">=</span> <span class="n">net_read</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="n">read_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to read: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">();</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="cm">/* ... */</span>
-<span class="cm">/* Cleanup (Only needed in Windows) */</span>
-<span class="n">net_clean</span><span class="p">();</span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* Client-side sample code */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Initialize networking API (Only needed in Windows) */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">net_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Start a client */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="nf">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Connect to port 50001 */</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nf">net_connect</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="mi">50001</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to connect: %s&#34;</span><span class="p">,</span> <span class="nf">net_last_error</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Write to socket */</span>
+</span></span><span class="line"><span class="cl"><span class="n">ssizet</span> <span class="n">io_size</span> <span class="o">=</span> <span class="nf">net_write</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">io_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to write: %s&#34;</span><span class="p">,</span> <span class="nf">net_last_error</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">io_size</span> <span class="o">=</span> <span class="nf">net_read</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">read_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to read: %s&#34;</span><span class="p">,</span> <span class="nf">net_last_error</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* ... */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Cleanup (Only needed in Windows) */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">net_clean</span><span class="p">();</span></span></span></code></pre></div></p>
 <p>و کد سمت سرور برای باز کردن یک پورت و جواب دادن به اتصالات مختلف:
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* Initialize networking API (if any needed) */</span>
-<span class="n">net_init</span><span class="p">();</span>
-<span class="cm">/* Start a server */</span>
-<span class="n">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
-<span class="cm">/* Bind on port 50001 */</span>
-<span class="n">uint16_t</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">50001</span><span class="p">;</span>
-<span class="k">if</span><span class="p">(</span><span class="n">net_bind</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to bind: %s&#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="cm">/* Listen for incomming connections (backlog=10) */</span>
-<span class="n">net_listen</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-<span class="cm">/* Accept clients */</span>
-<span class="kt">char</span> <span class="n">address</span><span class="p">[</span><span class="mi">46</span><span class="p">];</span>
-<span class="n">socket_t</span> <span class="n">client</span> <span class="o">=</span> <span class="n">net_accept</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Client connected. Remote Address:`%s&#39; Assigned port number: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
-<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
-<span class="n">ssize_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">net_read</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to read from socket: &#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Remote client stopped.&#34;</span><span class="p">);</span>
-    <span class="n">net_close</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">ssize_t</span> <span class="n">w</span> <span class="o">=</span> <span class="n">net_write</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to write to socket: &#34;</span><span class="p">,</span> <span class="n">net_last_error</span><span class="p">());</span>
-    <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* Initialize networking API (if any needed) */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">net_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Start a server */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">socket_t</span> <span class="n">socket</span> <span class="o">=</span> <span class="nf">net_socket</span><span class="p">(</span><span class="n">SOCK_STREAM</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Bind on port 50001 */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">uint16_t</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">50001</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nf">net_bind</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to bind: %s&#34;</span><span class="p">,</span> <span class="nf">net_last_error</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Listen for incomming connections (backlog=10) */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">net_listen</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* Accept clients */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">address</span><span class="p">[</span><span class="mi">46</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">socket_t</span> <span class="n">client</span> <span class="o">=</span> <span class="nf">net_accept</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Client connected. Remote Address:`%s&#39; Assigned port number: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">ssize_t</span> <span class="n">r</span> <span class="o">=</span> <span class="nf">net_read</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to read from socket: &#34;</span><span class="p">,</span> <span class="nf">net_last_error</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Remote client stopped.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">net_close</span><span class="p">(</span><span class="n">client</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">ssize_t</span> <span class="n">w</span> <span class="o">=</span> <span class="nf">net_write</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Unable to write to socket: &#34;</span><span class="p">,</span> <span class="nf">net_last_error</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></p>
 <p>چند تا نکته:</p>
 <ul>
 <li>همهٔ توابع با ‪<code>net_</code>‬ شروع میشن.</li>
 <li>روی لینوکس لازم نیست ‪<code>net_init()</code>‬ و ‪<code>net_clean()</code>‬ رو بنویسید، اما ضرری هم نداره (هیچ کاری نمی‌کنه)</li>
 </ul></div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
