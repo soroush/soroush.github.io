@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa">
 <head>
-  <link href="//gmpg.org/xfn/11" rel="profile">
+  <link href="https://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.113.0">
+  <meta name="generator" content="Hugo 0.129.0">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>نصب آسان نرم‌افزار از طریق Qt Creator &middot; اختاپوس خسته</title>
+  <meta name="description" content="" />
 
     
   <link type="text/css" rel="stylesheet" href="https://soroush.github.io/fa/css/print.css" media="print">
@@ -65,13 +66,16 @@ MathJax.Hub.Config({
       </ul>
     </nav>
 
-    <p><a href="https://soroush.github.io/fa/">[فارسی]</a> <a href="https://soroush.github.io/en/">[English]</a> </p>
+    <p><a href="https://soroush.github.io/en/">[English]</a> <a href="https://soroush.github.io/fa/">[فارسی]</a> </p>
     <p>حق نشر محفوظ است.</p>
   </div>
 </aside>
 
     <main class="content container">
-    <div class="post"><h1>نصب آسان نرم‌افزار از طریق Qt Creator</h1><time datetime="2014-02-28T00:00:00Z" class="post-date"> جمعه، ۹ اسفند ۱۳۹۲ </time><p>روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست.
+    <div class="post">
+  <h1>نصب آسان نرم‌افزار از طریق Qt Creator</h1>
+  <time datetime=2014-02-28T00:00:00Z class="post-date">Fri, Feb 28, 2014</time>
+  <p>روند کلی توسعهٔ نرم‌افزار با استفاده از ساختارهای کیوت خیلی سرراست و ساده هست.
 با این وجود ممکنه گاهی اوقات بعضی کارهای تکراری کسل‌کننده به‌نظر برسه. همگی
 می‌دونیم که کسل‌کنندگی بزرگترین دشمن گیک‌ها (و البته گیگتوپوس‌ها) هست. خوشبختانه
 توسعه‌دهنده‌های کیوت‌کریتور همگی گیک هستند و راه‌حل‌های مؤثری برای این کارها
@@ -96,9 +100,9 @@ MathJax.Hub.Config({
 خوب از قسمت Run Settings می‌تونیم بخش Deployment رو ببینیم. این‌جا به‌طور
 پیش‌فرض یک پیکربندی خالی وجود داره که هیچ دستوری رو اجرا نمی‌کنه و طبیعتاً هیچ
 کاری هم انجام نمیده:</p>
-<figure><img src="/fa/static/images/qt-creator-deploy.png"/><figcaption>
-            <h4>‫تنظیمات Deploy‬</h4>
-        </figcaption>
+<figure><img src="/fa/static/images/qt-creator-deploy.png"><figcaption>
+      <h4>‫تنظیمات Deploy‬</h4>
+    </figcaption>
 </figure>
 
 <p>۱. روی دکمهٔ Rename کلیک می‌کنیم و یه اسم درست و حسابی برای کانفیگ‌مون انتخاب
@@ -115,22 +119,22 @@ MathJax.Hub.Config({
 کلاً ترمینال باز نکنیم! پس از رابط‌های سودو که DE مون مهیا می‌کنه استفاده
 می‌کنیم. دسکتاپ من KDE هست پس به‌جای sudo می‌نویسم kdesuo. اگر محیط کاری شما
 گنوم هست از gksu استفاده کنید. در آخر یه همچین چیزی میشه:</p>
-<figure><img src="/fa/static/images/qt-creator-deploy-settings.png"/><figcaption>
-            <h4>دستوری که می‌خواهیم اجرا کنیم</h4>
-        </figcaption>
+<figure><img src="/fa/static/images/qt-creator-deploy-settings.png"><figcaption>
+      <h4>دستوری که می‌خواهیم اجرا کنیم</h4>
+    </figcaption>
 </figure>
 
 <p>حالا اگر از منوی Build گزینهٔ Deploy Project رو بزنیم، ازمون پسورد روت پرسیده
 میشه و کل کتابخونه‌ها (یا برنامه‌مون) توی سیستم نصب میشه:</p>
-<p><figure><img src="/fa/static/images/qt-creator-deploy-in-menu.png"/><figcaption>
-            <h4>‫آیتم Deploy در منو‬</h4>
-        </figcaption>
+<p><figure><img src="/fa/static/images/qt-creator-deploy-in-menu.png"><figcaption>
+      <h4>‫آیتم Deploy در منو‬</h4>
+    </figcaption>
 </figure>
 
 و
-<figure><img src="/fa/static/images/qt-creator-deploy-kdesu.png"/><figcaption>
-            <h4>‫پرسیدن پسورد روت توسط kdesu‬</h4>
-        </figcaption>
+<figure><img src="/fa/static/images/qt-creator-deploy-kdesu.png"><figcaption>
+      <h4>‫پرسیدن پسورد روت توسط kdesu‬</h4>
+    </figcaption>
 </figure>
 </p>
 <p>با این حال میشه حد و مرزهای تنبلی رو فراتر هم برد مثلاً من به عنوان یک اختاپوس
@@ -142,9 +146,9 @@ MathJax.Hub.Config({
 راحت‌تر پیدا کنید. از لیست فیلتر شده آیتم Deploy رو انتخاب کنید و توی
 قسمت Key Sequence کلید میان‌بری رو که می‌خواید براش انتصاب بشه، بزنید. مثلاً من
 زدم Ctrl+Shift+D :</p>
-<figure><img src="/fa/static/images/qt-creator-deploy-options.png"/><figcaption>
-            <h4>کلید میان‌بر‬</h4>
-        </figcaption>
+<figure><img src="/fa/static/images/qt-creator-deploy-options.png"><figcaption>
+      <h4>کلید میان‌بر‬</h4>
+    </figcaption>
 </figure>
 
 <p>خوب این تنظیمات برای نصب کتابخانهٔ نرم‌افزاری روی سیستم‌های مبتنی‌بر لینوکس بود.
@@ -162,9 +166,9 @@ Working Directory:%{buildDir}
 نرم‌افزاری بومی به شکلی کاملاً اتوماتیک :) دقت داشته باشید که می‌تونید هر تعداد
 کانفیگ برای توزیع نرم‌افزارتون داشته باشید. مثلاً میشه با این کانفیگ از روی یک
 ریلیز خاص سورس، تاربال درست کرد:</p>
-<figure><img src="/fa/static/images/qt-creator-deploy-make-tarball.png"/><figcaption>
-            <h4>‫ساخت tarball از روی نسخهٔ ۰٫۱٫۳‬</h4>
-        </figcaption>
+<figure><img src="/fa/static/images/qt-creator-deploy-make-tarball.png"><figcaption>
+      <h4>‫ساخت tarball از روی نسخهٔ ۰٫۱٫۳‬</h4>
+    </figcaption>
 </figure>
 
 <p>من دوست دارم ابزارها و کتابخانه‌های متن‌بازم رو پکیج می‌کنم و روی یک رپوزیتوری
@@ -175,13 +179,17 @@ Working Directory:%{buildDir}
 میدم. این‌ها پکیج‌هایی هستند که با این روش ساختم و روی رپوزیتوری
 <a href="https://launchpad.net/~soroush-r/+archive/solap">SOLAP</a> (Soroush&rsquo;s own Libraries and Programs)
 منتشر کردم:
-<figure><img src="/fa/static/images/solap.png"/><figcaption>
-            <h4>پکیج‌های رپوزیتوری شخصی من‬</h4>
-        </figcaption>
+<figure><img src="/fa/static/images/solap.png"><figcaption>
+      <h4>پکیج‌های رپوزیتوری شخصی من‬</h4>
+    </figcaption>
 </figure>
 </p>
-</div><h2>دیدگاه‌ها</h2><div id="disqus_thread"></div>
-<script type="application/javascript">
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
     window.disqus_config = function () {
     
     
@@ -201,6 +209,11 @@ Working Directory:%{buildDir}
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </main>
+
+    
+      
+  
+
 
     
   </body>

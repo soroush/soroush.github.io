@@ -4,25 +4,16 @@
     <title>ویندوز on اختاپوس خسته</title>
     <link>https://soroush.github.io/fa/categories/%D9%88%DB%8C%D9%86%D8%AF%D9%88%D8%B2/</link>
     <description>Recent content in ویندوز on اختاپوس خسته</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>fa</language>
-    <lastBuildDate>Mon, 11 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/categories/%D9%88%DB%8C%D9%86%D8%AF%D9%88%D8%B2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://soroush.github.io/fa/categories/%D9%88%DB%8C%D9%86%D8%AF%D9%88%D8%B2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>برنامه‌نویسی شبکه در ویندوز/لینوکس: libcpnet</title>
       <link>https://soroush.github.io/fa/1396/06/20/libcpnet/</link>
       <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://soroush.github.io/fa/1396/06/20/libcpnet/</guid>
-      <description>&lt;p&gt;کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی
-ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما
-گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام
-می‌کنیم، روی ویندوز هم می‌تونید برنامه رو اجرا کنید. خوب این تصمیم مشکلات بسیار
-بزرگی برای برنامه‌نویس به‌وجود میاره. ازجمله برنامه‌نویسی شبکه&amp;hellip; این پست به
-بررسی این مشکلات و ارائهٔ یک راه حل خوب خواهد پرداخت (: اگر قصد دارید کدی
-بنویسید که هم روی ویندوز و هم روی سیستم‌عامل‌های واقعی بتونه از شبکه استفاده
-کنه
-حتماً ادامهٔ مطلب رو بخونید.&lt;/p&gt;</description>
+      <description>&lt;p&gt;کارفرمای کاری که الان دارم انجام میدم اصرار داره که برنامه‌ش علاوه‌بر لینوکس روی&#xA;ویندوز هم به‌خوبی اجرا بشه. مدیر من کاملاً این محدودیت رو پذیرفته و به کارفرما&#xA;گفته که با سخت‌افزاری که مشخصاتش رو اعلام می‌کنیم و با مشخصات کارکردی که اعلام&#xA;می‌کنیم، روی ویندوز هم می‌تونید برنامه رو اجرا کنید. خوب این تصمیم مشکلات بسیار&#xA;بزرگی برای برنامه‌نویس به‌وجود میاره. ازجمله برنامه‌نویسی شبکه&amp;hellip; این پست به&#xA;بررسی این مشکلات و ارائهٔ یک راه حل خوب خواهد پرداخت (: اگر قصد دارید کدی&#xA;بنویسید که هم روی ویندوز و هم روی سیستم‌عامل‌های واقعی بتونه از شبکه استفاده&#xA;کنه&#xA;حتماً ادامهٔ مطلب رو بخونید.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

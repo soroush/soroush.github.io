@@ -4,67 +4,23 @@
     <title>Qt on The Bored Octopus</title>
     <link>https://soroush.github.io/en/categories/qt/</link>
     <description>Recent content in Qt on The Bored Octopus</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/en/categories/qt/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://soroush.github.io/en/categories/qt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Non-Gregorian Calendar Systems in Qt</title>
       <link>https://soroush.github.io/en/2020/08/02/persian-calendar-in-qt/</link>
       <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://soroush.github.io/en/2020/08/02/persian-calendar-in-qt/</guid>
-      <description>&lt;p&gt;For Iranian general public, working with date and time in a computer system has always
-been challenging. As opposed to - almost - entire population of the planet, we use a
-different calendar system (actually a better one!) but computer systems are not
-designed and developed with non-Gregorian calendaring in mind. So we always have
-to use unconventional methods and hacks to provide functionality of
-the official calendar of the country - Solar Hijri&amp;hellip;&lt;/p&gt;
-&lt;p&gt;Personally, for me the absence of the Solar Hijri calendar in Qt has always
-been annoying. Whenever I wanted to work with date and time in my C++ GUI
-applications, I had two options: Either use my own custom widgets (which where
-not as good as Qt&amp;rsquo;s widgets), or simply use the Gregorian calendar (which is
-annoying for the final user).&lt;/p&gt;
-&lt;p&gt;Since version 4.6, right after I released Persian translation of Qt, I was
-thinking of implementing the solar calendar for this
-framework. Unfortunately, in that time it was not possible to implement it for
-many reasons. However, I made some prototypes, but it did not make it to Qt5.
-Qt5 had its own sad story, with the premature release of version 5.0; the
-opportunity created by changing the major version was also missed.
-Though finally, after 6 years and forgetting all about calendars, I had the
-chance to implement the solar Hijri calendar for Qt 5.10. The final version has been
-released with Qt 5.14 on December 12, 2019. This post describes challenges, and
-the process of the work, and also the API itself.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://soroush.github.io/en/en/static/images/jalali.gif&#34;/&gt;&lt;figcaption&gt;
-            &lt;h4&gt;Running Example&lt;/h4&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;</description>
+      <description>&lt;p&gt;For Iranian general public, working with date and time in a computer system has always&#xA;been challenging. As opposed to - almost - entire population of the planet, we use a&#xA;different calendar system (actually a better one!) but computer systems are not&#xA;designed and developed with non-Gregorian calendaring in mind. So we always have&#xA;to use unconventional methods and hacks to provide functionality of&#xA;the official calendar of the country - Solar Hijri&amp;hellip;&lt;/p&gt;&#xA;&lt;p&gt;Personally, for me the absence of the Solar Hijri calendar in Qt has always&#xA;been annoying. Whenever I wanted to work with date and time in my C++ GUI&#xA;applications, I had two options: Either use my own custom widgets (which where&#xA;not as good as Qt&amp;rsquo;s widgets), or simply use the Gregorian calendar (which is&#xA;annoying for the final user).&lt;/p&gt;&#xA;&lt;p&gt;Since version 4.6, right after I released Persian translation of Qt, I was&#xA;thinking of implementing the solar calendar for this&#xA;framework. Unfortunately, in that time it was not possible to implement it for&#xA;many reasons. However, I made some prototypes, but it did not make it to Qt5.&#xA;Qt5 had its own sad story, with the premature release of version 5.0; the&#xA;opportunity created by changing the major version was also missed.&#xA;Though finally, after 6 years and forgetting all about calendars, I had the&#xA;chance to implement the solar Hijri calendar for Qt 5.10. The final version has been&#xA;released with Qt 5.14 on December 12, 2019. This post describes challenges, and&#xA;the process of the work, and also the API itself.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://soroush.github.io/en/en/static/images/jalali.gif&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;Running Example&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;</description>
     </item>
-    
     <item>
       <title>Worst Ever Qt Bug (for me!)</title>
       <link>https://soroush.github.io/en/2017/05/09/worst-ever-bug/</link>
       <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://soroush.github.io/en/2017/05/09/worst-ever-bug/</guid>
-      <description>&lt;p&gt;I think Qt is one of the best software development frameworks. It has a nice GUI
-library alongside with many other tools, provided as a neat and clean API. KDE
-desktop environment is almost entirely based on Qt framework. I&amp;rsquo;ve been using it
-for a decade now, and I have successfully delivered dozens of projects &amp;ndash; both
-embedded and desktop &amp;ndash; most of them only using Qt. Though starting from version
-5.3, a tiny bug has appeared in the core library, that makes life difficult for
-me: It is impossible to insert invisible characters in Qt&amp;rsquo;s text engine. That is
-you can&amp;rsquo;t type ZWNJ, ZWJ, LRE, RLE and PDF characters. (I have described what
-they in this post:
-&lt;a href=&#34;&#34;&gt;Control Charachters and Bi-Directional Text&lt;/a&gt;.
-The effect of this bug is so huge that makes it impossible for me to use KDE or
-any other application that uses Qt. To see how it didn&amp;rsquo;t work for us, imagine
-being unable to type, for example, &amp;ldquo;space&amp;rdquo; character in any application on your
-operating system! In this post I am going to show a workaround and explain how
-to fix this bug. It is already fixed in recent versions of Qt, though it is not
-in official repositories yet. Fortunately, the workaround is very simple and
-does not break anything. Finally I&amp;rsquo;ll provide a patch for 5.9. Hope this helps
-someone.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I think Qt is one of the best software development frameworks. It has a nice GUI&#xA;library alongside with many other tools, provided as a neat and clean API. KDE&#xA;desktop environment is almost entirely based on Qt framework. I&amp;rsquo;ve been using it&#xA;for a decade now, and I have successfully delivered dozens of projects &amp;ndash; both&#xA;embedded and desktop &amp;ndash; most of them only using Qt. Though starting from version&#xA;5.3, a tiny bug has appeared in the core library, that makes life difficult for&#xA;me: It is impossible to insert invisible characters in Qt&amp;rsquo;s text engine. That is&#xA;you can&amp;rsquo;t type ZWNJ, ZWJ, LRE, RLE and PDF characters. (I have described what&#xA;they in this post:&#xA;&lt;a href=&#34;&#34;&gt;Control Charachters and Bi-Directional Text&lt;/a&gt;.&#xA;The effect of this bug is so huge that makes it impossible for me to use KDE or&#xA;any other application that uses Qt. To see how it didn&amp;rsquo;t work for us, imagine&#xA;being unable to type, for example, &amp;ldquo;space&amp;rdquo; character in any application on your&#xA;operating system! In this post I am going to show a workaround and explain how&#xA;to fix this bug. It is already fixed in recent versions of Qt, though it is not&#xA;in official repositories yet. Fortunately, the workaround is very simple and&#xA;does not break anything. Finally I&amp;rsquo;ll provide a patch for 5.9. Hope this helps&#xA;someone.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

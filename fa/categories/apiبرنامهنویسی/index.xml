@@ -4,23 +4,16 @@
     <title>API،برنامه‌نویسی on اختاپوس خسته</title>
     <link>https://soroush.github.io/fa/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/</link>
     <description>Recent content in API،برنامه‌نویسی on اختاپوس خسته</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>fa</language>
-    <lastBuildDate>Wed, 07 Jan 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://soroush.github.io/fa/categories/api%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%D9%86%D9%88%DB%8C%D8%B3%DB%8C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>کتابخانهٔ Dynamixel</title>
       <link>https://soroush.github.io/fa/1393/10/17/libdynamixel-c&#43;&#43;11-api/</link>
       <pubDate>Wed, 07 Jan 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://soroush.github.io/fa/1393/10/17/libdynamixel-c&#43;&#43;11-api/</guid>
-      <description>&lt;p&gt;مدتی هست که هم توی شبکه‌های اجتماعی و هم این‌جا فعالیتم خیلی کم شده. دلیلش
-پروژه‌ای هست که در حال حاضر وقت خیلی زیادی ازم می‌گیره و مجبورم به‌خاطرش
-مسافرت‌های طولانی رو برم و برگردم.&lt;/p&gt;
-&lt;p&gt;اما ماحصل یکی از این سفرها یک کتابخانهٔ جدید و بسیار خوشگل و مرتب شده به اسم
-libdynamixel.
-این کتابخانه یک API سطح بالا برای کنترل و استفاده از سروو موتورهای
-هوشمند داینامیکسل طراحی شده. این پست در مورد ویژگی‌های این کتابخانه است.&lt;/p&gt;</description>
+      <description>&lt;p&gt;مدتی هست که هم توی شبکه‌های اجتماعی و هم این‌جا فعالیتم خیلی کم شده. دلیلش&#xA;پروژه‌ای هست که در حال حاضر وقت خیلی زیادی ازم می‌گیره و مجبورم به‌خاطرش&#xA;مسافرت‌های طولانی رو برم و برگردم.&lt;/p&gt;&#xA;&lt;p&gt;اما ماحصل یکی از این سفرها یک کتابخانهٔ جدید و بسیار خوشگل و مرتب شده به اسم&#xA;libdynamixel.&#xA;این کتابخانه یک API سطح بالا برای کنترل و استفاده از سروو موتورهای&#xA;هوشمند داینامیکسل طراحی شده. این پست در مورد ویژگی‌های این کتابخانه است.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

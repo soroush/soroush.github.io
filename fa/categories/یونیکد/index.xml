@@ -4,30 +4,16 @@
     <title>یونیکد on اختاپوس خسته</title>
     <link>https://soroush.github.io/fa/categories/%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF/</link>
     <description>Recent content in یونیکد on اختاپوس خسته</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>fa</language>
-    <lastBuildDate>Thu, 18 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://soroush.github.io/fa/categories/%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Sep 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://soroush.github.io/fa/categories/%DB%8C%D9%88%D9%86%DB%8C%DA%A9%D8%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>چپ‌به‌راست، راست‌به‌چپ و Unicode BiDi</title>
       <link>https://soroush.github.io/fa/1393/06/27/unicode-bidi/</link>
       <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://soroush.github.io/fa/1393/06/27/unicode-bidi/</guid>
-      <description>&lt;p&gt;حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید
-و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Plain_text&#34;&gt;Plain Text&lt;/a&gt;
-(یعنی محیط‌های متنی‌ای که شما کنترلی روی استایل و پاراگراف ندارید. مثل
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Gedit&#34;&gt;gedit&lt;/a&gt;
-یا
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Kate_%28text_editor%29&#34;&gt;kate&lt;/a&gt;
-یا مثلاً
-&lt;a href=&#34;http://en.wikipedia.org/wiki/Notepad_%28software%29&#34;&gt;notepad&lt;/a&gt;).
-خیلی زود متوجه خواهید شد که روش ساده‌ای برای نوشتن کاراکترهایی که نه راست‌به‌چپ
-هستن و نه چپ‌به‌راست هستن، وجود نداره (در ادامه میگم که جهت یک کاراکتر یعنی
-چی). توی این پست می‌خوام روش استاندارد نوشتن متون دوطرفه رو معرفی کنم، و تأکید
-کنم که &lt;strong&gt;حتماً&lt;/strong&gt; ازش استفاده کنید و هیچوقت به‌جای این‌کار از هک‌های متداول (مثل
-برعکس نوشتن ترتیب نویسه‌ها) استفاده نکنید چون این کار خیلی غلطه.&lt;/p&gt;</description>
+      <description>&lt;p&gt;حتماً تا به‌حال براتون پیش اومده که وسط یه متن فارسی، یک متن انگلیسی می‌نویسید&#xA;و همه‌چیز قاطی میشه. مخصوصاً توی محیط‌های&#xA;&lt;a href=&#34;http://en.wikipedia.org/wiki/Plain_text&#34;&gt;Plain Text&lt;/a&gt;&#xA;(یعنی محیط‌های متنی‌ای که شما کنترلی روی استایل و پاراگراف ندارید. مثل&#xA;&lt;a href=&#34;http://en.wikipedia.org/wiki/Gedit&#34;&gt;gedit&lt;/a&gt;&#xA;یا&#xA;&lt;a href=&#34;http://en.wikipedia.org/wiki/Kate_%28text_editor%29&#34;&gt;kate&lt;/a&gt;&#xA;یا مثلاً&#xA;&lt;a href=&#34;http://en.wikipedia.org/wiki/Notepad_%28software%29&#34;&gt;notepad&lt;/a&gt;).&#xA;خیلی زود متوجه خواهید شد که روش ساده‌ای برای نوشتن کاراکترهایی که نه راست‌به‌چپ&#xA;هستن و نه چپ‌به‌راست هستن، وجود نداره (در ادامه میگم که جهت یک کاراکتر یعنی&#xA;چی). توی این پست می‌خوام روش استاندارد نوشتن متون دوطرفه رو معرفی کنم، و تأکید&#xA;کنم که &lt;strong&gt;حتماً&lt;/strong&gt; ازش استفاده کنید و هیچوقت به‌جای این‌کار از هک‌های متداول (مثل&#xA;برعکس نوشتن ترتیب نویسه‌ها) استفاده نکنید چون این کار خیلی غلطه.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
